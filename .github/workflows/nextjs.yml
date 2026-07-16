@@ -55,6 +55,8 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
         # static_site_generator: next is intentionally omitted — it auto-injects
         # basePath/output into next.config.mjs, which conflicts with the basePath
         # we already compute ourselves there.
