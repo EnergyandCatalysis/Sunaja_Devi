@@ -261,11 +261,12 @@ body {
 
 .hero-info h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 3.8rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: #ffffff;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 12px;
+  white-space: nowrap;
 }
 
 .hero-info .designation {
@@ -675,19 +676,21 @@ body {
 
 .stats-bar {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   padding: 28px 0;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .stat-item {
   text-align: center;
-  padding: 20px 28px;
+  padding: 18px 22px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  min-width: 140px;
+  min-width: 120px;
+  flex: 1;
   transition: var(--transition);
 }
 
@@ -944,7 +947,8 @@ body {
   }
 
   .hero-info h1 {
-    font-size: 3rem;
+    font-size: 2.4rem;
+    white-space: normal;
   }
   
   .hero-info .designation {
@@ -998,7 +1002,8 @@ body {
   }
   
   .hero-info h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    white-space: normal;
   }
   
   .hero-info .designation {
@@ -1050,8 +1055,9 @@ body {
   }
   
   .hero-info h1 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     margin-bottom: 8px;
+    white-space: normal;
   }
   
   .hero-info .designation {
