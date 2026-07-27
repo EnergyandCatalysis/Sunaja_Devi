@@ -59,7 +59,7 @@ export default function Sidebar() {
       links: [
         {
           label: "Google Scholar",
-          href: "/scholar",
+          href: "https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en",
           icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
@@ -160,6 +160,8 @@ export default function Sidebar() {
                     href={link.href}
                     className="nav-link"
                     onClick={handleNavClick}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   >
                     {link.icon}
                     {link.label}
