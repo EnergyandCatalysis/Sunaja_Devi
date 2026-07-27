@@ -128,10 +128,7 @@ const interests = [
   "Green Chemistry",
 ];
 
-const totalCitations = scholarArticles.reduce(
-  (sum, a) => sum + a.citations,
-  0
-);
+const totalCitations = 3039;
 
 export default function ScholarPage() {
   return (
@@ -308,11 +305,11 @@ export default function ScholarPage() {
             <span></span>
           </div>
           <div className="scholar-stat">
-            <span className="scholar-stat-value">28</span>
+            <span className="scholar-stat-value">32</span>
             <span></span>
           </div>
           <div className="scholar-stat">
-            <span className="scholar-stat-value">22</span>
+            <span className="scholar-stat-value">25</span>
             <span></span>
           </div>
         </div>

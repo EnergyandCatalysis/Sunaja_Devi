@@ -225,15 +225,15 @@ export default function HomePage() {
         <section className="section" style={{ paddingBottom: 0 }}>
           <div className="stats-bar" id="stats-section">
             <div className="stat-item">
-              <span className="stat-number">90+</span>
+              <span className="stat-number">166+</span>
               <span className="stat-label">Publications</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">2000+</span>
+              <span className="stat-number">3039+</span>
               <span className="stat-label">Citations</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">15+</span>
+              <span className="stat-number">20+</span>
               <span className="stat-label">Years Experience</span>
             </div>
             <div className="stat-item">
@@ -241,8 +241,8 @@ export default function HomePage() {
               <span className="stat-label">Patents</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">10+</span>
-              <span className="stat-label">PhD Scholars</span>
+              <span className="stat-number">10</span>
+              <span className="stat-label">PhD Scholars Graduated</span>
             </div>
           </div>
         </section>
@@ -312,7 +312,7 @@ export default function HomePage() {
           <div className="section-header">
             <h2 className="section-title">Selected Publications</h2>
             <p className="section-subtitle">
-              Over 90 publications in peer-reviewed international journals.{" "}
+              Over 166 publications in peer-reviewed international journals.{" "}
               <a
                 href="https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en"
                 target="_blank"
