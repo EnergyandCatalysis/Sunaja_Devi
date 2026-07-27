@@ -214,7 +214,7 @@ export default function ScholarPage() {
         {/* Profile Header */}
         <div className="scholar-header" id="scholar-profile-header">
           <Image
-            src={`${basePath}/images/professor.png`}
+            src={`${basePath}/images/sunaja_devi.jpg`}
             alt="Sunaja Devi K R"
             width={100}
             height={100}

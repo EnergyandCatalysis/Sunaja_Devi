@@ -139,7 +139,7 @@ export default function HomePage() {
           <div className="hero-content">
             <div className="hero-portrait">
               <Image
-                src={`${basePath}/images/professor.png`}
+                src={`${basePath}/images/sunaja_devi.jpg`}
                 alt="Prof. Sunaja Devi K R"
                 width={280}
                 height={280}
