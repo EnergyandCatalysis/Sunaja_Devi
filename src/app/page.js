@@ -225,19 +225,19 @@ export default function HomePage() {
         <section className="section" style={{ paddingBottom: 0 }}>
           <div className="stats-bar" id="stats-section">
             <div className="stat-item">
-              <span className="stat-number">166+</span>
+              <span className="stat-number">166</span>
               <span className="stat-label">Publications</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">3039+</span>
+              <span className="stat-number">3039</span>
               <span className="stat-label">Citations</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">20+</span>
+              <span className="stat-number">20</span>
               <span className="stat-label">Years Experience</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">6+</span>
+              <span className="stat-number">6</span>
               <span className="stat-label">Patents</span>
             </div>
             <div className="stat-item">
