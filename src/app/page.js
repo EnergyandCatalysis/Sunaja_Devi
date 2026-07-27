@@ -156,13 +156,19 @@ export default function HomePage() {
                 Christ (Deemed to be University), Bangalore
               </p>
               <div className="hero-links">
-                <Link href="/scholar" className="hero-btn primary" id="scholar-link">
+                <a
+                  href="https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-btn primary"
+                  id="scholar-link"
+                >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                     <path d="M6 12v5c3 3 9 3 12 0v-5" />
                   </svg>
                   Google Scholar
-                </Link>
+                </a>
                 <a
                   href="https://www.researchgate.net/profile/Sunaja-Devi-K-R"
                   target="_blank"
@@ -307,12 +313,14 @@ export default function HomePage() {
             <h2 className="section-title">Selected Publications</h2>
             <p className="section-subtitle">
               Over 90 publications in peer-reviewed international journals.{" "}
-              <Link
-                href="/scholar"
+              <a
+                href="https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{ color: "var(--accent)", textDecoration: "none" }}
               >
                 View all on Google Scholar →
-              </Link>
+              </a>
             </p>
           </div>
 

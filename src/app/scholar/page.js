@@ -234,7 +234,16 @@ export default function ScholarPage() {
                 marginBottom: "8px",
               }}
             >
-              Verified email at christuniversity.in
+              Verified email at christuniversity.in &bull;{" "}
+              <a
+                href="https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#1a73e8", fontWeight: 500 }}
+                id="official-scholar-link"
+              >
+                Google Scholar Profile ↗
+              </a>
             </p>
             <div className="scholar-interests">
               {interests.map((interest, idx) => (
@@ -364,12 +373,12 @@ export default function ScholarPage() {
           <p style={{ fontSize: "0.82rem", color: "#856404", marginTop: "6px" }}>
             Visit the{" "}
             <a
-              href="https://scholar.google.com/citations?user=XXXXXXXXX"
+              href="https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#1a73e8" }}
+              style={{ color: "#1a73e8", fontWeight: 600 }}
             >
-              original Google Scholar profile
+              official Google Scholar profile
             </a>{" "}
             for the latest data.
           </p>
