@@ -224,7 +224,7 @@ export default function ScholarPage() {
           <div className="scholar-info">
             <h1>Sunaja Devi K R</h1>
             <p className="scholar-affiliation">
-              Professor of Chemistry, Christ (Deemed to be University),
+              Head & Professor, Department of Chemistry, Christ (Deemed to be University),
               Bangalore
             </p>
             <p

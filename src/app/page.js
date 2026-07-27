@@ -150,7 +150,7 @@ export default function HomePage() {
             <div className="hero-info">
               <h1>Prof. Sunaja Devi K R</h1>
               <p className="designation">
-                Professor of Chemistry & PhD Coordinator
+                Head & Professor, Department of Chemistry
               </p>
               <p className="university">
                 Christ (Deemed to be University), Bangalore
