@@ -309,44 +309,46 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="research-description">
-            <p>
-              Our research focuses on the design, synthesis, and engineering of
-              advanced functional materials to address global challenges in clean
-              energy and environmental sustainability. We develop and investigate
-              MXenes, MAX phases, metal–organic frameworks (MOFs), layered double
-              hydroxides (LDHs), nanocomposites, and hybrid materials for
-              next-generation energy storage, energy conversion, and environmental
-              remediation.
-            </p>
-            <p>
-              Our work encompasses the development of high-performance electrode
-              materials for supercapacitors and batteries, efficient
-              electrocatalysts for hydrogen evolution, oxygen evolution, and overall
-              water splitting, as well as photocatalysts and adsorbents for
-              wastewater treatment and pollutant degradation. By integrating
-              innovative synthesis strategies with advanced structural,
-              spectroscopic, and electrochemical characterization, we establish
-              fundamental structure–property relationships that enable the rational
-              design of high-performance functional materials.
-            </p>
-            <p>
-              Through interdisciplinary research and international collaborations,
-              our group aims to translate fundamental materials science into
-              practical technologies that contribute to a cleaner, more
-              sustainable future.
-            </p>
-          </div>
+          <div className="research-overview-grid">
+            <div className="research-description">
+              <p>
+                Our research focuses on the design, synthesis, and engineering of
+                advanced functional materials to address global challenges in clean
+                energy and environmental sustainability. We develop and investigate
+                MXenes, MAX phases, metal–organic frameworks (MOFs), layered double
+                hydroxides (LDHs), nanocomposites, and hybrid materials for
+                next-generation energy storage, energy conversion, and environmental
+                remediation.
+              </p>
+              <p>
+                Our work encompasses the development of high-performance electrode
+                materials for supercapacitors and batteries, efficient
+                electrocatalysts for hydrogen evolution, oxygen evolution, and overall
+                water splitting, as well as photocatalysts and adsorbents for
+                wastewater treatment and pollutant degradation. By integrating
+                innovative synthesis strategies with advanced structural,
+                spectroscopic, and electrochemical characterization, we establish
+                fundamental structure–property relationships that enable the rational
+                design of high-performance functional materials.
+              </p>
+              <p>
+                Through interdisciplinary research and international collaborations,
+                our group aims to translate fundamental materials science into
+                practical technologies that contribute to a cleaner, more
+                sustainable future.
+              </p>
+            </div>
 
-          <div className="research-gallery" style={{ justifyContent: "center" }}>
-            <Image
-              src={`${basePath}/images/research_overview.png`}
-              alt="Advancing Materials for Sustainable Energy and Environmental Solutions"
-              width={1000}
-              height={500}
-              style={{ width: "100%", height: "auto", maxHeight: "480px", objectFit: "contain", borderRadius: "var(--radius-md)", border: "1px solid var(--border-color)" }}
-              id="research-illustration"
-            />
+            <div className="research-image-card">
+              <Image
+                src={`${basePath}/images/research_overview.png`}
+                alt="Advancing Materials for Sustainable Energy and Environmental Solutions"
+                width={800}
+                height={600}
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                id="research-illustration"
+              />
+            </div>
           </div>
 
           <div style={{ marginTop: "36px" }}>
