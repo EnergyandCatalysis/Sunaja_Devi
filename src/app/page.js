@@ -238,9 +238,24 @@ export default function HomePage() {
             <a href="#research" className="top-nav-link">
               Research
             </a>
-            <a href="#publications" className="top-nav-link">
-              Publications
-            </a>
+            <div className="top-nav-dropdown-container">
+              <a href="#publications" className="top-nav-link top-nav-dropdown-trigger" id="pub-dropdown-trigger">
+                Publications
+                <svg className="dropdown-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </a>
+              <div className="top-nav-dropdown-menu" id="pub-dropdown-menu">
+                <a href="#selected-publications" className="top-nav-dropdown-item" id="nav-selected-pub">
+                  <span className="dropdown-item-icon">⭐</span>
+                  Selected Publications
+                </a>
+                <a href="#latest-publications" className="top-nav-dropdown-item" id="nav-latest-pub">
+                  <span className="dropdown-item-icon">✨</span>
+                  Latest Publications
+                </a>
+              </div>
+            </div>
             <a href="#group" className="top-nav-link">
               Group
             </a>
@@ -363,7 +378,7 @@ export default function HomePage() {
           </div>
 
           {/* Subsection 1: Selected Publications */}
-          <div className="pub-subsection" style={{ marginBottom: "40px" }}>
+          <div className="pub-subsection" id="selected-publications" style={{ marginBottom: "40px" }}>
             <div className="pub-subsection-header">
               <h3 className="pub-subsection-title">
                 <span className="pub-subsection-icon">⭐</span>
@@ -385,7 +400,7 @@ export default function HomePage() {
           </div>
 
           {/* Subsection 2: Latest Publications */}
-          <div className="pub-subsection">
+          <div className="pub-subsection" id="latest-publications">
             <div className="pub-subsection-header">
               <h3 className="pub-subsection-title">
                 <span className="pub-subsection-icon">✨</span>
