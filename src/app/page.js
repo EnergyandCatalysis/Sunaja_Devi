@@ -43,7 +43,7 @@ const researchAreas = [
   },
 ];
 
-const publications = [
+const latestPublications = [
   {
     year: "2026",
     title:
@@ -85,6 +85,44 @@ const publications = [
       "Synergistic Effect of NiFe₂O₄/g-C₃N₄ Nanocomposite for Enhanced Photocatalytic Degradation of Methylene Blue",
     authors: "Sunaja Devi K R et al.",
     journal: "Chemical Engineering Journal",
+  },
+];
+
+const selectedPublications = [
+  {
+    year: "2023",
+    title:
+      "Cobalt-Based Metal-Organic Framework as Bifunctional Electrocatalyst for Overall Water Splitting",
+    authors: "Sunaja Devi K R et al.",
+    journal: "ACS Applied Materials & Interfaces",
+  },
+  {
+    year: "2022",
+    title:
+      "Polyoxometalate-Based Metal-Organic Frameworks for Heterogeneous Catalysis: A Review",
+    authors: "Sunaja Devi K R et al.",
+    journal: "Coordination Chemistry Reviews",
+  },
+  {
+    year: "2022",
+    title:
+      "Hierarchical ZnO/CdS Heterostructure for Visible-Light Driven Photocatalytic Hydrogen Evolution",
+    authors: "Sunaja Devi K R et al.",
+    journal: "Applied Catalysis B: Environmental",
+  },
+  {
+    year: "2021",
+    title:
+      "Recent Advances in Metal-Organic Frameworks for Energy Storage Applications",
+    authors: "Sunaja Devi K R et al.",
+    journal: "Energy & Environmental Science",
+  },
+  {
+    year: "2021",
+    title:
+      "ZIF-67 Derived Co₃O₄/N-Doped Carbon Composite as Efficient Oxygen Evolution Electrocatalyst",
+    authors: "Sunaja Devi K R et al.",
+    journal: "International Journal of Hydrogen Energy",
   },
 ];
 
@@ -310,7 +348,7 @@ export default function HomePage() {
         {/* Publications Section */}
         <section className="section" id="publications">
           <div className="section-header">
-            <h2 className="section-title">Selected Publications</h2>
+            <h2 className="section-title">Publications</h2>
             <p className="section-subtitle">
               Over 166 publications in peer-reviewed international journals.{" "}
               <a
@@ -324,17 +362,48 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="publications-list">
-            {publications.map((pub, idx) => (
-              <div className="publication-card" key={idx} id={`pub-card-${idx}`}>
-                <div className="pub-year">{pub.year}</div>
-                <div className="pub-content">
-                  <h4>{pub.title}</h4>
-                  <p className="pub-authors">{pub.authors}</p>
-                  <p className="pub-journal">{pub.journal}</p>
+          {/* Subsection 1: Selected Publications */}
+          <div className="pub-subsection" style={{ marginBottom: "40px" }}>
+            <div className="pub-subsection-header">
+              <h3 className="pub-subsection-title">
+                <span className="pub-subsection-icon">⭐</span>
+                Selected Publications
+              </h3>
+            </div>
+            <div className="publications-list">
+              {selectedPublications.map((pub, idx) => (
+                <div className="publication-card" key={idx} id={`selected-pub-card-${idx}`}>
+                  <div className="pub-year">{pub.year}</div>
+                  <div className="pub-content">
+                    <h4>{pub.title}</h4>
+                    <p className="pub-authors">{pub.authors}</p>
+                    <p className="pub-journal">{pub.journal}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Subsection 2: Latest Publications */}
+          <div className="pub-subsection">
+            <div className="pub-subsection-header">
+              <h3 className="pub-subsection-title">
+                <span className="pub-subsection-icon">✨</span>
+                Latest Publications
+              </h3>
+            </div>
+            <div className="publications-list">
+              {latestPublications.map((pub, idx) => (
+                <div className="publication-card" key={idx} id={`latest-pub-card-${idx}`}>
+                  <div className="pub-year">{pub.year}</div>
+                  <div className="pub-content">
+                    <h4>{pub.title}</h4>
+                    <p className="pub-authors">{pub.authors}</p>
+                    <p className="pub-journal">{pub.journal}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
