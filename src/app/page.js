@@ -305,24 +305,36 @@ export default function HomePage() {
           <div className="section-header">
             <h2 className="section-title">Research</h2>
             <p className="section-subtitle">
-              Our research group focuses on materials chemistry for energy and
-              environmental applications
+              Advancing Materials for Sustainable Energy and Environmental Solutions
             </p>
           </div>
 
           <div className="research-description">
             <p>
-              We are interested in designing and developing advanced functional
-              materials including metal-organic frameworks (MOFs), MXenes,
-              nanocomposites, and layered double hydroxides (LDHs) for energy
-              storage & conversion and environmental remediation. Our research
-              spans the development of high-performance electrode materials for
-              supercapacitors and batteries, efficient electrocatalysts for water
-              splitting, and novel adsorbents for pollutant removal. We also
-              explore green chemistry approaches and photocatalytic degradation
-              of organic pollutants. The group combines experimental synthesis
-              with advanced characterization techniques to understand
-              structure-property relationships in these functional materials.
+              Our research focuses on the design, synthesis, and engineering of
+              advanced functional materials to address global challenges in clean
+              energy and environmental sustainability. We develop and investigate
+              MXenes, MAX phases, metal–organic frameworks (MOFs), layered double
+              hydroxides (LDHs), nanocomposites, and hybrid materials for
+              next-generation energy storage, energy conversion, and environmental
+              remediation.
+            </p>
+            <p>
+              Our work encompasses the development of high-performance electrode
+              materials for supercapacitors and batteries, efficient
+              electrocatalysts for hydrogen evolution, oxygen evolution, and overall
+              water splitting, as well as photocatalysts and adsorbents for
+              wastewater treatment and pollutant degradation. By integrating
+              innovative synthesis strategies with advanced structural,
+              spectroscopic, and electrochemical characterization, we establish
+              fundamental structure–property relationships that enable the rational
+              design of high-performance functional materials.
+            </p>
+            <p>
+              Through interdisciplinary research and international collaborations,
+              our group aims to translate fundamental materials science into
+              practical technologies that contribute to a cleaner, more
+              sustainable future.
             </p>
           </div>
 

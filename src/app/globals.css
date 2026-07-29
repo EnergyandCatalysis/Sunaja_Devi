@@ -572,6 +572,10 @@ body {
   line-height: 1.85;
 }
 
+.research-description p:not(:last-child) {
+  margin-bottom: 1.25rem;
+}
+
 .research-gallery {
   display: flex;
   gap: 16px;
