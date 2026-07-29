@@ -290,7 +290,7 @@ export default function HomePage() {
               <span className="stat-label">Years Experience</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">6</span>
+              <span className="stat-number">10</span>
               <span className="stat-label">Patents</span>
             </div>
             <div className="stat-item">
