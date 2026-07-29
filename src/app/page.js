@@ -338,13 +338,13 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="research-gallery">
+          <div className="research-gallery" style={{ justifyContent: "center" }}>
             <Image
-              src={`${basePath}/images/research.png`}
-              alt="Advanced MOFs and Nanocomposites Research"
-              width={600}
-              height={180}
-              style={{ height: "180px", width: "auto" }}
+              src={`${basePath}/images/research_overview.png`}
+              alt="Advancing Materials for Sustainable Energy and Environmental Solutions"
+              width={1000}
+              height={500}
+              style={{ width: "100%", height: "auto", maxHeight: "480px", objectFit: "contain", borderRadius: "var(--radius-md)", border: "1px solid var(--border-color)" }}
               id="research-illustration"
             />
           </div>
