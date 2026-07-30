@@ -127,7 +127,8 @@ const selectedPublications = [
 ];
 
 function getInitials(name) {
-  const words = name.replace(/^Dr\.\s*/i, "").split(" ").filter(Boolean);
+  const cleanName = name.replace(/^Dr\.\s*/i, "").replace(/\./g, " ");
+  const words = cleanName.split(" ").filter(Boolean);
   return ((words[0]?.[0] || "") + (words[words.length - 1]?.[0] || "")).toUpperCase();
 }
 
@@ -138,7 +139,7 @@ const groupCategories = [
   },
   {
     category: "PhD Scholars",
-    members: ["Cheriyan John", "Jessica Jones W"],
+    members: ["Cheriyan John", "Jessica Jones W", "Arsha.R"],
   },
   {
     category: "Past Members",
