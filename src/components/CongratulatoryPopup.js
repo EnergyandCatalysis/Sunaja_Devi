@@ -48,7 +48,7 @@ export default function CongratulatoryPopup({ config = currentAnnouncement }) {
     // Show popup
     setIsVisible(true);
 
-    const DURATION_MS = 20000; // 20 seconds
+    const DURATION_MS = 10000; // 10 seconds
     const INTERVAL_MS = 100;
     const step = (INTERVAL_MS / DURATION_MS) * 100;
 
@@ -103,20 +103,20 @@ export default function CongratulatoryPopup({ config = currentAnnouncement }) {
             <span className="sparkle-icon">✨</span>
           </div>
 
-          <div className="publisher-section">
-            <div className="publisher-avatar-wrapper">
-              {config.publisherPhoto ? (
+          <div className="publisher-section-large">
+            {config.publisherPhoto ? (
+              <div className="publisher-photo-container">
                 <Image
                   src={config.publisherPhoto}
                   alt={config.publisherName}
-                  width={64}
-                  height={64}
-                  className="publisher-photo"
+                  width={360}
+                  height={220}
+                  className="publisher-photo-large"
                 />
-              ) : (
-                <div className="publisher-initials-avatar">{initials}</div>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="publisher-initials-avatar">{initials}</div>
+            )}
             <div className="publisher-details">
               <h4 className="publisher-name">{config.publisherName}</h4>
               <p className="publisher-role">{config.publisherRole}</p>
