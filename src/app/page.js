@@ -140,6 +140,18 @@ function getInitials(name) {
   return ((words[0]?.[0] || "") + (words[words.length - 1]?.[0] || "")).toUpperCase();
 }
 
+const memberPhotos = {
+  "Dr. Pushparaj Loganathan": `${basePath}/images/Pushparaj L _ PDF.jpg`,
+  "Cheriyan John": `${basePath}/images/Cheriyan John_ present.jpg`,
+  "Jessica Jones W": `${basePath}/images/Jessica Jones W _Present SCholar.JPG`,
+  "Arsha.R": `${basePath}/images/Arsha R_ Present Scholar.jpg`,
+  "Dr. Dephan Phinero": `${basePath}/images/Dephan Pinheiro_OLD Student.JPG`,
+  "Dr. Arun Varghese Ayyamala": `${basePath}/images/Arun_old.jpg`,
+  "Dr. Muthukumar Devarasu": `${basePath}/images/Muthukumar D old.jpg`,
+  "Dr. Samika Anand": `${basePath}/images/Samika Anand _OLd.jpg`,
+  "Dr. Sujith S": `${basePath}/images/Sujith s_ OLd.jpeg`,
+};
+
 const groupCategories = [
   {
     category: "Post-Doctoral Researcher",
@@ -472,7 +484,19 @@ export default function HomePage() {
                     key={name}
                     id={`member-card-${groupIdx}-${idx}`}
                   >
-                    <div className="member-avatar">{getInitials(name)}</div>
+                    <div className="member-avatar">
+                      {memberPhotos[name] ? (
+                        <Image
+                          src={memberPhotos[name]}
+                          alt={name}
+                          width={64}
+                          height={64}
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                      ) : (
+                        getInitials(name)
+                      )}
+                    </div>
                     <h4>{name}</h4>
                     <p className="member-role">{group.category}</p>
                   </div>
