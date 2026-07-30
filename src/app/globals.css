@@ -1306,6 +1306,42 @@ body {
   font-size: 0.9rem;
 }
 
+.popup-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.popup-nav-arrows {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2px 4px;
+}
+
+.popup-nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent-light);
+  font-size: 1.1rem;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.popup-nav-btn:hover {
+  background: rgba(196, 149, 58, 0.3);
+  color: #ffffff;
+}
+
 .popup-close-btn {
   background: rgba(255, 255, 255, 0.1);
   border: none;
@@ -1324,6 +1360,29 @@ body {
 .popup-close-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: scale(1.1);
+}
+
+.popup-dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.popup-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-dot.active {
+  background: var(--accent);
+  width: 18px;
+  border-radius: 4px;
 }
 
 .popup-body {

@@ -5,19 +5,36 @@ import Image from "next/image";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-// Default configuration for latest congratulatory publication announcement
-// Update these details whenever a group member publishes a new article!
-export const currentAnnouncement = {
-  enabled: true, // Set to false to disable popup manually
-  publishDate: "2026-07-30", // Date when paper was added/published (YYYY-MM-DD)
-  activeDays: 7, // Popup stays active for 7 days (1 week) from publishDate
-  publisherName: "Dr. Pushparaj L. & Cheriyan John",
-  publisherRole: "Post-Doctoral Researcher & PhD Scholar",
-  publisherPhoto: `${basePath}/images/pushparaj_cheriyan_announcement.png`,
-  paperTitle: "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-  journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
-  link: "https://doi.org/10.1021/acsanm.6c02084",
-};
+// List of recent congratulatory publication announcements.
+// You can add as many publications here as you want!
+// Any publication published within its active window (default 7 days) will automatically show in the popup.
+export const activeAnnouncements = [
+  {
+    id: "pub-1",
+    enabled: true,
+    publishDate: "2026-07-30", // Date published (YYYY-MM-DD)
+    activeDays: 7, // Active for 7 days (1 week)
+    publisherName: "Dr. Pushparaj L. & Cheriyan John",
+    publisherRole: "Post-Doctoral Researcher & PhD Scholar",
+    publisherPhoto: `${basePath}/images/pushparaj_cheriyan_announcement.png`,
+    paperTitle: "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
+    journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
+    link: "https://doi.org/10.1021/acsanm.6c02084",
+  },
+  // Example for a second simultaneous publication:
+  // {
+  //   id: "pub-2",
+  //   enabled: true,
+  //   publishDate: "2026-07-30",
+  //   activeDays: 7,
+  //   publisherName: "Jessica Jones W",
+  //   publisherRole: "PhD Scholar",
+  //   publisherPhoto: "",
+  //   paperTitle: "Title of Second Paper...",
+  //   journal: "Journal of Materials Chemistry A (2026)",
+  //   link: "https://doi.org/...",
+  // },
+];
 
 function getPublisherInitials(name) {
   if (!name) return "SD";
@@ -26,31 +43,40 @@ function getPublisherInitials(name) {
   return ((words[0]?.[0] || "") + (words[words.length - 1]?.[0] || "")).toUpperCase();
 }
 
-export default function CongratulatoryPopup({ config = currentAnnouncement }) {
+export default function CongratulatoryPopup({ announcements = activeAnnouncements }) {
+  const [validItems, setValidItems] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [progress, setProgress] = useState(100);
 
+  // Filter active announcements within 1-week window
   useEffect(() => {
-    if (!config || !config.enabled) return;
+    const list = Array.isArray(announcements) ? announcements : [announcements];
+    const nowTime = new Date().getTime();
 
-    // Check if announcement is within the 1-week active window
-    if (config.publishDate) {
-      const pubTime = new Date(config.publishDate).getTime();
-      const nowTime = new Date().getTime();
-      const activeDuration = (config.activeDays || 7) * 24 * 60 * 60 * 1000;
+    const activeList = list.filter((item) => {
+      if (!item || item.enabled === false) return false;
+      if (!item.publishDate) return true;
+
+      const pubTime = new Date(item.publishDate).getTime();
+      const activeDuration = (item.activeDays || 7) * 24 * 60 * 60 * 1000;
       
-      // If current date exceeds 1 week from publish date, do not show
-      if (nowTime - pubTime > activeDuration || nowTime < pubTime - 86400000) {
-        return;
-      }
+      // Return true if within active window
+      return (nowTime - pubTime <= activeDuration) && (nowTime >= pubTime - 86400000);
+    });
+
+    setValidItems(activeList);
+
+    if (activeList.length === 0) {
+      setIsVisible(false);
+      return;
     }
 
-    // Show popup
     setIsVisible(true);
 
-    const DURATION_MS = 10000; // 10 seconds
+    const TOTAL_DURATION_MS = 10000; // 10 seconds total display time
     const INTERVAL_MS = 100;
-    const step = (INTERVAL_MS / DURATION_MS) * 100;
+    const step = (INTERVAL_MS / TOTAL_DURATION_MS) * 100;
 
     const progressTimer = setInterval(() => {
       setProgress((prev) => {
@@ -65,35 +91,68 @@ export default function CongratulatoryPopup({ config = currentAnnouncement }) {
 
     const autoCloseTimer = setTimeout(() => {
       setIsVisible(false);
-    }, DURATION_MS);
+    }, TOTAL_DURATION_MS);
 
     return () => {
       clearInterval(progressTimer);
       clearTimeout(autoCloseTimer);
     };
-  }, [config]);
+  }, [announcements]);
 
-  if (!isVisible) return null;
+  // Auto rotate slides if multiple active announcements exist
+  useEffect(() => {
+    if (validItems.length <= 1) return;
 
-  const initials = getPublisherInitials(config.publisherName);
+    const rotateInterval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % validItems.length);
+    }, 5000); // switch slide every 5s if multiple papers exist
+
+    return () => clearInterval(rotateInterval);
+  }, [validItems]);
+
+  if (!isVisible || validItems.length === 0) return null;
+
+  const currentItem = validItems[currentIndex] || validItems[0];
+  const initials = getPublisherInitials(currentItem.publisherName);
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + validItems.length) % validItems.length);
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % validItems.length);
+  };
 
   return (
     <div className="popup-overlay-container" id="congratulations-popup-wrapper">
       <div className="popup-card" id="congratulations-popup-card">
-        {/* Header Ribbon & Close button */}
+        {/* Header Ribbon & Navigation / Close controls */}
         <div className="popup-header">
           <div className="popup-badge">
             <span className="popup-badge-icon">🎉</span>
-            <span className="popup-badge-text">New Publication!</span>
+            <span className="popup-badge-text">
+              {validItems.length > 1 ? `New Paper (${currentIndex + 1}/${validItems.length})` : "New Publication!"}
+            </span>
           </div>
-          <button
-            className="popup-close-btn"
-            onClick={() => setIsVisible(false)}
-            aria-label="Close Announcement"
-            id="popup-close-btn"
-          >
-            ✕
-          </button>
+
+          <div className="popup-header-actions">
+            {validItems.length > 1 && (
+              <div className="popup-nav-arrows">
+                <button className="popup-nav-btn" onClick={handlePrev} title="Previous Announcement">‹</button>
+                <button className="popup-nav-btn" onClick={handleNext} title="Next Announcement">›</button>
+              </div>
+            )}
+            <button
+              className="popup-close-btn"
+              onClick={() => setIsVisible(false)}
+              aria-label="Close Announcement"
+              id="popup-close-btn"
+            >
+              ✕
+            </button>
+          </div>
         </div>
 
         {/* Content Section */}
@@ -104,11 +163,11 @@ export default function CongratulatoryPopup({ config = currentAnnouncement }) {
           </div>
 
           <div className="publisher-section-large">
-            {config.publisherPhoto ? (
+            {currentItem.publisherPhoto ? (
               <div className="publisher-photo-container">
                 <Image
-                  src={config.publisherPhoto}
-                  alt={config.publisherName}
+                  src={currentItem.publisherPhoto}
+                  alt={currentItem.publisherName}
                   width={360}
                   height={220}
                   className="publisher-photo-large"
@@ -118,19 +177,19 @@ export default function CongratulatoryPopup({ config = currentAnnouncement }) {
               <div className="publisher-initials-avatar">{initials}</div>
             )}
             <div className="publisher-details">
-              <h4 className="publisher-name">{config.publisherName}</h4>
-              <p className="publisher-role">{config.publisherRole}</p>
+              <h4 className="publisher-name">{currentItem.publisherName}</h4>
+              <p className="publisher-role">{currentItem.publisherRole}</p>
             </div>
           </div>
 
           <div className="publication-info-box">
-            <p className="publication-paper-title">&ldquo;{config.paperTitle}&rdquo;</p>
-            <p className="publication-journal-tag">{config.journal}</p>
+            <p className="publication-paper-title">&ldquo;{currentItem.paperTitle}&rdquo;</p>
+            <p className="publication-journal-tag">{currentItem.journal}</p>
           </div>
 
-          {config.link && (
+          {currentItem.link && (
             <a
-              href={config.link}
+              href={currentItem.link}
               target="_blank"
               rel="noopener noreferrer"
               className="popup-link-btn"
@@ -144,9 +203,22 @@ export default function CongratulatoryPopup({ config = currentAnnouncement }) {
               </svg>
             </a>
           )}
+
+          {/* Dots Indicator if multiple active items */}
+          {validItems.length > 1 && (
+            <div className="popup-dots-container">
+              {validItems.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`popup-dot ${idx === currentIndex ? "active" : ""}`}
+                  onClick={() => setCurrentIndex(idx)}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
-        {/* 20-Second Progress Bar */}
+        {/* 10-Second Progress Bar */}
         <div className="popup-progress-track">
           <div
             className="popup-progress-bar"
