@@ -141,15 +141,15 @@ function getInitials(name) {
 }
 
 const memberPhotos = {
-  "Dr. Pushparaj Loganathan": `${basePath}/images/Pushparaj L _ PDF.jpg`,
-  "Cheriyan John": `${basePath}/images/Cheriyan John_ present.jpg`,
-  "Jessica Jones W": `${basePath}/images/Jessica Jones W _Present SCholar.JPG`,
-  "Arsha.R": `${basePath}/images/Arsha R_ Present Scholar.jpg`,
-  "Dr. Dephan Phinero": `${basePath}/images/Dephan Pinheiro_OLD Student.JPG`,
-  "Dr. Arun Varghese Ayyamala": `${basePath}/images/Arun_old.jpg`,
-  "Dr. Muthukumar Devarasu": `${basePath}/images/Muthukumar D old.jpg`,
-  "Dr. Samika Anand": `${basePath}/images/Samika Anand _OLd.jpg`,
-  "Dr. Sujith S": `${basePath}/images/Sujith s_ OLd.jpeg`,
+  "Dr. Pushparaj Loganathan": `${basePath}/images/pushparaj_l_pdf.jpg`,
+  "Cheriyan John": `${basePath}/images/cheriyan_john_present.jpg`,
+  "Jessica Jones W": `${basePath}/images/jessica_jones.jpg`,
+  "Arsha.R": `${basePath}/images/arsha_r.jpg`,
+  "Dr. Dephan Phinero": `${basePath}/images/dephan_phinero.jpg`,
+  "Dr. Arun Varghese Ayyamala": `${basePath}/images/arun_varghese.jpg`,
+  "Dr. Muthukumar Devarasu": `${basePath}/images/muthukumar_d.jpg`,
+  "Dr. Samika Anand": `${basePath}/images/samika_anand.jpg`,
+  "Dr. Sujith S": `${basePath}/images/sujith_s.jpg`,
 };
 
 const groupCategories = [
@@ -465,6 +465,19 @@ export default function HomePage() {
             </p>
           </div>
 
+          <div className="group-banner-wrapper">
+            <Image
+              src={`${basePath}/images/latest_group_photo.jpg`}
+              alt="Sunaja Devi Research Group"
+              width={1200}
+              height={500}
+              className="group-banner-image"
+            />
+            <div className="group-banner-caption">
+              <span>Sunaja Devi Research Group</span>
+            </div>
+          </div>
+
           {groupCategories.map((group, groupIdx) => (
             <div key={group.category} style={{ marginBottom: "36px" }}>
               <h3
@@ -489,9 +502,8 @@ export default function HomePage() {
                         <Image
                           src={memberPhotos[name]}
                           alt={name}
-                          width={64}
-                          height={64}
-                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          width={100}
+                          height={100}
                         />
                       ) : (
                         getInitials(name)
