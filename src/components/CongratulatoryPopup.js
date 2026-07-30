@@ -7,7 +7,6 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 // List of recent congratulatory publication announcements.
 // You can add as many publications here as you want!
-// Any publication published within its active window (default 7 days) will automatically show in the popup.
 export const activeAnnouncements = [
   {
     id: "pub-1",
@@ -21,19 +20,6 @@ export const activeAnnouncements = [
     journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
     link: "https://doi.org/10.1021/acsanm.6c02084",
   },
-  // Example for a second simultaneous publication:
-  // {
-  //   id: "pub-2",
-  //   enabled: true,
-  //   publishDate: "2026-07-30",
-  //   activeDays: 7,
-  //   publisherName: "Jessica Jones W",
-  //   publisherRole: "PhD Scholar",
-  //   publisherPhoto: "",
-  //   paperTitle: "Title of Second Paper...",
-  //   journal: "Journal of Materials Chemistry A (2026)",
-  //   link: "https://doi.org/...",
-  // },
 ];
 
 function getPublisherInitials(name) {
@@ -47,7 +33,15 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
   const [validItems, setValidItems] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [progress, setProgress] = useState(100);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 400);
+  };
 
   // Filter active announcements within 1-week window
   useEffect(() => {
@@ -61,7 +55,6 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
       const pubTime = new Date(item.publishDate).getTime();
       const activeDuration = (item.activeDays || 7) * 24 * 60 * 60 * 1000;
       
-      // Return true if within active window
       return (nowTime - pubTime <= activeDuration) && (nowTime >= pubTime - 86400000);
     });
 
@@ -73,6 +66,7 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
     }
 
     setIsVisible(true);
+    setIsClosing(false);
 
     const TOTAL_DURATION_MS = 10000; // 10 seconds total display time
     const INTERVAL_MS = 100;
@@ -82,7 +76,8 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
       setProgress((prev) => {
         if (prev <= 0) {
           clearInterval(progressTimer);
-          setIsVisible(false);
+          setIsClosing(true);
+          setTimeout(() => setIsVisible(false), 400);
           return 0;
         }
         return prev - step;
@@ -90,7 +85,8 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
     }, INTERVAL_MS);
 
     const autoCloseTimer = setTimeout(() => {
-      setIsVisible(false);
+      setIsClosing(true);
+      setTimeout(() => setIsVisible(false), 400);
     }, TOTAL_DURATION_MS);
 
     return () => {
@@ -105,7 +101,7 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
 
     const rotateInterval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % validItems.length);
-    }, 5000); // switch slide every 5s if multiple papers exist
+    }, 5000);
 
     return () => clearInterval(rotateInterval);
   }, [validItems]);
@@ -127,10 +123,10 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
 
   return (
     <div className="popup-overlay-container" id="congratulations-popup-wrapper">
-      <div className="popup-card" id="congratulations-popup-card">
+      <div className={`popup-card ${isClosing ? "exit-fun" : "enter-fun"}`} id="congratulations-popup-card">
         {/* Header Ribbon & Navigation / Close controls */}
         <div className="popup-header">
-          <div className="popup-badge">
+          <div className="popup-badge fun-wiggle">
             <span className="popup-badge-icon">🎉</span>
             <span className="popup-badge-text">
               {validItems.length > 1 ? `New Paper (${currentIndex + 1}/${validItems.length})` : "New Publication!"}
@@ -146,7 +142,7 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
             )}
             <button
               className="popup-close-btn"
-              onClick={() => setIsVisible(false)}
+              onClick={handleClose}
               aria-label="Close Announcement"
               id="popup-close-btn"
             >
@@ -159,7 +155,7 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
         <div className="popup-body">
           <div className="popup-congrats-title">
             <span>Congratulations</span>
-            <span className="sparkle-icon">✨</span>
+            <span className="sparkle-icon fun-sparkle">✨</span>
           </div>
 
           <div className="publisher-section-large">
