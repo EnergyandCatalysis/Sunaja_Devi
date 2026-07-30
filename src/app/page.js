@@ -138,7 +138,7 @@ const groupCategories = [
   },
   {
     category: "PhD Scholars",
-    members: ["Cheriyan John"],
+    members: ["Cheriyan John", "Jessica Jones W"],
   },
   {
     category: "Past Members",
