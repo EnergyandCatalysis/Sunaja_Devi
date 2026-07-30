@@ -11,12 +11,12 @@ export const currentAnnouncement = {
   enabled: true, // Set to false to disable popup manually
   publishDate: "2026-07-30", // Date when paper was added/published (YYYY-MM-DD)
   activeDays: 7, // Popup stays active for 7 days (1 week) from publishDate
-  publisherName: "Arsha.R",
-  publisherRole: "PhD Scholar",
-  publisherPhoto: "", // Path to photo (e.g. `${basePath}/images/arsha.jpg`) or leave empty for initials avatar
-  paperTitle: "Keggin-Type H₅PMo₁₀V₂O₄₀ Intercalated MgAl-LDH: Structural Integrity and Bifunctional Electrocatalytic Activity",
-  journal: "Journal of Materials Chemistry A (2026)",
-  link: "https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en",
+  publisherName: "Dr. Pushparaj L. & Cheriyan John",
+  publisherRole: "Post-Doctoral Researcher & PhD Scholar",
+  publisherPhoto: `${basePath}/images/pushparaj_cheriyan_announcement.png`,
+  paperTitle: "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
+  journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
+  link: "https://doi.org/10.1021/acsanm.6c02084",
 };
 
 function getPublisherInitials(name) {

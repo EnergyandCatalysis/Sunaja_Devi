@@ -48,6 +48,13 @@ const latestPublications = [
   {
     year: "2026",
     title:
+      "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
+    authors: "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
+    journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
+  },
+  {
+    year: "2026",
+    title:
       "Keggin-Type H₅PMo₁₀V₂O₄₀ Intercalated MgAl-LDH: Structural Integrity and Bifunctional Electrocatalytic Activity",
     authors: "Sunaja Devi K R et al.",
     journal: "Journal of Materials Chemistry A",
