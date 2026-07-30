@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar";
+import CongratulatoryPopup from "@/components/CongratulatoryPopup";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -161,6 +162,7 @@ export default function HomePage() {
   return (
     <>
       <Sidebar />
+      <CongratulatoryPopup />
 
       <main className="main-content" id="home">
         {/* Hero Section */}

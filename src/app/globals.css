@@ -1239,3 +1239,232 @@ body {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   CONGRATULATORY PUBLICATION POPUP STYLES
+   ========================================================================== */
+
+.popup-overlay-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  max-width: 380px;
+  width: calc(100vw - 32px);
+  pointer-events: none;
+}
+
+.popup-card {
+  pointer-events: auto;
+  background: linear-gradient(135deg, rgba(26, 39, 68, 0.97) 0%, rgba(15, 26, 46, 0.98) 100%);
+  border: 1px solid rgba(196, 149, 58, 0.4);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 20px rgba(196, 149, 58, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #ffffff;
+  overflow: hidden;
+  animation: slideInPopupRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+@keyframes slideInPopupRight {
+  0% {
+    opacity: 0;
+    transform: translateX(110%) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(196, 149, 58, 0.12);
+  border-bottom: 1px solid rgba(196, 149, 58, 0.2);
+}
+
+.popup-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--accent) 0%, #d4ab5e 100%);
+  color: #0f1a2e;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.popup-badge-icon {
+  font-size: 0.9rem;
+}
+
+.popup-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #eef1f7;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.popup-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.popup-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.popup-congrats-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  letter-spacing: 0.2px;
+}
+
+.publisher-section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.publisher-avatar-wrapper {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 10px rgba(196, 149, 58, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-light);
+}
+
+.publisher-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.publisher-initials-avatar {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent-light);
+  letter-spacing: 1px;
+}
+
+.publisher-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.publisher-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.publisher-role {
+  font-size: 0.8rem;
+  color: var(--accent-light);
+  margin: 0;
+}
+
+.publication-info-box {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent);
+}
+
+.publication-paper-title {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #e2e6ef;
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.publication-journal-tag {
+  font-size: 0.78rem;
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.popup-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  color: #0f1a2e;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(196, 149, 58, 0.25);
+}
+
+.popup-link-btn:hover {
+  background: linear-gradient(135deg, #d4ab5e 0%, var(--accent) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(196, 149, 58, 0.35);
+}
+
+.popup-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.popup-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, #d4ab5e 100%);
+  transition: width 0.1s linear;
+}
+
+@media (max-width: 480px) {
+  .popup-overlay-container {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    max-width: 100%;
+    width: auto;
+  }
+}
