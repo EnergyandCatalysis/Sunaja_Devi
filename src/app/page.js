@@ -141,15 +141,15 @@ function getInitials(name) {
 }
 
 const memberPhotos = {
-  "Dr. Pushparaj Loganathan": "/images/pushparaj_l_pdf.jpg",
-  "Cheriyan John": "/images/cheriyan_john_present.jpg",
-  "Jessica Jones W": "/images/jessica_jones.jpg",
-  "Arsha.R": "/images/arsha_r.jpg",
-  "Dr. Dephan Phinero": "/images/dephan_phinero.jpg",
-  "Dr. Arun Varghese Ayyamala": "/images/arun_varghese.jpg",
-  "Dr. Muthukumar Devarasu": "/images/muthukumar_d.jpg",
-  "Dr. Samika Anand": "/images/samika_anand.jpg",
-  "Dr. Sujith S": "/images/sujith_s.jpg",
+  "Dr. Pushparaj Loganathan": `${basePath}/images/pushparaj_l_pdf.jpg`,
+  "Cheriyan John": `${basePath}/images/cheriyan_john_present.jpg`,
+  "Jessica Jones W": `${basePath}/images/jessica_jones.jpg`,
+  "Arsha.R": `${basePath}/images/arsha_r.jpg`,
+  "Dr. Dephan Phinero": `${basePath}/images/dephan_phinero.jpg`,
+  "Dr. Arun Varghese Ayyamala": `${basePath}/images/arun_varghese.jpg`,
+  "Dr. Muthukumar Devarasu": `${basePath}/images/muthukumar_d.jpg`,
+  "Dr. Samika Anand": `${basePath}/images/samika_anand.jpg`,
+  "Dr. Sujith S": `${basePath}/images/sujith_s.jpg`,
 };
 
 const groupCategories = [
@@ -188,7 +188,7 @@ export default function HomePage() {
         <section className="hero">
           <div className="hero-bg" style={{ position: "absolute" }}>
             <Image
-              src="/images/lab-banner.png"
+              src={`${basePath}/images/lab-banner.png`}
               alt="Chemistry Research Laboratory"
               fill
               priority
@@ -199,7 +199,7 @@ export default function HomePage() {
           <div className="hero-content">
             <div className="hero-portrait">
               <Image
-                src="/images/sunaja_devi.png"
+                src={`${basePath}/images/sunaja_devi.png`}
                 alt="Prof. Sunaja Devi K R"
                 width={280}
                 height={280}
@@ -361,7 +361,7 @@ export default function HomePage() {
 
             <div className="research-image-wrapper">
               <Image
-                src="/images/research_overview.png"
+                src={`${basePath}/images/research_overview.png`}
                 alt="Advancing Materials for Sustainable Energy and Environmental Solutions"
                 width={1200}
                 height={600}
@@ -467,7 +467,7 @@ export default function HomePage() {
 
           <div className="group-banner-wrapper">
             <Image
-              src="/images/latest_group_photo.jpg"
+              src={`${basePath}/images/latest_group_photo.jpg`}
               alt="Sunaja Devi Research Group"
               width={1200}
               height={500}

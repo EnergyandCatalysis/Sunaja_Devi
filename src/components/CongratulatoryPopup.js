@@ -15,7 +15,7 @@ export const activeAnnouncements = [
     activeDays: 7, // Active for 7 days (1 week)
     publisherName: "Dr. Pushparaj L. & Cheriyan John",
     publisherRole: "Post-Doctoral Researcher & PhD Scholar",
-    publisherPhoto: "/images/pushparaj_cheriyan_announcement.png",
+    publisherPhoto: `${basePath}/images/pushparaj_cheriyan_announcement.png`,
     paperTitle: "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
     journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
     link: "https://doi.org/10.1021/acsanm.6c02084",
