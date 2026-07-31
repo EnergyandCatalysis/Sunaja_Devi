@@ -502,15 +502,21 @@ export default function HomePage() {
                         <Image
                           src={memberPhotos[name]}
                           alt={name}
-                          width={100}
-                          height={100}
+                          width={150}
+                          height={150}
                         />
                       ) : (
                         getInitials(name)
                       )}
                     </div>
                     <h4>{name}</h4>
-                    <p className="member-role">{group.category}</p>
+                    <p className="member-role">
+                      {group.category === "PhD Scholars"
+                        ? "PhD Scholar"
+                        : group.category === "Past Members"
+                        ? "Past Member"
+                        : group.category}
+                    </p>
                   </div>
                 ))}
               </div>
