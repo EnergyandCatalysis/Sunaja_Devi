@@ -51,43 +51,10 @@ const latestPublications = rawLatestPublications.map((pub) => ({
   graphicalAbstract: pub.graphicalAbstract ? `${basePath}${pub.graphicalAbstract}` : "",
 }));
 
-const selectedPublications = [
-  {
-    year: "2023",
-    title:
-      "Cobalt-Based Metal-Organic Framework as Bifunctional Electrocatalyst for Overall Water Splitting",
-    authors: "Sunaja Devi K R et al.",
-    journal: "ACS Applied Materials & Interfaces",
-  },
-  {
-    year: "2022",
-    title:
-      "Polyoxometalate-Based Metal-Organic Frameworks for Heterogeneous Catalysis: A Review",
-    authors: "Sunaja Devi K R et al.",
-    journal: "Coordination Chemistry Reviews",
-  },
-  {
-    year: "2022",
-    title:
-      "Hierarchical ZnO/CdS Heterostructure for Visible-Light Driven Photocatalytic Hydrogen Evolution",
-    authors: "Sunaja Devi K R et al.",
-    journal: "Applied Catalysis B: Environmental",
-  },
-  {
-    year: "2021",
-    title:
-      "Recent Advances in Metal-Organic Frameworks for Energy Storage Applications",
-    authors: "Sunaja Devi K R et al.",
-    journal: "Energy & Environmental Science",
-  },
-  {
-    year: "2021",
-    title:
-      "ZIF-67 Derived Co₃O₄/N-Doped Carbon Composite as Efficient Oxygen Evolution Electrocatalyst",
-    authors: "Sunaja Devi K R et al.",
-    journal: "International Journal of Hydrogen Energy",
-  },
-];
+const selectedPublications = rawSelectedPublications.map((pub) => ({
+  ...pub,
+  graphicalAbstract: pub.graphicalAbstract ? `${basePath}${pub.graphicalAbstract}` : "",
+}));
 
 function getInitials(name) {
   const cleanName = name.replace(/^Dr\.\s*/i, "").replace(/\./g, " ");
@@ -382,7 +349,19 @@ export default function HomePage() {
                     <div className="pub-content">
                       <h4>{pub.title}</h4>
                       <p className="pub-authors">{pub.authors}</p>
-                      <p className="pub-journal">{pub.journal}</p>
+                      <p className="pub-journal">
+                        {pub.journal}
+                        {pub.doi && (
+                          <a
+                            href={`https://doi.org/${pub.doi}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="pub-doi-badge"
+                          >
+                            DOI: {pub.doi} ↗
+                          </a>
+                        )}
+                      </p>
                     </div>
                   </div>
                   <div className="pub-abstract-wrapper" title="Graphical Abstract">

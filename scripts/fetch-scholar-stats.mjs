@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const STATS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'scholarStats.json');
 const PUBS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'latestPublications.json');
+const SELECTED_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'selectedPublications.json');
 
 const SCHOLAR_USER_ID = 'HmOcEpIAAAAJ';
 const SCHOLAR_URL = `https://scholar.google.com/citations?user=${SCHOLAR_USER_ID}&hl=en&sortby=pubdate`;
@@ -33,11 +34,66 @@ async function fetchScholarProfile() {
   return await response.text();
 }
 
-async function resolveCrossrefMetadata(title) {
+async function fetchMetadataByDOI(doi) {
+  try {
+    const cleanDoi = doi.trim().replace(/^https?:\/\/doi\.org\//i, '');
+    if (!cleanDoi) return null;
+
+    const url = `https://api.crossref.org/v1/works/${encodeURIComponent(cleanDoi)}`;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 6000);
+
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        'User-Agent': 'ProfWebsiteSync/1.0 (mailto:sunajadevi.kr@christuniversity.in)',
+      },
+    });
+
+    clearTimeout(timeout);
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    const item = data.message;
+    if (!item) return null;
+
+    const container = item['container-title']?.[0] || '';
+    const volume = item.volume ? ` ${item.volume}` : '';
+    const issue = item.issue ? ` (${item.issue})` : '';
+    const page = item.page ? `: ${item.page}` : '';
+    const publishedYear =
+      item['published-print']?.['date-parts']?.[0]?.[0] ||
+      item['published-online']?.['date-parts']?.[0]?.[0] ||
+      item.created?.['date-parts']?.[0]?.[0] ||
+      '';
+
+    let journalStr = container;
+    if (journalStr && (publishedYear || volume || page)) {
+      journalStr += ` (${publishedYear})${volume}${issue}${page}`;
+    }
+
+    const authorsList = (item.author || [])
+      .map((a) => `${a.given || ''} ${a.family || ''}`.trim())
+      .filter(Boolean)
+      .join(', ');
+
+    return {
+      doi: cleanDoi,
+      journal: journalStr,
+      authors: authorsList || 'Sunaja Devi K R et al.',
+      year: String(publishedYear || '2023'),
+      title: item.title?.[0] || '',
+    };
+  } catch (err) {
+    return null;
+  }
+}
+
+async function resolveCrossrefMetadataByTitle(title) {
   try {
     const url = `https://api.crossref.org/works?query.title=${encodeURIComponent(title)}&rows=1`;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
+    const timeout = setTimeout(() => controller.abort(), 6000);
 
     const res = await fetch(url, {
       signal: controller.signal,
@@ -53,36 +109,43 @@ async function resolveCrossrefMetadata(title) {
     const item = data.message?.items?.[0];
     if (!item) return null;
 
-    const doi = item.DOI || '';
-    const container = item['container-title']?.[0] || '';
-    const volume = item.volume ? ` ${item.volume}` : '';
-    const issue = item.issue ? ` (${item.issue})` : '';
-    const page = item.page ? `: ${item.page}` : '';
-    const publishedYear =
-      item['published-print']?.['date-parts']?.[0]?.[0] ||
-      item['published-online']?.['date-parts']?.[0]?.[0] ||
-      item.created?.['date-parts']?.[0]?.[0] ||
-      '';
-
-    let journalStr = container;
-    if (journalStr && (publishedYear || volume || page)) {
-      journalStr += ` (${publishedYear || '2026'})${volume}${issue}${page}`;
-    }
-
-    const authorsList = (item.author || [])
-      .map((a) => `${a.given || ''} ${a.family || ''}`.trim())
-      .filter(Boolean)
-      .join(', ');
-
-    return {
-      doi,
-      journal: journalStr,
-      authors: authorsList,
-      year: String(publishedYear || '2026'),
-      title: item.title?.[0] || title,
-    };
+    return await fetchMetadataByDOI(item.DOI);
   } catch (err) {
     return null;
+  }
+}
+
+async function updateSelectedPublications() {
+  if (!fs.existsSync(SELECTED_FILE_PATH)) return;
+
+  try {
+    const selectedData = JSON.parse(fs.readFileSync(SELECTED_FILE_PATH, 'utf8'));
+    let updatedCount = 0;
+
+    const updatedSelected = await Promise.all(
+      selectedData.map(async (pub) => {
+        if (!pub.doi) return pub;
+
+        const crossref = await fetchMetadataByDOI(pub.doi);
+        if (crossref && crossref.title) {
+          updatedCount++;
+          return {
+            year: crossref.year || pub.year,
+            title: crossref.title || pub.title,
+            authors: crossref.authors || pub.authors,
+            journal: crossref.journal || pub.journal,
+            doi: crossref.doi || pub.doi,
+            graphicalAbstract: pub.graphicalAbstract || '',
+          };
+        }
+        return pub;
+      })
+    );
+
+    fs.writeFileSync(SELECTED_FILE_PATH, JSON.stringify(updatedSelected, null, 2), 'utf8');
+    console.log(`✅ ${updatedCount} Selected Publications metadata updated via DOI lookup!`);
+  } catch (err) {
+    console.warn(`⚠️ Selected publications DOI update notice: ${err.message}`);
   }
 }
 
@@ -160,12 +223,11 @@ async function updateScholarData() {
       const enrichedPubs = [];
 
       for (const title of topTitles) {
-        // Find existing pub match
         const existing = existingPubs.find(
           (p) => p.title.toLowerCase().trim() === title.toLowerCase().trim()
         );
 
-        const crossref = await resolveCrossrefMetadata(title);
+        const crossref = await resolveCrossrefMetadataByTitle(title);
 
         const mergedDoi = crossref?.doi || existing?.doi || '';
         const mergedAbstract =
@@ -193,6 +255,9 @@ async function updateScholarData() {
     console.warn(`⚠️ Could not fetch live Google Scholar profile: ${err.message}`);
     console.log('ℹ️ Retaining existing cached metrics and publication list.');
   }
+
+  // 3. Update Selected Publications by DOI
+  await updateSelectedPublications();
 }
 
 updateScholarData();
