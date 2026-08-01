@@ -2,6 +2,7 @@ import Sidebar from "@/components/Sidebar";
 import CongratulatoryPopup from "@/components/CongratulatoryPopup";
 import Image from "next/image";
 import Link from "next/link";
+import scholarStats from "@/data/scholarStats.json";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -300,11 +301,11 @@ export default function HomePage() {
         <section className="section" style={{ paddingBottom: 0 }}>
           <div className="stats-bar" id="stats-section">
             <div className="stat-item">
-              <span className="stat-number">166</span>
+              <span className="stat-number">{scholarStats.publicationsCount}</span>
               <span className="stat-label">Publications</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">3039</span>
+              <span className="stat-number">{scholarStats.citations}</span>
               <span className="stat-label">Citations</span>
             </div>
             <div className="stat-item">
@@ -399,7 +400,7 @@ export default function HomePage() {
           <div className="section-header">
             <h2 className="section-title">Publications</h2>
             <p className="section-subtitle">
-              Over 166 publications in peer-reviewed international journals.{" "}
+              Over {scholarStats.publicationsCount} publications in peer-reviewed international journals.{" "}
               <a
                 href="https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en"
                 target="_blank"

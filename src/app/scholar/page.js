@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import scholarStats from "@/data/scholarStats.json";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -127,8 +128,6 @@ const interests = [
   "Environmental Remediation",
   "Green Chemistry",
 ];
-
-const totalCitations = 3039;
 
 export default function ScholarPage() {
   return (
@@ -284,12 +283,12 @@ export default function ScholarPage() {
             <span></span>
           </div>
           <div className="scholar-stat">
-            <span className="scholar-stat-value">{totalCitations}</span>
+            <span className="scholar-stat-value">{scholarStats.citations}</span>
             <span></span>
           </div>
           <div className="scholar-stat">
             <span className="scholar-stat-value">
-              {Math.round(totalCitations * 0.72)}
+              {scholarStats.citationsSince2021}
             </span>
             <span></span>
           </div>
@@ -305,11 +304,11 @@ export default function ScholarPage() {
             <span></span>
           </div>
           <div className="scholar-stat">
-            <span className="scholar-stat-value">32</span>
+            <span className="scholar-stat-value">{scholarStats.hIndex}</span>
             <span></span>
           </div>
           <div className="scholar-stat">
-            <span className="scholar-stat-value">25</span>
+            <span className="scholar-stat-value">{scholarStats.hIndexSince2021}</span>
             <span></span>
           </div>
         </div>
@@ -324,11 +323,11 @@ export default function ScholarPage() {
             <span></span>
           </div>
           <div className="scholar-stat">
-            <span className="scholar-stat-value">52</span>
+            <span className="scholar-stat-value">{scholarStats.i10Index}</span>
             <span></span>
           </div>
           <div className="scholar-stat">
-            <span className="scholar-stat-value">41</span>
+            <span className="scholar-stat-value">{scholarStats.i10IndexSince2021}</span>
             <span></span>
           </div>
         </div>
