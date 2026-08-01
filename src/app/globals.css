@@ -727,6 +727,33 @@ body {
   color: var(--accent-dark);
   font-weight: 500;
   font-style: italic;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.pub-doi-badge {
+  font-style: normal;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: rgba(196, 149, 58, 0.1);
+  color: var(--accent-dark);
+  border: 1px solid rgba(196, 149, 58, 0.3);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.pub-doi-badge:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
 }
 
 .pub-abstract-wrapper {

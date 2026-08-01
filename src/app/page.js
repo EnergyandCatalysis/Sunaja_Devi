@@ -53,6 +53,7 @@ const latestPublications = [
     authors: "Cheriyan John, Kalathiparambil Rajendra Pai Sunajadevi",
     journal: "Energy Technology (2026) 14 (7)",
     graphicalAbstract: `${basePath}/images/abstracts/abstract_v2alc_max.png`,
+    doi: "10.1002/ente.202600123",
   },
   {
     year: "2026",
@@ -61,6 +62,7 @@ const latestPublications = [
     authors: "R Madhushree, Kalathiparambil Rajendra Pai Sunajadevi",
     journal: "Dalton Transactions (2026) 55 (23): 9005–9022",
     graphicalAbstract: `${basePath}/images/abstracts/abstract_cr2moalc2_max.png`,
+    doi: "10.1039/D6DT00446F",
   },
   {
     year: "2026",
@@ -70,6 +72,7 @@ const latestPublications = [
       "BN Roopashree, K Gurushantha, PC Ashly, Nagaraju Kottam, S Meena, GK Raghu, Kalathiparambil Rajendra Pai Sunajadevi",
     journal: "Next Materials (2026) 11: 101775",
     graphicalAbstract: `${basePath}/images/abstracts/abstract_lacoo3_g_c3n5.jpg`,
+    doi: "10.1016/j.nxmate.2026.101775",
   },
   {
     year: "2026",
@@ -79,6 +82,7 @@ const latestPublications = [
       "Ankith Shetty, Poulami Mukherjee, Koichi Higashimine, Toshiaki Taniike, Vishwanath RS, Kalathiparambil Rajendra Pai Sunajadevi",
     journal: "Catalysis Science & Technology (2026) 16 (6): 2205–2216",
     graphicalAbstract: `${basePath}/images/abstracts/abstract_hydrous_nickel.png`,
+    doi: "10.1039/D5CY01321F",
   },
   {
     year: "2026",
@@ -88,6 +92,7 @@ const latestPublications = [
       "S Sujith, HK Meghana, M Harsha, BJ Vaishnavi, Chaitra N Mallannavar, Kalathiparambil Rajendra Pai Sunajadevi, Ganapati V Shanbhag",
     journal: "Chemistry–A European Journal (2026) 32 (8)",
     graphicalAbstract: `${basePath}/images/abstracts/abstract_mof_ceo2.png`,
+    doi: "10.1002/chem.202502616",
   },
   {
     year: "2026",
@@ -96,6 +101,7 @@ const latestPublications = [
     authors: "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
     journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
     graphicalAbstract: "",
+    doi: "10.1021/acsanm.6c02084",
   },
 ];
 
@@ -474,7 +480,19 @@ export default function HomePage() {
                     <div className="pub-content">
                       <h4>{pub.title}</h4>
                       <p className="pub-authors">{pub.authors}</p>
-                      <p className="pub-journal">{pub.journal}</p>
+                      <p className="pub-journal">
+                        {pub.journal}
+                        {pub.doi && (
+                          <a
+                            href={`https://doi.org/${pub.doi}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="pub-doi-badge"
+                          >
+                            DOI: {pub.doi} ↗
+                          </a>
+                        )}
+                      </p>
                     </div>
                   </div>
                   <div className="pub-abstract-wrapper" title="Graphical Abstract">
