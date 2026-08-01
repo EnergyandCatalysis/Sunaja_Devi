@@ -100,7 +100,7 @@ const latestPublications = [
       "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
     authors: "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
     journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
-    graphicalAbstract: "",
+    graphicalAbstract: `${basePath}/images/abstracts/abstract_zif8_ldh.png`,
     doi: "10.1021/acsanm.6c02084",
   },
 ];
