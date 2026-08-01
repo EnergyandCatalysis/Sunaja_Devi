@@ -3,6 +3,7 @@ import CongratulatoryPopup from "@/components/CongratulatoryPopup";
 import Image from "next/image";
 import Link from "next/link";
 import scholarStats from "@/data/scholarStats.json";
+import rawLatestPublications from "@/data/latestPublications.json";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -45,65 +46,10 @@ const researchAreas = [
   },
 ];
 
-const latestPublications = [
-  {
-    year: "2026",
-    title:
-      "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
-    authors: "Cheriyan John, Kalathiparambil Rajendra Pai Sunajadevi",
-    journal: "Energy Technology (2026) 14 (7)",
-    graphicalAbstract: `${basePath}/images/abstracts/abstract_v2alc_max.png`,
-    doi: "10.1002/ente.202600123",
-  },
-  {
-    year: "2026",
-    title:
-      "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
-    authors: "R Madhushree, Kalathiparambil Rajendra Pai Sunajadevi",
-    journal: "Dalton Transactions (2026) 55 (23): 9005–9022",
-    graphicalAbstract: `${basePath}/images/abstracts/abstract_cr2moalc2_max.png`,
-    doi: "10.1039/D6DT00446F",
-  },
-  {
-    year: "2026",
-    title:
-      "Fabrication of LaCoO₃/g-C₃N₅ Z-scheme photo catalyst for Allura Red dye degradation, ascorbic acid sensing and hydrogen evolution studies",
-    authors:
-      "BN Roopashree, K Gurushantha, PC Ashly, Nagaraju Kottam, S Meena, GK Raghu, Kalathiparambil Rajendra Pai Sunajadevi",
-    journal: "Next Materials (2026) 11: 101775",
-    graphicalAbstract: `${basePath}/images/abstracts/abstract_lacoo3_g_c3n5.jpg`,
-    doi: "10.1016/j.nxmate.2026.101775",
-  },
-  {
-    year: "2026",
-    title:
-      "Hydrous nickel oxyhydroxide thin films on copper foil as robust electrocatalysts for alkaline oxygen evolution",
-    authors:
-      "Ankith Shetty, Poulami Mukherjee, Koichi Higashimine, Toshiaki Taniike, Vishwanath RS, Kalathiparambil Rajendra Pai Sunajadevi",
-    journal: "Catalysis Science & Technology (2026) 16 (6): 2205–2216",
-    graphicalAbstract: `${basePath}/images/abstracts/abstract_hydrous_nickel.png`,
-    doi: "10.1039/D5CY01321F",
-  },
-  {
-    year: "2026",
-    title:
-      "Harnessing MOF Derived Frustrated Lewis Pair-CeO₂ Nano Catalyst for CO₂-Activated Soft Oxidation of Furfural to Furoic Acid",
-    authors:
-      "S Sujith, HK Meghana, M Harsha, BJ Vaishnavi, Chaitra N Mallannavar, Kalathiparambil Rajendra Pai Sunajadevi, Ganapati V Shanbhag",
-    journal: "Chemistry–A European Journal (2026) 32 (8)",
-    graphicalAbstract: `${basePath}/images/abstracts/abstract_mof_ceo2.png`,
-    doi: "10.1002/chem.202502616",
-  },
-  {
-    year: "2026",
-    title:
-      "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-    authors: "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
-    journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
-    graphicalAbstract: `${basePath}/images/abstracts/abstract_zif8_ldh.png`,
-    doi: "10.1021/acsanm.6c02084",
-  },
-];
+const latestPublications = rawLatestPublications.map((pub) => ({
+  ...pub,
+  graphicalAbstract: pub.graphicalAbstract ? `${basePath}${pub.graphicalAbstract}` : "",
+}));
 
 const selectedPublications = [
   {
