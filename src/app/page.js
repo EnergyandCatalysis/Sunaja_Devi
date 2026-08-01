@@ -49,51 +49,53 @@ const latestPublications = [
   {
     year: "2026",
     title:
+      "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
+    authors: "Cheriyan John, Kalathiparambil Rajendra Pai Sunajadevi",
+    journal: "Energy Technology (2026) 14 (7)",
+    graphicalAbstract: "",
+  },
+  {
+    year: "2026",
+    title:
+      "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
+    authors: "R Madhushree, Kalathiparambil Rajendra Pai Sunajadevi",
+    journal: "Dalton Transactions (2026) 55 (23): 9005–9022",
+    graphicalAbstract: "",
+  },
+  {
+    year: "2026",
+    title:
+      "Fabrication of LaCoO₃/g-C₃N₅ Z-scheme photo catalyst for Allura Red dye degradation, ascorbic acid sensing and hydrogen evolution studies",
+    authors:
+      "BN Roopashree, K Gurushantha, PC Ashly, Nagaraju Kottam, S Meena, GK Raghu, Kalathiparambil Rajendra Pai Sunajadevi",
+    journal: "Next Materials (2026) 11: 101775",
+    graphicalAbstract: "",
+  },
+  {
+    year: "2026",
+    title:
+      "Hydrous nickel oxyhydroxide thin films on copper foil as robust electrocatalysts for alkaline oxygen evolution",
+    authors:
+      "Ankith Shetty, Poulami Mukherjee, Koichi Higashimine, Toshiaki Taniike, Vishwanath RS, Kalathiparambil Rajendra Pai Sunajadevi",
+    journal: "Catalysis Science & Technology (2026) 16 (6): 2205–2216",
+    graphicalAbstract: "",
+  },
+  {
+    year: "2026",
+    title:
+      "Harnessing MOF Derived Frustrated Lewis Pair-CeO₂ Nano Catalyst for CO₂-Activated Soft Oxidation of Furfural to Furoic Acid",
+    authors:
+      "S Sujith, HK Meghana, M Harsha, BJ Vaishnavi, Chaitra N Mallannavar, Kalathiparambil Rajendra Pai Sunajadevi, Ganapati V Shanbhag",
+    journal: "Chemistry–A European Journal (2026) 32 (8)",
+    graphicalAbstract: "",
+  },
+  {
+    year: "2026",
+    title:
       "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
     authors: "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
     journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
-  },
-  {
-    year: "2026",
-    title:
-      "Keggin-Type H₅PMo₁₀V₂O₄₀ Intercalated MgAl-LDH: Structural Integrity and Bifunctional Electrocatalytic Activity",
-    authors: "Sunaja Devi K R et al.",
-    journal: "Journal of Materials Chemistry A",
-  },
-  {
-    year: "2026",
-    title:
-      "Dual Purpose Behavior of Ni-PTC MOF for High Performance Supercapacitor and Water Splitting Applications",
-    authors: "Sunaja Devi K R et al.",
-    journal: "ACS Applied Energy Materials",
-  },
-  {
-    year: "2026",
-    title:
-      "Amine-Functionalized MIL-101(Fe)-NH₂@ZIF-8 Composite for Efficient Adsorption of Pb²⁺ Ions from Aqueous Solution",
-    authors: "Sunaja Devi K R et al.",
-    journal: "Journal of Hazardous Materials",
-  },
-  {
-    year: "2024",
-    title:
-      "Strategic Design of MXene/CoFe₂O₄/g-C₃N₄ Electrode for High-Energy Asymmetric Supercapacitors",
-    authors: "Sunaja Devi K R et al.",
-    journal: "Electrochimica Acta",
-  },
-  {
-    year: "2024",
-    title:
-      "Optimizing Malachite Green Adsorption with Co-PTC Metal Organic Framework: Insights into Mechanisms and Performance",
-    authors: "Sunaja Devi K R et al.",
-    journal: "Journal of Environmental Chemical Engineering",
-  },
-  {
-    year: "2024",
-    title:
-      "Synergistic Effect of NiFe₂O₄/g-C₃N₄ Nanocomposite for Enhanced Photocatalytic Degradation of Methylene Blue",
-    authors: "Sunaja Devi K R et al.",
-    journal: "Chemical Engineering Journal",
+    graphicalAbstract: "",
   },
 ];
 
@@ -423,11 +425,33 @@ export default function HomePage() {
             <div className="publications-list">
               {selectedPublications.map((pub, idx) => (
                 <div className="publication-card" key={idx} id={`selected-pub-card-${idx}`}>
-                  <div className="pub-year">{pub.year}</div>
-                  <div className="pub-content">
-                    <h4>{pub.title}</h4>
-                    <p className="pub-authors">{pub.authors}</p>
-                    <p className="pub-journal">{pub.journal}</p>
+                  <div className="pub-main-info">
+                    <div className="pub-year">{pub.year}</div>
+                    <div className="pub-content">
+                      <h4>{pub.title}</h4>
+                      <p className="pub-authors">{pub.authors}</p>
+                      <p className="pub-journal">{pub.journal}</p>
+                    </div>
+                  </div>
+                  <div className="pub-abstract-wrapper" title="Graphical Abstract">
+                    {pub.graphicalAbstract ? (
+                      <Image
+                        src={pub.graphicalAbstract}
+                        alt={`Graphical Abstract - ${pub.title}`}
+                        width={140}
+                        height={95}
+                        style={{ objectFit: "cover" }}
+                      />
+                    ) : (
+                      <div className="pub-abstract-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                          <circle cx="8.5" cy="8.5" r="1.5" />
+                          <polyline points="21 15 16 10 5 21" />
+                        </svg>
+                        <span>Graphical Abstract</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -445,11 +469,33 @@ export default function HomePage() {
             <div className="publications-list">
               {latestPublications.map((pub, idx) => (
                 <div className="publication-card" key={idx} id={`latest-pub-card-${idx}`}>
-                  <div className="pub-year">{pub.year}</div>
-                  <div className="pub-content">
-                    <h4>{pub.title}</h4>
-                    <p className="pub-authors">{pub.authors}</p>
-                    <p className="pub-journal">{pub.journal}</p>
+                  <div className="pub-main-info">
+                    <div className="pub-year">{pub.year}</div>
+                    <div className="pub-content">
+                      <h4>{pub.title}</h4>
+                      <p className="pub-authors">{pub.authors}</p>
+                      <p className="pub-journal">{pub.journal}</p>
+                    </div>
+                  </div>
+                  <div className="pub-abstract-wrapper" title="Graphical Abstract">
+                    {pub.graphicalAbstract ? (
+                      <Image
+                        src={pub.graphicalAbstract}
+                        alt={`Graphical Abstract - ${pub.title}`}
+                        width={140}
+                        height={95}
+                        style={{ objectFit: "cover" }}
+                      />
+                    ) : (
+                      <div className="pub-abstract-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                          <circle cx="8.5" cy="8.5" r="1.5" />
+                          <polyline points="21 15 16 10 5 21" />
+                        </svg>
+                        <span>Graphical Abstract</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
