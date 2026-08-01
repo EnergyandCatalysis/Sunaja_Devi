@@ -52,7 +52,7 @@ const latestPublications = [
       "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
     authors: "Cheriyan John, Kalathiparambil Rajendra Pai Sunajadevi",
     journal: "Energy Technology (2026) 14 (7)",
-    graphicalAbstract: "",
+    graphicalAbstract: `${basePath}/images/abstracts/abstract_v2alc_max.png`,
   },
   {
     year: "2026",
@@ -60,7 +60,7 @@ const latestPublications = [
       "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
     authors: "R Madhushree, Kalathiparambil Rajendra Pai Sunajadevi",
     journal: "Dalton Transactions (2026) 55 (23): 9005–9022",
-    graphicalAbstract: "",
+    graphicalAbstract: `${basePath}/images/abstracts/abstract_cr2moalc2_max.png`,
   },
   {
     year: "2026",
@@ -69,7 +69,7 @@ const latestPublications = [
     authors:
       "BN Roopashree, K Gurushantha, PC Ashly, Nagaraju Kottam, S Meena, GK Raghu, Kalathiparambil Rajendra Pai Sunajadevi",
     journal: "Next Materials (2026) 11: 101775",
-    graphicalAbstract: "",
+    graphicalAbstract: `${basePath}/images/abstracts/abstract_lacoo3_g_c3n5.jpg`,
   },
   {
     year: "2026",
@@ -78,7 +78,7 @@ const latestPublications = [
     authors:
       "Ankith Shetty, Poulami Mukherjee, Koichi Higashimine, Toshiaki Taniike, Vishwanath RS, Kalathiparambil Rajendra Pai Sunajadevi",
     journal: "Catalysis Science & Technology (2026) 16 (6): 2205–2216",
-    graphicalAbstract: "",
+    graphicalAbstract: `${basePath}/images/abstracts/abstract_hydrous_nickel.png`,
   },
   {
     year: "2026",
@@ -87,7 +87,7 @@ const latestPublications = [
     authors:
       "S Sujith, HK Meghana, M Harsha, BJ Vaishnavi, Chaitra N Mallannavar, Kalathiparambil Rajendra Pai Sunajadevi, Ganapati V Shanbhag",
     journal: "Chemistry–A European Journal (2026) 32 (8)",
-    graphicalAbstract: "",
+    graphicalAbstract: `${basePath}/images/abstracts/abstract_mof_ceo2.png`,
   },
   {
     year: "2026",
