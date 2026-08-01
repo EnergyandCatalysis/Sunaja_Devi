@@ -257,21 +257,7 @@ async function updateScholarData() {
   }
 
   // 3. Update Selected Publications by DOI
-  try {
-    await updateSelectedPublications();
-  } catch (err) {
-    console.warn(`⚠️ Selected publications update notice: ${err.message}`);
-  }
+  await updateSelectedPublications();
 }
 
-async function main() {
-  try {
-    await updateScholarData();
-  } catch (err) {
-    console.warn(`⚠️ Script warning: ${err.message}`);
-  } finally {
-    process.exit(0);
-  }
-}
-
-main();
+updateScholarData();
