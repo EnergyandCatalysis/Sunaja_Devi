@@ -290,23 +290,25 @@ body {
 
 .hero-info .hero-links {
   display: flex;
-  gap: 12px;
-  margin-top: 32px;
+  gap: 10px;
+  margin-top: 28px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .hero-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 32px;
+  padding: 10px 20px;
   border-radius: var(--radius-md);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
   transition: var(--transition);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
 }
 
 .hero-btn:hover {
