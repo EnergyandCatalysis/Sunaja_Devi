@@ -1,51 +1,13 @@
 import Sidebar from "@/components/Sidebar";
 import CongratulatoryPopup from "@/components/CongratulatoryPopup";
 import SelectedPublications from "@/components/SelectedPublications";
+import ResearchAreas from "@/components/ResearchAreas";
 import Image from "next/image";
 import Link from "next/link";
 import scholarStats from "@/data/scholarStats.json";
 import rawLatestPublications from "@/data/latestPublications.json";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
-const researchAreas = [
-  {
-    icon: "⚡",
-    title: "Energy Storage & Conversion",
-    description:
-      "Designing advanced electrode materials for batteries and supercapacitors. Developing electrocatalysts for hydrogen production via water splitting (HER/OER).",
-  },
-  {
-    icon: "🔬",
-    title: "Metal-Organic Frameworks (MOFs)",
-    description:
-      "Synthesis and characterization of MOFs and MOF composites for catalysis, adsorption, and energy applications.",
-  },
-  {
-    icon: "🧪",
-    title: "Nanomaterials & MXenes",
-    description:
-      "Research on nanocomposites, MXene-based materials, and hybrid structures for functional applications in energy and environment.",
-  },
-  {
-    icon: "🌿",
-    title: "Environmental Remediation",
-    description:
-      "Developing methods for pollutant removal from water bodies through adsorptive and degradative processes using advanced materials.",
-  },
-  {
-    icon: "🔥",
-    title: "Green Chemistry & Catalysis",
-    description:
-      "Exploring sustainable catalytic processes, chemical kinetics, and green synthesis methodologies for industrial applications.",
-  },
-  {
-    icon: "📊",
-    title: "Photocatalysis",
-    description:
-      "Design and development of photocatalysts for degradation of organic pollutants and solar energy harvesting applications.",
-  },
-];
 
 const latestPublications = rawLatestPublications.map((pub) => ({
   ...pub,
@@ -300,15 +262,7 @@ export default function HomePage() {
             >
               Research Areas
             </h3>
-            <div className="research-grid">
-              {researchAreas.map((area, idx) => (
-                <div className="research-card" key={idx} id={`research-card-${idx}`}>
-                  <div className="research-card-icon">{area.icon}</div>
-                  <h3>{area.title}</h3>
-                  <p>{area.description}</p>
-                </div>
-              ))}
-            </div>
+            <ResearchAreas />
           </div>
         </section>
 
