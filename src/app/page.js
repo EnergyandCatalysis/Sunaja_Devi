@@ -1,5 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import CongratulatoryPopup from "@/components/CongratulatoryPopup";
+import SelectedPublications from "@/components/SelectedPublications";
 import Image from "next/image";
 import Link from "next/link";
 import scholarStats from "@/data/scholarStats.json";
@@ -47,11 +48,6 @@ const researchAreas = [
 ];
 
 const latestPublications = rawLatestPublications.map((pub) => ({
-  ...pub,
-  graphicalAbstract: pub.graphicalAbstract ? `${basePath}${pub.graphicalAbstract}` : "",
-}));
-
-const selectedPublications = rawSelectedPublications.map((pub) => ({
   ...pub,
   graphicalAbstract: pub.graphicalAbstract ? `${basePath}${pub.graphicalAbstract}` : "",
 }));
@@ -334,59 +330,8 @@ export default function HomePage() {
           </div>
 
           {/* Subsection 1: Selected Publications */}
-          <div className="pub-subsection" id="selected-publications" style={{ marginBottom: "40px" }}>
-            <div className="pub-subsection-header">
-              <h3 className="pub-subsection-title">
-                <span className="pub-subsection-icon">⭐</span>
-                Selected Publications
-              </h3>
-            </div>
-            <div className="publications-list">
-              {selectedPublications.map((pub, idx) => (
-                <div className="publication-card" key={idx} id={`selected-pub-card-${idx}`}>
-                  <div className="pub-main-info">
-                    <div className="pub-year">{pub.year}</div>
-                    <div className="pub-content">
-                      <h4>{pub.title}</h4>
-                      <p className="pub-authors">{pub.authors}</p>
-                      <p className="pub-journal">
-                        {pub.journal}
-                        {pub.doi && (
-                          <a
-                            href={`https://doi.org/${pub.doi}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="pub-doi-badge"
-                          >
-                            DOI: {pub.doi} ↗
-                          </a>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="pub-abstract-wrapper" title="Graphical Abstract">
-                    {pub.graphicalAbstract ? (
-                      <Image
-                        src={pub.graphicalAbstract}
-                        alt={`Graphical Abstract - ${pub.title}`}
-                        width={140}
-                        height={95}
-                        style={{ objectFit: "cover" }}
-                      />
-                    ) : (
-                      <div className="pub-abstract-placeholder">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                          <circle cx="8.5" cy="8.5" r="1.5" />
-                          <polyline points="21 15 16 10 5 21" />
-                        </svg>
-                        <span>Graphical Abstract</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div style={{ marginBottom: "40px" }}>
+            <SelectedPublications />
           </div>
 
           {/* Subsection 2: Latest Publications */}
