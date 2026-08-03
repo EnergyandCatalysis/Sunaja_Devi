@@ -424,6 +424,21 @@ export default function HomePage() {
 
           <div className="research-grid">
             <div className="research-card">
+              <div className="research-card-icon" style={{ overflow: "hidden", background: "#ffffff", border: "1px solid var(--border-light)", padding: "4px" }}>
+                <Image
+                  src={`${basePath}/images/tnpcb.png`}
+                  alt="Tamil Nadu Pollution Control Board"
+                  width={36}
+                  height={36}
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <h3>Tamil Nadu Pollution Control Board</h3>
+              <p>
+                Collaborative research initiatives on environmental pollution monitoring, industrial wastewater management, and advanced catalyst materials for environmental protection.
+              </p>
+            </div>
+            <div className="research-card">
               <div className="research-card-icon">🇮🇳</div>
               <h3>IISc Bangalore</h3>
               <p>
