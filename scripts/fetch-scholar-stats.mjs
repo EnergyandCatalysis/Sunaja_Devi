@@ -177,14 +177,14 @@ async function updateScholarData() {
       }
 
       const updatedStats = {
-        citations: citations || currentData.citations || 3039,
+        citations: citations || currentData.citations || 3028,
         citationsSince2021: citationsSince2021 || currentData.citationsSince2021 || 2188,
         hIndex: hIndex || currentData.hIndex || 32,
         hIndexSince2021: hIndexSince2021 || currentData.hIndexSince2021 || 25,
         i10Index: i10Index || currentData.i10Index || 52,
         i10IndexSince2021: i10IndexSince2021 || currentData.i10IndexSince2021 || 41,
         publicationsCount:
-          pubMatches.length > 0 ? pubMatches.length : currentData.publicationsCount || 166,
+          pubMatches.length > 0 ? pubMatches.length : currentData.publicationsCount || 167,
         lastUpdated: new Date().toISOString(),
       };
 
