@@ -214,11 +214,176 @@ async function updateScholarData() {
       if (enrichedPubs.length > 0) {
         fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(enrichedPubs, null, 2), 'utf8');
         console.log(`✅ ${enrichedPubs.length} recent publications updated with DOIs & metadata!`);
+        updateAnnouncementsFromLatestPubs(enrichedPubs);
       }
     }
   } catch (err) {
     console.warn(`⚠️ Could not fetch live Google Scholar profile: ${err.message}`);
     console.log('ℹ️ Retaining existing cached metrics and publication list.');
+  }
+}
+
+const ANNOUNCEMENTS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'activeAnnouncements.json');
+
+const SCHOLAR_DIRECTORY = [
+  {
+    name: 'Dr. Pushparaj Loganathan',
+    shortName: 'Dr. Pushparaj L.',
+    role: 'Post-Doctoral Researcher',
+    photo: '/images/pushparaj_l_pdf.jpg',
+    patterns: [/pushparaj/i, /loganathan/i],
+  },
+  {
+    name: 'Cheriyan John',
+    shortName: 'Cheriyan John',
+    role: 'PhD Scholar',
+    photo: '/images/cheriyan_john_present.jpg',
+    patterns: [/cheriyan/i],
+  },
+  {
+    name: 'Jessica Jones W',
+    shortName: 'Jessica Jones W',
+    role: 'PhD Scholar',
+    photo: '/images/jessica_jones.jpg',
+    patterns: [/jessica/i],
+  },
+  {
+    name: 'Arsha R',
+    shortName: 'Arsha R',
+    role: 'PhD Scholar',
+    photo: '/images/arsha_r.jpg',
+    patterns: [/arsha/i],
+  },
+  {
+    name: 'Dr. Sujith S',
+    shortName: 'S. Sujith',
+    role: 'Research Scholar',
+    photo: '/images/sujith_s.jpg',
+    patterns: [/sujith/i],
+  },
+  {
+    name: 'R. Madhushree',
+    shortName: 'R. Madhushree',
+    role: 'Research Scholar',
+    photo: null,
+    patterns: [/madhushree/i],
+  },
+  {
+    name: 'Dr. Dephan Pinheiro',
+    shortName: 'Dr. Dephan Pinheiro',
+    role: 'Post-Doctoral Researcher',
+    photo: '/images/dephan_phinero.jpg',
+    patterns: [/dephan/i, /pinheiro/i],
+  },
+  {
+    name: 'Dr. Sandra Mathew',
+    shortName: 'Dr. Sandra Mathew',
+    role: 'Research Scholar',
+    photo: '/images/sandra_mathew.jpg',
+    patterns: [/sandra/i],
+  },
+  {
+    name: 'Dr. Samika Anand',
+    shortName: 'Dr. Samika Anand',
+    role: 'Research Scholar',
+    photo: '/images/samika_anand.jpg',
+    patterns: [/samika/i],
+  },
+  {
+    name: 'Dr. Muthukumar Devarasu',
+    shortName: 'Dr. Muthukumar Devarasu',
+    role: 'Research Scholar',
+    photo: '/images/muthukumar_d.jpg',
+    patterns: [/muthukumar/i],
+  },
+  {
+    name: 'Dr. Arun Varghese Ayyamala',
+    shortName: 'Dr. Arun Varghese',
+    role: 'Research Scholar',
+    photo: '/images/arun_varghese.jpg',
+    patterns: [/arun/i],
+  },
+];
+
+function generateSlug(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 30);
+}
+
+function updateAnnouncementsFromLatestPubs(enrichedPubs) {
+  let existingAnnouncements = [];
+  if (fs.existsSync(ANNOUNCEMENTS_FILE_PATH)) {
+    try {
+      existingAnnouncements = JSON.parse(fs.readFileSync(ANNOUNCEMENTS_FILE_PATH, 'utf8'));
+    } catch (_) {}
+  }
+
+  const existingMap = new Map();
+  existingAnnouncements.forEach((item) => {
+    existingMap.set(item.id, item);
+    if (item.link) existingMap.set(item.link.toLowerCase().trim(), item);
+  });
+
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const updatedAnnouncements = [...existingAnnouncements];
+  let newAddedCount = 0;
+
+  for (const pub of enrichedPubs) {
+    const authorsStr = pub.authors || '';
+    const matchedScholars = SCHOLAR_DIRECTORY.filter((scholar) =>
+      scholar.patterns.some((pattern) => pattern.test(authorsStr))
+    );
+
+    if (matchedScholars.length === 0) continue;
+
+    const doiLink = pub.doi
+      ? (pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`)
+      : '';
+
+    const pubKey = doiLink ? doiLink.toLowerCase().trim() : pub.title.toLowerCase().trim();
+    if (existingMap.has(pubKey)) continue;
+
+    const isPushparaj = matchedScholars.some((s) => s.patterns.some((p) => p.test('pushparaj')));
+    const isCheriyan = matchedScholars.some((s) => s.patterns.some((p) => p.test('cheriyan')));
+
+    let publisherName = '';
+    let publisherRole = '';
+    let publisherPhoto = '';
+
+    if (isPushparaj && isCheriyan) {
+      publisherName = 'Dr. Pushparaj L. & Cheriyan John';
+      publisherRole = 'Post-Doctoral Researcher & PhD Scholar';
+      publisherPhoto = '/images/pushparaj_cheriyan_announcement.png';
+    } else {
+      publisherName = matchedScholars.map((s) => s.shortName).join(' & ');
+      publisherRole = Array.from(new Set(matchedScholars.map((s) => s.role))).join(' & ');
+      publisherPhoto = matchedScholars.find((s) => s.photo)?.photo || '/images/sunaja_devi.png';
+    }
+
+    const newId = `announcement-${generateSlug(pub.title)}`;
+    if (existingMap.has(newId)) continue;
+
+    const newAnnouncement = {
+      id: newId,
+      enabled: true,
+      publishDate: todayStr,
+      activeDays: 14,
+      publisherName,
+      publisherRole,
+      publisherPhoto,
+      paperTitle: pub.title,
+      journal: pub.journal,
+      link: doiLink,
+    };
+
+    updatedAnnouncements.unshift(newAnnouncement);
+    existingMap.set(newId, newAnnouncement);
+    if (doiLink) existingMap.set(doiLink.toLowerCase().trim(), newAnnouncement);
+    newAddedCount++;
+  }
+
+  if (newAddedCount > 0) {
+    fs.writeFileSync(ANNOUNCEMENTS_FILE_PATH, JSON.stringify(updatedAnnouncements.slice(0, 10), null, 2), 'utf8');
+    console.log(`🎉 Auto-generated ${newAddedCount} new congratulatory publication announcements for scholars!`);
   }
 }
 

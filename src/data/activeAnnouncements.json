@@ -1,0 +1,38 @@
+[
+  {
+    "id": "announcement-zif8-ldh-2026",
+    "enabled": true,
+    "publishDate": "2026-07-30",
+    "activeDays": 14,
+    "publisherName": "Dr. Pushparaj L. & Cheriyan John",
+    "publisherRole": "Post-Doctoral Researcher & PhD Scholar",
+    "publisherPhoto": "/images/pushparaj_cheriyan_announcement.png",
+    "paperTitle": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
+    "journal": "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
+    "link": "https://doi.org/10.1021/acsanm.6c02084"
+  },
+  {
+    "id": "announcement-v2alc-max-2026",
+    "enabled": true,
+    "publishDate": "2026-08-01",
+    "activeDays": 14,
+    "publisherName": "Cheriyan John",
+    "publisherRole": "PhD Scholar",
+    "publisherPhoto": "/images/cheriyan_john_present.jpg",
+    "paperTitle": "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
+    "journal": "Energy Technology (2026) 14 (7): 202600123",
+    "link": "https://doi.org/10.1002/ente.202600123"
+  },
+  {
+    "id": "announcement-cr2moalc2-2026",
+    "enabled": true,
+    "publishDate": "2026-08-02",
+    "activeDays": 14,
+    "publisherName": "R. Madhushree",
+    "publisherRole": "Research Scholar",
+    "publisherPhoto": "/images/sunaja_devi.png",
+    "paperTitle": "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
+    "journal": "Dalton Transactions (2026) 55 (23): 9005–9022",
+    "link": "https://doi.org/10.1039/D6DT00446F"
+  }
+]

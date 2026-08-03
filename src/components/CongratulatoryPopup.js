@@ -3,24 +3,16 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
+import rawAnnouncements from "@/data/activeAnnouncements.json";
+
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-// List of recent congratulatory publication announcements.
-// You can add as many publications here as you want!
-export const activeAnnouncements = [
-  {
-    id: "pub-1",
-    enabled: true,
-    publishDate: "2026-07-30", // Date published (YYYY-MM-DD)
-    activeDays: 7, // Active for 7 days (1 week)
-    publisherName: "Dr. Pushparaj L. & Cheriyan John",
-    publisherRole: "Post-Doctoral Researcher & PhD Scholar",
-    publisherPhoto: `${basePath}/images/pushparaj_cheriyan_announcement.png`,
-    paperTitle: "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-    journal: "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
-    link: "https://doi.org/10.1021/acsanm.6c02084",
-  },
-];
+export const activeAnnouncements = rawAnnouncements.map((item) => ({
+  ...item,
+  publisherPhoto: item.publisherPhoto && !item.publisherPhoto.startsWith("http")
+    ? item.publisherPhoto.startsWith(basePath) ? item.publisherPhoto : `${basePath}${item.publisherPhoto}`
+    : item.publisherPhoto,
+}));
 
 function getPublisherInitials(name) {
   if (!name) return "SD";
