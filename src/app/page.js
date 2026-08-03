@@ -55,6 +55,7 @@ const groupCategories = [
       "Dr. Madhushree",
       "Dr. Samika Anand",
       "Dr. Sujith S",
+      "Dr. Selva Priya",
     ],
   },
 ];
