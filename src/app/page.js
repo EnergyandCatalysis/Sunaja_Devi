@@ -430,7 +430,7 @@ export default function HomePage() {
                   alt="Tamil Nadu Pollution Control Board"
                   width={36}
                   height={36}
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
                 />
               </div>
               <h3>Tamil Nadu Pollution Control Board</h3>
@@ -439,7 +439,15 @@ export default function HomePage() {
               </p>
             </div>
             <div className="research-card">
-              <div className="research-card-icon">🇮🇳</div>
+              <div className="research-card-icon" style={{ overflow: "hidden", background: "#ffffff", border: "1px solid var(--border-light)", padding: "4px" }}>
+                <Image
+                  src={`${basePath}/images/iisc.png`}
+                  alt="IISc Bangalore"
+                  width={36}
+                  height={36}
+                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                />
+              </div>
               <h3>IISc Bangalore</h3>
               <p>
                 Collaborative research on advanced nanomaterials for energy
@@ -447,7 +455,15 @@ export default function HomePage() {
               </p>
             </div>
             <div className="research-card">
-              <div className="research-card-icon">🇮🇳</div>
+              <div className="research-card-icon" style={{ overflow: "hidden", background: "#ffffff", border: "1px solid var(--border-light)", padding: "4px" }}>
+                <Image
+                  src={`${basePath}/images/iitm.png`}
+                  alt="IIT Madras"
+                  width={36}
+                  height={36}
+                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                />
+              </div>
               <h3>IIT Madras</h3>
               <p>
                 Joint projects on MOF-based composites for environmental
@@ -455,7 +471,15 @@ export default function HomePage() {
               </p>
             </div>
             <div className="research-card">
-              <div className="research-card-icon">🇮🇳</div>
+              <div className="research-card-icon" style={{ overflow: "hidden", background: "#ffffff", border: "1px solid var(--border-light)", padding: "4px" }}>
+                <Image
+                  src={`${basePath}/images/ncl.png`}
+                  alt="CSIR-NCL Pune"
+                  width={36}
+                  height={36}
+                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                />
+              </div>
               <h3>CSIR-NCL Pune</h3>
               <p>
                 Partnering on development of electrocatalysts for sustainable
