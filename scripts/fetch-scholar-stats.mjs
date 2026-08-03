@@ -7,7 +7,6 @@ const __dirname = path.dirname(__filename);
 
 const STATS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'scholarStats.json');
 const PUBS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'latestPublications.json');
-const SELECTED_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'selectedPublications.json');
 
 const SCHOLAR_USER_ID = 'HmOcEpIAAAAJ';
 const SCHOLAR_URL = `https://scholar.google.com/citations?user=${SCHOLAR_USER_ID}&hl=en&sortby=pubdate`;
@@ -112,40 +111,6 @@ async function resolveCrossrefMetadataByTitle(title) {
     return await fetchMetadataByDOI(item.DOI);
   } catch (err) {
     return null;
-  }
-}
-
-async function updateSelectedPublications() {
-  if (!fs.existsSync(SELECTED_FILE_PATH)) return;
-
-  try {
-    const selectedData = JSON.parse(fs.readFileSync(SELECTED_FILE_PATH, 'utf8'));
-    let updatedCount = 0;
-
-    const updatedSelected = await Promise.all(
-      selectedData.map(async (pub) => {
-        if (!pub.doi) return pub;
-
-        const crossref = await fetchMetadataByDOI(pub.doi);
-        if (crossref && crossref.title) {
-          updatedCount++;
-          return {
-            year: crossref.year || pub.year,
-            title: crossref.title || pub.title,
-            authors: crossref.authors || pub.authors,
-            journal: crossref.journal || pub.journal,
-            doi: crossref.doi || pub.doi,
-            graphicalAbstract: pub.graphicalAbstract || '',
-          };
-        }
-        return pub;
-      })
-    );
-
-    fs.writeFileSync(SELECTED_FILE_PATH, JSON.stringify(updatedSelected, null, 2), 'utf8');
-    console.log(`✅ ${updatedCount} Selected Publications metadata updated via DOI lookup!`);
-  } catch (err) {
-    console.warn(`⚠️ Selected publications DOI update notice: ${err.message}`);
   }
 }
 
@@ -255,9 +220,6 @@ async function updateScholarData() {
     console.warn(`⚠️ Could not fetch live Google Scholar profile: ${err.message}`);
     console.log('ℹ️ Retaining existing cached metrics and publication list.');
   }
-
-  // 3. Update Selected Publications by DOI
-  await updateSelectedPublications();
 }
 
 updateScholarData();
