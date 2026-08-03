@@ -27,6 +27,8 @@ const memberPhotos = {
   "Arsha.R": `${basePath}/images/arsha_r.jpg`,
   "Dr. Dephan Phinero": `${basePath}/images/dephan_phinero.jpg`,
   "Dr. Arun Varghese Ayyamala": `${basePath}/images/arun_varghese.jpg`,
+  "Dr. Sandra Mathew": `${basePath}/images/sandra_mathew.jpg`,
+  "Sandra Mathew": `${basePath}/images/sandra_mathew.jpg`,
   "Dr. Muthukumar Devarasu": `${basePath}/images/muthukumar_d.jpg`,
   "Dr. Samika Anand": `${basePath}/images/samika_anand.jpg`,
   "Dr. Sujith S": `${basePath}/images/sujith_s.jpg`,
