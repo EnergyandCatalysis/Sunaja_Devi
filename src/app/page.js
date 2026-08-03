@@ -110,6 +110,20 @@ export default function HomePage() {
                   Google Scholar
                 </a>
                 <a
+                  href="https://www.sciencedirect.com/author/55450509500/kalathiparambil-rajendra-pai-sunajadevi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-btn"
+                  id="scopus-link"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
+                  Scopus ID
+                </a>
+                <a
                   href="https://www.researchgate.net/profile/Sunaja-Devi-K-R"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -173,6 +187,15 @@ export default function HomePage() {
             <Link href="/scholar" className="top-nav-link">
               Google Scholar
             </Link>
+            <a
+              href="https://www.sciencedirect.com/author/55450509500/kalathiparambil-rajendra-pai-sunajadevi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="top-nav-link"
+              id="top-scopus-link"
+            >
+              Scopus ID
+            </a>
           </div>
         </nav>
 

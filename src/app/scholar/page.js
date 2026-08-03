@@ -240,6 +240,16 @@ export default function ScholarPage() {
               >
                 Google Scholar Profile ↗
               </a>
+              {" "}&bull;{" "}
+              <a
+                href="https://www.sciencedirect.com/author/55450509500/kalathiparambil-rajendra-pai-sunajadevi"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#1a73e8", fontWeight: 500 }}
+                id="official-scopus-link"
+              >
+                Scopus Profile ↗
+              </a>
             </p>
             <div className="scholar-interests">
               {interests.map((interest, idx) => (
