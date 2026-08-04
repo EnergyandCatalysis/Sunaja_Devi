@@ -323,7 +323,7 @@ export default function HomePage() {
               </h3>
             </div>
             <div className="publications-list">
-              {latestPublications.map((pub, idx) => (
+              {latestPublications.slice(0, 6).map((pub, idx) => (
                 <div className="publication-card" key={idx} id={`latest-pub-card-${idx}`}>
                   <div className="pub-main-info">
                     <div className="pub-year">{pub.year}</div>

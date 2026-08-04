@@ -292,7 +292,7 @@ async function updateScholarData() {
         }
       });
 
-      const topTitles = articleTitleMatches.slice(0, 8);
+      const topTitles = articleTitleMatches.slice(0, 6);
       const enrichedPubs = [];
 
       for (const title of topTitles) {
