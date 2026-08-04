@@ -30,6 +30,11 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
 
   const handleClose = () => {
     setIsClosing(true);
+    if (typeof window !== "undefined" && validItems[currentIndex]?.id) {
+      try {
+        localStorage.setItem(`dismissed_announcement_${validItems[currentIndex].id}`, "true");
+      } catch (_) {}
+    }
     setTimeout(() => {
       setIsVisible(false);
     }, 400);
@@ -42,6 +47,16 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
 
     const activeList = list.filter((item) => {
       if (!item || item.enabled === false) return false;
+
+      // LocalStorage check for visitor dismissal
+      if (typeof window !== "undefined" && item.id) {
+        try {
+          if (localStorage.getItem(`dismissed_announcement_${item.id}`) === "true") {
+            return false;
+          }
+        } catch (_) {}
+      }
+
       if (!item.publishDate) return true;
 
       const pubTime = new Date(item.publishDate).getTime();
