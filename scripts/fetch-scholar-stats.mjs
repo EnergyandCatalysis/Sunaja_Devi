@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const STATS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'scholarStats.json');
 const PUBS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'latestPublications.json');
+const ANNOUNCEMENTS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'activeAnnouncements.json');
 
 const SCHOLAR_USER_ID = 'HmOcEpIAAAAJ';
 const SCHOLAR_URL = `https://scholar.google.com/citations?user=${SCHOLAR_USER_ID}&hl=en&sortby=pubdate`;
@@ -60,11 +61,20 @@ async function fetchMetadataByDOI(doi) {
     const volume = item.volume ? ` ${item.volume}` : '';
     const issue = item.issue ? ` (${item.issue})` : '';
     const page = item.page ? `: ${item.page}` : '';
-    const publishedYear =
-      item['published-print']?.['date-parts']?.[0]?.[0] ||
-      item['published-online']?.['date-parts']?.[0]?.[0] ||
-      item.created?.['date-parts']?.[0]?.[0] ||
-      '';
+
+    const printDateParts = item['published-print']?.['date-parts']?.[0];
+    const onlineDateParts = item['published-online']?.['date-parts']?.[0];
+    const createdDateParts = item.created?.['date-parts']?.[0];
+    const dateParts = onlineDateParts || printDateParts || createdDateParts;
+
+    let publishedYear = '';
+    let actualPublishDate = '';
+    if (dateParts && dateParts.length > 0) {
+      publishedYear = String(dateParts[0]);
+      const month = dateParts[1] ? String(dateParts[1]).padStart(2, '0') : '01';
+      const day = dateParts[2] ? String(dateParts[2]).padStart(2, '0') : '01';
+      actualPublishDate = `${publishedYear}-${month}-${day}`;
+    }
 
     let journalStr = container;
     if (journalStr && (publishedYear || volume || page)) {
@@ -80,7 +90,8 @@ async function fetchMetadataByDOI(doi) {
       doi: cleanDoi,
       journal: journalStr,
       authors: authorsList || 'Sunaja Devi K R et al.',
-      year: String(publishedYear || '2023'),
+      year: publishedYear || '2026',
+      actualPublishDate,
       title: item.title?.[0] || '',
     };
   } catch (err) {
@@ -203,6 +214,7 @@ async function updateScholarData() {
 
         enrichedPubs.push({
           year: crossref?.year || existing?.year || '2026',
+          actualPublishDate: crossref?.actualPublishDate || existing?.actualPublishDate || '',
           title: existing?.title || crossref?.title || title,
           authors: existing?.authors || crossref?.authors || 'Sunaja Devi K R et al.',
           journal: existing?.journal || crossref?.journal || 'Peer-reviewed Journal (2026)',
@@ -222,8 +234,6 @@ async function updateScholarData() {
     console.log('ℹ️ Retaining existing cached metrics and publication list.');
   }
 }
-
-const ANNOUNCEMENTS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'activeAnnouncements.json');
 
 const SCHOLAR_DIRECTORY = [
   {
@@ -342,6 +352,22 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs) {
     const pubKey = doiLink ? doiLink.toLowerCase().trim() : pub.title.toLowerCase().trim();
     if (existingMap.has(pubKey)) continue;
 
+    // --- RECENTNESS & DATE FILTERING OPTIMIZATION ---
+    // Only auto-generate congratulatory popup announcements for genuinely recent publications!
+    const effectivePublishDate = pub.actualPublishDate || (pub.year ? `${pub.year}-01-01` : todayStr);
+    const pubYear = parseInt(pub.year || '0', 10);
+    const currentYear = new Date().getFullYear();
+
+    const pubTime = new Date(effectivePublishDate).getTime();
+    const nowTime = new Date().getTime();
+    const ageInDays = (nowTime - pubTime) / (1000 * 60 * 60 * 24);
+
+    // Skip creating popup announcements if paper is older than 30 days or published in a previous calendar year
+    if (pubYear < currentYear || ageInDays > 30) {
+      console.log(`⏩ Skipping popup announcement for older publication (${effectivePublishDate}): "${pub.title}"`);
+      continue;
+    }
+
     const isPushparaj = matchedScholars.some((s) => s.patterns.some((p) => p.test('pushparaj')));
     const isCheriyan = matchedScholars.some((s) => s.patterns.some((p) => p.test('cheriyan')));
 
@@ -365,7 +391,7 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs) {
     const newAnnouncement = {
       id: newId,
       enabled: true,
-      publishDate: todayStr,
+      publishDate: effectivePublishDate || todayStr,
       activeDays: 14,
       publisherName,
       publisherRole,
@@ -381,9 +407,18 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs) {
     newAddedCount++;
   }
 
-  if (newAddedCount > 0) {
-    fs.writeFileSync(ANNOUNCEMENTS_FILE_PATH, JSON.stringify(updatedAnnouncements.slice(0, 10), null, 2), 'utf8');
-    console.log(`🎉 Auto-generated ${newAddedCount} new congratulatory publication announcements for scholars!`);
+  // --- AUTOMATIC EXPIRED ANNOUNCEMENTS CLEANUP ---
+  const nowMs = Date.now();
+  const activeAnnouncementsOnly = updatedAnnouncements.filter((item) => {
+    if (!item.publishDate) return true;
+    const itemTime = new Date(item.publishDate).getTime();
+    const activeDurationMs = (item.activeDays || 14) * 24 * 60 * 60 * 1000;
+    return (nowMs - itemTime) <= activeDurationMs;
+  });
+
+  if (newAddedCount > 0 || activeAnnouncementsOnly.length !== existingAnnouncements.length) {
+    fs.writeFileSync(ANNOUNCEMENTS_FILE_PATH, JSON.stringify(activeAnnouncementsOnly.slice(0, 10), null, 2), 'utf8');
+    console.log(`🎉 Sync completed. Active valid announcements saved: ${activeAnnouncementsOnly.length}`);
   }
 }
 
