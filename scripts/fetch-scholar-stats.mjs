@@ -12,7 +12,7 @@ const REPORT_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'automationRe
 
 const SCHOLAR_USER_ID = 'HmOcEpIAAAAJ';
 const SCHOLAR_URL = `https://scholar.google.com/citations?user=${SCHOLAR_USER_ID}&hl=en&sortby=pubdate`;
-const MAX_POPUP_DAYS = 4; // User directive: popups active for max 4 days
+const MAX_POPUP_DAYS = 4; // User directive: Popups active for max 4 days from Google Scholar discovery
 
 async function fetchScholarProfile() {
   const controller = new AbortController();
@@ -285,13 +285,17 @@ async function updateScholarData() {
 
       const topTitles = articleTitleMatches.slice(0, 6);
       const enrichedPubs = [];
+      const newlyAddedTitles = [];
 
       for (const title of topTitles) {
         const existing = existingPubs.find(
           (p) => p.title.toLowerCase().trim() === title.toLowerCase().trim()
         );
 
-        if (!existing) newlyDiscoveredPubsCount++;
+        if (!existing) {
+          newlyDiscoveredPubsCount++;
+          newlyAddedTitles.push(title);
+        }
 
         const crossref = await resolveCrossrefMetadataByTitle(title);
         const mergedDoi = crossref?.doi || existing?.doi || '';
@@ -302,6 +306,7 @@ async function updateScholarData() {
           '';
 
         enrichedPubs.push({
+          isNewlyDiscovered: !existing,
           year: crossref?.year || existing?.year || '2026',
           actualPublishDate: crossref?.actualPublishDate || existing?.actualPublishDate || '',
           title: existing?.title || crossref?.title || title,
@@ -313,10 +318,10 @@ async function updateScholarData() {
       }
 
       if (enrichedPubs.length > 0) {
-        fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(enrichedPubs, null, 2), 'utf8');
+        fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(enrichedPubs.map(({ isNewlyDiscovered, ...p }) => p), null, 2), 'utf8');
         reportLogs.push(`✅ ${enrichedPubs.length} Latest Publications Synced (${newlyDiscoveredPubsCount} new additions).`);
 
-        // 3. Process Popup Announcements with Strict 4-Day Window
+        // 3. Process Popup Announcements for Newly Discovered Publications
         const annResult = updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs);
         newAnnouncementsCreatedCount = annResult.newAddedCount;
         expiredAnnouncementsPrunedCount = annResult.prunedCount;
@@ -356,6 +361,9 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
   let newAddedCount = 0;
 
   for (const pub of enrichedPubs) {
+    // TRIGGER CONDITION: Only trigger popup announcements for publications newly detected on Google Scholar!
+    if (!pub.isNewlyDiscovered) continue;
+
     const authorsStr = pub.authors || '';
     const matchedScholars = SCHOLAR_DIRECTORY.filter((scholar) =>
       scholar.patterns.some((pattern) => pattern.test(authorsStr))
@@ -370,21 +378,6 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
     const pubKey = doiLink ? doiLink.toLowerCase().trim() : pub.title.toLowerCase().trim();
     if (existingMap.has(pubKey)) continue;
 
-    // --- ENFORCE MAX 4 DAYS POPUP ACTIVE WINDOW & RECENCY FILTER ---
-    const effectivePublishDate = pub.actualPublishDate || (pub.year ? `${pub.year}-01-01` : todayStr);
-    const pubYear = parseInt(pub.year || '0', 10);
-    const currentYear = new Date().getFullYear();
-
-    const pubTime = new Date(effectivePublishDate).getTime();
-    const nowTime = new Date().getTime();
-    const ageInDays = (nowTime - pubTime) / (1000 * 60 * 60 * 24);
-
-    // Only create popup announcement if published within MAX_POPUP_DAYS (4 days max)
-    if (pubYear < currentYear || ageInDays > MAX_POPUP_DAYS) {
-      reportLogs.push(`⏩ Skipped popup creation for paper older than ${MAX_POPUP_DAYS} days (${effectivePublishDate}): "${pub.title.slice(0, 45)}..."`);
-      continue;
-    }
-
     const isPushparaj = matchedScholars.some((s) => s.patterns.some((p) => p.test('pushparaj')));
     const isCheriyan = matchedScholars.some((s) => s.patterns.some((p) => p.test('cheriyan')));
 
@@ -392,12 +385,21 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
     let publisherRole = '';
     let publisherPhoto = '';
 
+    // Format all involved group members' names & roles cleanly (e.g. 2 or more scholars)
     if (isPushparaj && isCheriyan) {
       publisherName = 'Dr. Pushparaj L. & Cheriyan John';
       publisherRole = 'Post-Doctoral Researcher & PhD Scholar';
       publisherPhoto = '/images/pushparaj_cheriyan_announcement.png';
     } else {
-      publisherName = matchedScholars.map((s) => s.shortName).join(' & ');
+      const names = matchedScholars.map((s) => s.shortName);
+      if (names.length === 1) {
+        publisherName = names[0];
+      } else if (names.length === 2) {
+        publisherName = names.join(' & ');
+      } else {
+        publisherName = `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`;
+      }
+
       publisherRole = Array.from(new Set(matchedScholars.map((s) => s.role))).join(' & ');
       publisherPhoto = matchedScholars.find((s) => s.photo)?.photo || '/images/sunaja_devi.png';
     }
@@ -405,11 +407,12 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
     const newId = `announcement-${generateSlug(pub.title)}`;
     if (existingMap.has(newId)) continue;
 
+    // Set publishDate to todayStr (the exact date it was updated/discovered on Google Scholar!)
     const newAnnouncement = {
       id: newId,
       enabled: true,
-      publishDate: effectivePublishDate || todayStr,
-      activeDays: MAX_POPUP_DAYS,
+      publishDate: todayStr, // Starts from the day updated on Google Scholar!
+      activeDays: MAX_POPUP_DAYS, // Active for max 4 days
       publisherName,
       publisherRole,
       publisherPhoto,
@@ -422,10 +425,10 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
     existingMap.set(newId, newAnnouncement);
     if (doiLink) existingMap.set(doiLink.toLowerCase().trim(), newAnnouncement);
     newAddedCount++;
-    reportLogs.push(`🎉 Created new scholar congratulatory popup (${MAX_POPUP_DAYS} days max): "${pub.title.slice(0, 40)}..."`);
+    reportLogs.push(`🎉 Created congratulatory popup for ${publisherName} (${MAX_POPUP_DAYS} days active window): "${pub.title.slice(0, 40)}..."`);
   }
 
-  // --- AUTOMATIC PRUNING: POPUPS EXPIRE AFTER MAX_POPUP_DAYS (4 DAYS) ---
+  // --- AUTOMATIC PRUNING: POPUPS EXPIRE AFTER MAX_POPUP_DAYS (4 DAYS FROM PUBLISH DATE) ---
   const nowMs = Date.now();
   const activeAnnouncementsOnly = updatedAnnouncements.filter((item) => {
     if (!item.publishDate) return true;
@@ -433,13 +436,12 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
     const activeDurationMs = (item.activeDays || MAX_POPUP_DAYS) * 24 * 60 * 60 * 1000;
     const isStillActive = (nowMs - itemTime) <= activeDurationMs;
     if (!isStillActive) {
-      reportLogs.push(`🧹 Pruned expired popup announcement (${item.activeDays || MAX_POPUP_DAYS}d max exceeded): "${item.paperTitle?.slice(0, 40)}..."`);
+      reportLogs.push(`🧹 Pruned popup announcement (${item.activeDays || MAX_POPUP_DAYS}d max window expired): "${item.paperTitle?.slice(0, 40)}..."`);
     }
     return isStillActive;
   });
 
   const prunedCount = updatedAnnouncements.length - activeAnnouncementsOnly.length;
-
   fs.writeFileSync(ANNOUNCEMENTS_FILE_PATH, JSON.stringify(activeAnnouncementsOnly.slice(0, 10), null, 2), 'utf8');
 
   return { newAddedCount, prunedCount };
@@ -472,19 +474,18 @@ function generateDailyReport({
 ### 🤖 Daily Automation Report (${runTimestamp.slice(0, 10)})
 - **Status**: SUCCESS
 - **Google Scholar Metrics**: ${updatedStats.citations || 3028} Citations | h-index: ${updatedStats.hIndex || 32} | Total Pubs: ${updatedStats.publicationsCount || 167}
-- **Popup Policy**: Maximum ${MAX_POPUP_DAYS} days display window enforced.
-- **Activity Log**:
+- **Popup Policy**: Triggered on day updated on Google Scholar; max ${MAX_POPUP_DAYS} days display window.
+- **Activity Summary**:
   - New Publications Discovered: ${newlyDiscoveredPubsCount}
   - New Popups Created: ${newAnnouncementsCreatedCount}
   - Expired Popups Pruned (> ${MAX_POPUP_DAYS} days): ${expiredAnnouncementsPrunedCount}
 
-**Detailed Automation Logs**:
+**Detailed Activity Logs**:
 ${reportLogs.map((log) => `- ${log}`).join('\n')}
 `;
 
   console.log(markdownSummary);
 
-  // Write to GitHub Step Summary if running inside GitHub Actions CI/CD
   if (process.env.GITHUB_STEP_SUMMARY) {
     fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, markdownSummary, 'utf8');
   }
