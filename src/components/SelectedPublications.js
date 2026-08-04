@@ -6,6 +6,22 @@ import rawSelectedPublications from "@/data/selectedPublications.json";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
+// Helper to sanitize title HTML (strips stray formatting whitespace)
+function cleanHtmlTitle(titleStr) {
+  if (!titleStr) return "";
+  return titleStr
+    .replace(/\s*\n\s*/g, " ")
+    .replace(/\s*<sub>\s*/g, "<sub>")
+    .replace(/\s*<\/sub>\s*/g, "</sub>")
+    .trim();
+}
+
+// Helper to strip HTML tags for plain text copying
+function stripHtmlTags(html) {
+  if (!html) return "";
+  return html.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+}
+
 export default function SelectedPublications() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [expandedAbstracts, setExpandedAbstracts] = useState({});
@@ -38,7 +54,11 @@ export default function SelectedPublications() {
   };
 
   const copyCitation = (pub) => {
-    const citation = `${pub.authors}. "${pub.title}." ${pub.journal}, vol. ${pub.volume}, no. ${pub.issue}, ${pub.year}, pp. ${pub.pages}. https://doi.org/${pub.doi}`;
+    const plainTitle = stripHtmlTags(pub.title);
+    const volStr = pub.volume ? `, vol. ${pub.volume}` : "";
+    const issueStr = pub.issue ? `, no. ${pub.issue}` : "";
+    const pageStr = pub.pages ? `, pp. ${pub.pages}` : "";
+    const citation = `${pub.authors}. "${plainTitle}." ${pub.journal}${volStr}${issueStr}, ${pub.year}${pageStr}. https://doi.org/${pub.doi}`;
     navigator.clipboard.writeText(citation);
     setCopiedId(pub.id);
     setTimeout(() => setCopiedId(null), 2500);
@@ -76,9 +96,10 @@ export default function SelectedPublications() {
         {filteredPubs.map((pub) => {
           const isExpanded = expandedAbstracts[pub.id];
           const isCopied = copiedId === pub.id;
+          const cleanedTitle = cleanHtmlTitle(pub.title);
 
           return (
-            <div className="selected-pub-card" key={pub.id} id={pub.id}>
+            <div className="selected-pub-card" key={pub.id || pub.doi} id={pub.id}>
               {/* Card Header & Badges */}
               <div className="pub-card-top">
                 <div className="pub-meta-badges">
@@ -94,12 +115,15 @@ export default function SelectedPublications() {
                 )}
               </div>
 
-              {/* Title */}
-              <h4 className="selected-pub-title">{pub.title}</h4>
+              {/* Title with HTML subscript support */}
+              <h4
+                className="selected-pub-title"
+                dangerouslySetInnerHTML={{ __html: cleanedTitle }}
+              />
 
               {/* Authors */}
               <p className="selected-pub-authors">
-                {pub.authors.split(/(Sunaja Devi K R\*|Kalathiparambil Rajendra Pai Sunajadevi\*?)/g).map((part, i) =>
+                {pub.authors.split(/(Sunaja Devi K R\*?|Kalathiparambil Rajendra Pai Sunajadevi\*?)/g).map((part, i) =>
                   part.includes("Sunaja") ? (
                     <strong key={i} className="author-highlight">
                       {part}
@@ -113,7 +137,10 @@ export default function SelectedPublications() {
               {/* Bibliographic Info */}
               <div className="pub-citation-line">
                 <span>
-                  <em>{pub.journal}</em>, <strong>{pub.year}</strong>, Vol. {pub.volume} ({pub.issue}), pp. {pub.pages}
+                  <em>{pub.journal}</em>, <strong>{pub.year}</strong>
+                  {pub.volume && <>, Vol. {pub.volume}</>}
+                  {pub.issue && <> ({pub.issue})</>}
+                  {pub.pages && <>, pp. {pub.pages}</>}
                 </span>
               </div>
 
@@ -134,12 +161,12 @@ export default function SelectedPublications() {
                 {pub.graphicalAbstract && (
                   <div
                     className="selected-abstract-preview"
-                    onClick={() => setActiveModalImage({ src: pub.graphicalAbstract, title: pub.title })}
+                    onClick={() => setActiveModalImage({ src: pub.graphicalAbstract, title: cleanedTitle })}
                     title="Click to view high-resolution Graphical Abstract"
                   >
                     <Image
                       src={pub.graphicalAbstract}
-                      alt={`Graphical Abstract - ${pub.title}`}
+                      alt={`Graphical Abstract - ${stripHtmlTags(pub.title)}`}
                       width={240}
                       height={150}
                       className="abstract-img"
@@ -156,21 +183,23 @@ export default function SelectedPublications() {
                   </div>
                 )}
 
-                <div className="pub-abstract-text-area">
-                  <div className={`abstract-content ${isExpanded ? "expanded" : "collapsed"}`}>
-                    <p>
-                      <strong>Abstract: </strong>
-                      {pub.abstract}
-                    </p>
-                  </div>
+                {pub.abstract && (
+                  <div className="pub-abstract-text-area">
+                    <div className={`abstract-content ${isExpanded ? "expanded" : "collapsed"}`}>
+                      <p>
+                        <strong>Abstract: </strong>
+                        {pub.abstract}
+                      </p>
+                    </div>
 
-                  <button
-                    className="toggle-abstract-btn"
-                    onClick={() => toggleAbstract(pub.id)}
-                  >
-                    {isExpanded ? "Show Less ▲" : "Read Full Abstract ▼"}
-                  </button>
-                </div>
+                    <button
+                      className="toggle-abstract-btn"
+                      onClick={() => toggleAbstract(pub.id)}
+                    >
+                      {isExpanded ? "Show Less ▲" : "Read Full Abstract ▼"}
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Footer Actions */}
@@ -223,7 +252,10 @@ export default function SelectedPublications() {
             <button className="modal-close-btn" onClick={() => setActiveModalImage(null)}>
               ✕
             </button>
-            <h4 className="modal-title">{activeModalImage.title}</h4>
+            <h4
+              className="modal-title"
+              dangerouslySetInnerHTML={{ __html: activeModalImage.title }}
+            />
             <div className="modal-image-wrapper">
               <Image
                 src={activeModalImage.src}

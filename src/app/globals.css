@@ -2049,6 +2049,14 @@ body {
   margin-bottom: 10px;
 }
 
+.selected-pub-title sub {
+  font-size: 0.72em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  bottom: -0.22em;
+}
+
 .selected-pub-authors {
   font-size: 0.9rem;
   color: var(--text-secondary);
