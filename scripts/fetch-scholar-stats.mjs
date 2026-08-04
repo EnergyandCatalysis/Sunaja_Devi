@@ -176,8 +176,22 @@ const SCHOLAR_DIRECTORY = [
     name: 'R. Madhushree',
     shortName: 'R. Madhushree',
     role: 'Research Scholar',
-    photo: null,
+    photo: '/images/madhushree.jpg',
     patterns: [/madhushree/i],
+  },
+  {
+    name: 'Dr. Shalini Reghunath',
+    shortName: 'Dr. Shalini Reghunath',
+    role: 'Research Scholar',
+    photo: '/images/shalini_reghunath.png',
+    patterns: [/shalini/i, /reghunath/i],
+  },
+  {
+    name: 'Dr. Sruthi Rajasekaran',
+    shortName: 'Dr. Sruthi Rajasekaran',
+    role: 'Research Scholar',
+    photo: '/images/sruthi_rajasekaran.png',
+    patterns: [/sruthi/i, /rajasekaran/i],
   },
   {
     name: 'Dr. Dephan Pinheiro',
