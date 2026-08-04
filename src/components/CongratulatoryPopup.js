@@ -35,7 +35,7 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
     }, 400);
   };
 
-  // Filter active announcements within 1-week window
+  // Filter active announcements within 4-day max window
   useEffect(() => {
     const list = Array.isArray(announcements) ? announcements : [announcements];
     const nowTime = new Date().getTime();
@@ -45,7 +45,7 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
       if (!item.publishDate) return true;
 
       const pubTime = new Date(item.publishDate).getTime();
-      const activeDuration = (item.activeDays || 7) * 24 * 60 * 60 * 1000;
+      const activeDuration = (item.activeDays || 4) * 24 * 60 * 60 * 1000;
       
       return (nowTime - pubTime <= activeDuration) && (nowTime >= pubTime - 86400000);
     });

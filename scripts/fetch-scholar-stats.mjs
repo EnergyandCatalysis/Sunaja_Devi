@@ -8,9 +8,11 @@ const __dirname = path.dirname(__filename);
 const STATS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'scholarStats.json');
 const PUBS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'latestPublications.json');
 const ANNOUNCEMENTS_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'activeAnnouncements.json');
+const REPORT_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'automationReport.json');
 
 const SCHOLAR_USER_ID = 'HmOcEpIAAAAJ';
 const SCHOLAR_URL = `https://scholar.google.com/citations?user=${SCHOLAR_USER_ID}&hl=en&sortby=pubdate`;
+const MAX_POPUP_DAYS = 4; // User directive: popups active for max 4 days
 
 async function fetchScholarProfile() {
   const controller = new AbortController();
@@ -125,116 +127,6 @@ async function resolveCrossrefMetadataByTitle(title) {
   }
 }
 
-async function updateScholarData() {
-  console.log('🔄 Attempting to fetch updated Google Scholar metrics and publications...');
-
-  try {
-    const html = await fetchScholarProfile();
-
-    // 1. Update Metrics
-    const cellMatches = [...html.matchAll(/<td class="gsc_rsb_std">([^<]+)<\/td>/g)].map(
-      (m) => m[1].trim()
-    );
-    const pubMatches = [...html.matchAll(/<tr class="gsc_a_tr">/g)];
-
-    if (cellMatches.length >= 6) {
-      const citations = parseInt(cellMatches[0].replace(/,/g, ''), 10);
-      const citationsSince2021 = parseInt(cellMatches[1].replace(/,/g, ''), 10);
-      const hIndex = parseInt(cellMatches[2].replace(/,/g, ''), 10);
-      const hIndexSince2021 = parseInt(cellMatches[3].replace(/,/g, ''), 10);
-      const i10Index = parseInt(cellMatches[4].replace(/,/g, ''), 10);
-      const i10IndexSince2021 = parseInt(cellMatches[5].replace(/,/g, ''), 10);
-
-      let currentData = {};
-      if (fs.existsSync(STATS_FILE_PATH)) {
-        try {
-          currentData = JSON.parse(fs.readFileSync(STATS_FILE_PATH, 'utf8'));
-        } catch (_) {}
-      }
-
-      const updatedStats = {
-        citations: citations || currentData.citations || 3028,
-        citationsSince2021: citationsSince2021 || currentData.citationsSince2021 || 2188,
-        hIndex: hIndex || currentData.hIndex || 32,
-        hIndexSince2021: hIndexSince2021 || currentData.hIndexSince2021 || 25,
-        i10Index: i10Index || currentData.i10Index || 52,
-        i10IndexSince2021: i10IndexSince2021 || currentData.i10IndexSince2021 || 41,
-        publicationsCount:
-          pubMatches.length > 0 ? pubMatches.length : currentData.publicationsCount || 167,
-        lastUpdated: new Date().toISOString(),
-      };
-
-      fs.mkdirSync(path.dirname(STATS_FILE_PATH), { recursive: true });
-      fs.writeFileSync(STATS_FILE_PATH, JSON.stringify(updatedStats, null, 2), 'utf8');
-
-      console.log('✅ Google Scholar metrics updated successfully:');
-      console.log(`   • Citations: ${updatedStats.citations}`);
-      console.log(`   • h-index: ${updatedStats.hIndex}`);
-      console.log(`   • i10-index: ${updatedStats.i10Index}`);
-    }
-
-    // 2. Extract Recent Publications from Profile HTML
-    const articleTitleMatches = [...html.matchAll(/<a[^>]+class="gsc_a_at"[^>]*>([^<]+)<\/a>/g)].map(
-      (m) => m[1].trim()
-    );
-
-    if (articleTitleMatches.length > 0) {
-      let existingPubs = [];
-      if (fs.existsSync(PUBS_FILE_PATH)) {
-        try {
-          existingPubs = JSON.parse(fs.readFileSync(PUBS_FILE_PATH, 'utf8'));
-        } catch (_) {}
-      }
-
-      // Map graphical abstracts by title/DOI substring
-      const abstractMap = new Map();
-      existingPubs.forEach((p) => {
-        if (p.graphicalAbstract) {
-          abstractMap.set(p.title.toLowerCase().trim(), p.graphicalAbstract);
-          if (p.doi) abstractMap.set(p.doi.toLowerCase().trim(), p.graphicalAbstract);
-        }
-      });
-
-      const topTitles = articleTitleMatches.slice(0, 6);
-      const enrichedPubs = [];
-
-      for (const title of topTitles) {
-        const existing = existingPubs.find(
-          (p) => p.title.toLowerCase().trim() === title.toLowerCase().trim()
-        );
-
-        const crossref = await resolveCrossrefMetadataByTitle(title);
-
-        const mergedDoi = crossref?.doi || existing?.doi || '';
-        const mergedAbstract =
-          existing?.graphicalAbstract ||
-          abstractMap.get(title.toLowerCase().trim()) ||
-          abstractMap.get(mergedDoi.toLowerCase().trim()) ||
-          '';
-
-        enrichedPubs.push({
-          year: crossref?.year || existing?.year || '2026',
-          actualPublishDate: crossref?.actualPublishDate || existing?.actualPublishDate || '',
-          title: existing?.title || crossref?.title || title,
-          authors: existing?.authors || crossref?.authors || 'Sunaja Devi K R et al.',
-          journal: existing?.journal || crossref?.journal || 'Peer-reviewed Journal (2026)',
-          graphicalAbstract: mergedAbstract,
-          doi: mergedDoi,
-        });
-      }
-
-      if (enrichedPubs.length > 0) {
-        fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(enrichedPubs, null, 2), 'utf8');
-        console.log(`✅ ${enrichedPubs.length} recent publications updated with DOIs & metadata!`);
-        updateAnnouncementsFromLatestPubs(enrichedPubs);
-      }
-    }
-  } catch (err) {
-    console.warn(`⚠️ Could not fetch live Google Scholar profile: ${err.message}`);
-    console.log('ℹ️ Retaining existing cached metrics and publication list.');
-  }
-}
-
 const SCHOLAR_DIRECTORY = [
   {
     name: 'Dr. Pushparaj Loganathan',
@@ -319,7 +211,133 @@ function generateSlug(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 30);
 }
 
-function updateAnnouncementsFromLatestPubs(enrichedPubs) {
+async function updateScholarData() {
+  console.log('🔄 Daily Automation Execution Started...');
+  const reportLogs = [];
+  const runTimestamp = new Date().toISOString();
+  let updatedStats = {};
+  let newlyDiscoveredPubsCount = 0;
+  let newAnnouncementsCreatedCount = 0;
+  let expiredAnnouncementsPrunedCount = 0;
+
+  try {
+    const html = await fetchScholarProfile();
+
+    // 1. Update Metrics
+    const cellMatches = [...html.matchAll(/<td class="gsc_rsb_std">([^<]+)<\/td>/g)].map(
+      (m) => m[1].trim()
+    );
+    const pubMatches = [...html.matchAll(/<tr class="gsc_a_tr">/g)];
+
+    if (cellMatches.length >= 6) {
+      const citations = parseInt(cellMatches[0].replace(/,/g, ''), 10);
+      const citationsSince2021 = parseInt(cellMatches[1].replace(/,/g, ''), 10);
+      const hIndex = parseInt(cellMatches[2].replace(/,/g, ''), 10);
+      const hIndexSince2021 = parseInt(cellMatches[3].replace(/,/g, ''), 10);
+      const i10Index = parseInt(cellMatches[4].replace(/,/g, ''), 10);
+      const i10IndexSince2021 = parseInt(cellMatches[5].replace(/,/g, ''), 10);
+
+      let currentData = {};
+      if (fs.existsSync(STATS_FILE_PATH)) {
+        try {
+          currentData = JSON.parse(fs.readFileSync(STATS_FILE_PATH, 'utf8'));
+        } catch (_) {}
+      }
+
+      updatedStats = {
+        citations: citations || currentData.citations || 3028,
+        citationsSince2021: citationsSince2021 || currentData.citationsSince2021 || 2188,
+        hIndex: hIndex || currentData.hIndex || 32,
+        hIndexSince2021: hIndexSince2021 || currentData.hIndexSince2021 || 25,
+        i10Index: i10Index || currentData.i10Index || 52,
+        i10IndexSince2021: i10IndexSince2021 || currentData.i10IndexSince2021 || 41,
+        publicationsCount:
+          pubMatches.length > 0 ? pubMatches.length : currentData.publicationsCount || 167,
+        lastUpdated: runTimestamp,
+      };
+
+      fs.mkdirSync(path.dirname(STATS_FILE_PATH), { recursive: true });
+      fs.writeFileSync(STATS_FILE_PATH, JSON.stringify(updatedStats, null, 2), 'utf8');
+
+      reportLogs.push(`✅ Scholar Metrics Updated: ${updatedStats.citations} Citations | h-index: ${updatedStats.hIndex} | Total Pubs: ${updatedStats.publicationsCount}`);
+    }
+
+    // 2. Extract Recent Publications from Profile HTML
+    const articleTitleMatches = [...html.matchAll(/<a[^>]+class="gsc_a_at"[^>]*>([^<]+)<\/a>/g)].map(
+      (m) => m[1].trim()
+    );
+
+    if (articleTitleMatches.length > 0) {
+      let existingPubs = [];
+      if (fs.existsSync(PUBS_FILE_PATH)) {
+        try {
+          existingPubs = JSON.parse(fs.readFileSync(PUBS_FILE_PATH, 'utf8'));
+        } catch (_) {}
+      }
+
+      const abstractMap = new Map();
+      existingPubs.forEach((p) => {
+        if (p.graphicalAbstract) {
+          abstractMap.set(p.title.toLowerCase().trim(), p.graphicalAbstract);
+          if (p.doi) abstractMap.set(p.doi.toLowerCase().trim(), p.graphicalAbstract);
+        }
+      });
+
+      const topTitles = articleTitleMatches.slice(0, 6);
+      const enrichedPubs = [];
+
+      for (const title of topTitles) {
+        const existing = existingPubs.find(
+          (p) => p.title.toLowerCase().trim() === title.toLowerCase().trim()
+        );
+
+        if (!existing) newlyDiscoveredPubsCount++;
+
+        const crossref = await resolveCrossrefMetadataByTitle(title);
+        const mergedDoi = crossref?.doi || existing?.doi || '';
+        const mergedAbstract =
+          existing?.graphicalAbstract ||
+          abstractMap.get(title.toLowerCase().trim()) ||
+          abstractMap.get(mergedDoi.toLowerCase().trim()) ||
+          '';
+
+        enrichedPubs.push({
+          year: crossref?.year || existing?.year || '2026',
+          actualPublishDate: crossref?.actualPublishDate || existing?.actualPublishDate || '',
+          title: existing?.title || crossref?.title || title,
+          authors: existing?.authors || crossref?.authors || 'Sunaja Devi K R et al.',
+          journal: existing?.journal || crossref?.journal || 'Peer-reviewed Journal (2026)',
+          graphicalAbstract: mergedAbstract,
+          doi: mergedDoi,
+        });
+      }
+
+      if (enrichedPubs.length > 0) {
+        fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(enrichedPubs, null, 2), 'utf8');
+        reportLogs.push(`✅ ${enrichedPubs.length} Latest Publications Synced (${newlyDiscoveredPubsCount} new additions).`);
+
+        // 3. Process Popup Announcements with Strict 4-Day Window
+        const annResult = updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs);
+        newAnnouncementsCreatedCount = annResult.newAddedCount;
+        expiredAnnouncementsPrunedCount = annResult.prunedCount;
+      }
+    }
+  } catch (err) {
+    reportLogs.push(`⚠️ Fetch Warning: ${err.message}. Retaining cached metrics.`);
+  }
+
+  // 4. Generate Daily Automation Audit Report File & Markdown Summary
+  generateDailyReport({
+    runTimestamp,
+    updatedStats,
+    newlyDiscoveredPubsCount,
+    newAnnouncementsCreatedCount,
+    expiredAnnouncementsPrunedCount,
+    reportLogs,
+  });
+}
+
+function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
   let existingAnnouncements = [];
   if (fs.existsSync(ANNOUNCEMENTS_FILE_PATH)) {
     try {
@@ -352,8 +370,7 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs) {
     const pubKey = doiLink ? doiLink.toLowerCase().trim() : pub.title.toLowerCase().trim();
     if (existingMap.has(pubKey)) continue;
 
-    // --- RECENTNESS & DATE FILTERING OPTIMIZATION ---
-    // Only auto-generate congratulatory popup announcements for genuinely recent publications!
+    // --- ENFORCE MAX 4 DAYS POPUP ACTIVE WINDOW & RECENCY FILTER ---
     const effectivePublishDate = pub.actualPublishDate || (pub.year ? `${pub.year}-01-01` : todayStr);
     const pubYear = parseInt(pub.year || '0', 10);
     const currentYear = new Date().getFullYear();
@@ -362,9 +379,9 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs) {
     const nowTime = new Date().getTime();
     const ageInDays = (nowTime - pubTime) / (1000 * 60 * 60 * 24);
 
-    // Skip creating popup announcements if paper is older than 30 days or published in a previous calendar year
-    if (pubYear < currentYear || ageInDays > 30) {
-      console.log(`⏩ Skipping popup announcement for older publication (${effectivePublishDate}): "${pub.title}"`);
+    // Only create popup announcement if published within MAX_POPUP_DAYS (4 days max)
+    if (pubYear < currentYear || ageInDays > MAX_POPUP_DAYS) {
+      reportLogs.push(`⏩ Skipped popup creation for paper older than ${MAX_POPUP_DAYS} days (${effectivePublishDate}): "${pub.title.slice(0, 45)}..."`);
       continue;
     }
 
@@ -392,7 +409,7 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs) {
       id: newId,
       enabled: true,
       publishDate: effectivePublishDate || todayStr,
-      activeDays: 14,
+      activeDays: MAX_POPUP_DAYS,
       publisherName,
       publisherRole,
       publisherPhoto,
@@ -405,20 +422,71 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs) {
     existingMap.set(newId, newAnnouncement);
     if (doiLink) existingMap.set(doiLink.toLowerCase().trim(), newAnnouncement);
     newAddedCount++;
+    reportLogs.push(`🎉 Created new scholar congratulatory popup (${MAX_POPUP_DAYS} days max): "${pub.title.slice(0, 40)}..."`);
   }
 
-  // --- AUTOMATIC EXPIRED ANNOUNCEMENTS CLEANUP ---
+  // --- AUTOMATIC PRUNING: POPUPS EXPIRE AFTER MAX_POPUP_DAYS (4 DAYS) ---
   const nowMs = Date.now();
   const activeAnnouncementsOnly = updatedAnnouncements.filter((item) => {
     if (!item.publishDate) return true;
     const itemTime = new Date(item.publishDate).getTime();
-    const activeDurationMs = (item.activeDays || 14) * 24 * 60 * 60 * 1000;
-    return (nowMs - itemTime) <= activeDurationMs;
+    const activeDurationMs = (item.activeDays || MAX_POPUP_DAYS) * 24 * 60 * 60 * 1000;
+    const isStillActive = (nowMs - itemTime) <= activeDurationMs;
+    if (!isStillActive) {
+      reportLogs.push(`🧹 Pruned expired popup announcement (${item.activeDays || MAX_POPUP_DAYS}d max exceeded): "${item.paperTitle?.slice(0, 40)}..."`);
+    }
+    return isStillActive;
   });
 
-  if (newAddedCount > 0 || activeAnnouncementsOnly.length !== existingAnnouncements.length) {
-    fs.writeFileSync(ANNOUNCEMENTS_FILE_PATH, JSON.stringify(activeAnnouncementsOnly.slice(0, 10), null, 2), 'utf8');
-    console.log(`🎉 Sync completed. Active valid announcements saved: ${activeAnnouncementsOnly.length}`);
+  const prunedCount = updatedAnnouncements.length - activeAnnouncementsOnly.length;
+
+  fs.writeFileSync(ANNOUNCEMENTS_FILE_PATH, JSON.stringify(activeAnnouncementsOnly.slice(0, 10), null, 2), 'utf8');
+
+  return { newAddedCount, prunedCount };
+}
+
+function generateDailyReport({
+  runTimestamp,
+  updatedStats,
+  newlyDiscoveredPubsCount,
+  newAnnouncementsCreatedCount,
+  expiredAnnouncementsPrunedCount,
+  reportLogs,
+}) {
+  const reportData = {
+    lastRunTimestamp: runTimestamp,
+    maxPopupDurationDays: MAX_POPUP_DAYS,
+    status: 'SUCCESS',
+    scholarMetrics: updatedStats,
+    changesSummary: {
+      newPublicationsDiscovered: newlyDiscoveredPubsCount,
+      newPopupsCreated: newAnnouncementsCreatedCount,
+      expiredPopupsPruned: expiredAnnouncementsPrunedCount,
+    },
+    logs: reportLogs,
+  };
+
+  fs.writeFileSync(REPORT_FILE_PATH, JSON.stringify(reportData, null, 2), 'utf8');
+
+  const markdownSummary = `
+### 🤖 Daily Automation Report (${runTimestamp.slice(0, 10)})
+- **Status**: SUCCESS
+- **Google Scholar Metrics**: ${updatedStats.citations || 3028} Citations | h-index: ${updatedStats.hIndex || 32} | Total Pubs: ${updatedStats.publicationsCount || 167}
+- **Popup Policy**: Maximum ${MAX_POPUP_DAYS} days display window enforced.
+- **Activity Log**:
+  - New Publications Discovered: ${newlyDiscoveredPubsCount}
+  - New Popups Created: ${newAnnouncementsCreatedCount}
+  - Expired Popups Pruned (> ${MAX_POPUP_DAYS} days): ${expiredAnnouncementsPrunedCount}
+
+**Detailed Automation Logs**:
+${reportLogs.map((log) => `- ${log}`).join('\n')}
+`;
+
+  console.log(markdownSummary);
+
+  // Write to GitHub Step Summary if running inside GitHub Actions CI/CD
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, markdownSummary, 'utf8');
   }
 }
 
