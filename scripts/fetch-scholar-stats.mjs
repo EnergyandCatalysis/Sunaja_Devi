@@ -64,18 +64,27 @@ async function fetchMetadataByDOI(doi) {
     const issue = item.issue ? ` (${item.issue})` : '';
     const page = item.page ? `: ${item.page}` : '';
 
-    const printDateParts = item['published-print']?.['date-parts']?.[0];
-    const onlineDateParts = item['published-online']?.['date-parts']?.[0];
-    const createdDateParts = item.created?.['date-parts']?.[0];
-    const dateParts = onlineDateParts || printDateParts || createdDateParts;
+    // Accurate Publication Date Hierarchy (Online -> Issued -> Print)
+    const dateParts =
+      item['published-online']?.['date-parts']?.[0] ||
+      item['published']?.['date-parts']?.[0] ||
+      item['issued']?.['date-parts']?.[0] ||
+      item['published-print']?.['date-parts']?.[0];
 
     let publishedYear = '';
     let actualPublishDate = '';
     if (dateParts && dateParts.length > 0) {
       publishedYear = String(dateParts[0]);
-      const month = dateParts[1] ? String(dateParts[1]).padStart(2, '0') : '01';
-      const day = dateParts[2] ? String(dateParts[2]).padStart(2, '0') : '01';
-      actualPublishDate = `${publishedYear}-${month}-${day}`;
+      const monthStr = dateParts[1] ? String(dateParts[1]).padStart(2, '0') : '';
+      const dayStr = dateParts[2] ? String(dateParts[2]).padStart(2, '0') : '';
+
+      if (monthStr && dayStr) {
+        actualPublishDate = `${publishedYear}-${monthStr}-${dayStr}`;
+      } else if (monthStr) {
+        actualPublishDate = `${publishedYear}-${monthStr}`;
+      } else {
+        actualPublishDate = publishedYear;
+      }
     }
 
     let journalStr = container;
@@ -262,7 +271,7 @@ async function updateScholarData() {
       reportLogs.push(`✅ Scholar Metrics Updated: ${updatedStats.citations} Citations | h-index: ${updatedStats.hIndex} | Total Pubs: ${updatedStats.publicationsCount}`);
     }
 
-    // 2. Extract Recent Publications from Profile HTML
+    // 2. Extract Recent Publications from Profile HTML (natural sortby=pubdate order)
     const articleTitleMatches = [...html.matchAll(/<a[^>]+class="gsc_a_at"[^>]*>([^<]+)<\/a>/g)].map(
       (m) => m[1].trim()
     );
@@ -315,16 +324,9 @@ async function updateScholarData() {
         });
       }
 
-      // Sort publications in descending order by published date (newest first!)
-      enrichedPubs.sort((a, b) => {
-        const dateA = a.actualPublishDate || `${a.year}-01-01`;
-        const dateB = b.actualPublishDate || `${b.year}-01-01`;
-        return dateB.localeCompare(dateA);
-      });
-
       if (enrichedPubs.length > 0) {
         fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(enrichedPubs.map(({ isNewlyDiscovered, ...p }) => p), null, 2), 'utf8');
-        reportLogs.push(`✅ ${enrichedPubs.length} Latest Publications Synced & Sorted by Date (${newlyDiscoveredPubsCount} new additions).`);
+        reportLogs.push(`✅ ${enrichedPubs.length} Latest Publications Synced (${newlyDiscoveredPubsCount} new additions).`);
 
         // 3. Process Popup Announcements for Newly Discovered Publications
         const annResult = updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs);
