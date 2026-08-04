@@ -1,0 +1,12 @@
+{
+  "lastRunTimestamp": "2026-08-04T08:01:05.919Z",
+  "maxPopupDurationDays": 4,
+  "status": "SUCCESS",
+  "scholarMetrics": {},
+  "changesSummary": {
+    "newPublicationsDiscovered": 0,
+    "newPopupsCreated": 0,
+    "expiredPopupsPruned": 0
+  },
+  "logs": []
+}
