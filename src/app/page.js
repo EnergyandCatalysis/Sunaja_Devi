@@ -36,6 +36,8 @@ const memberPhotos = {
   "R. Madhushree": `${basePath}/images/madhushree.jpg`,
   "Dr. Samika Anand": `${basePath}/images/samika_anand.jpg`,
   "Dr. Sujith S": `${basePath}/images/sujith_s.jpg`,
+  "Dr. Selva Priya": `${basePath}/images/selva_priya.jpg`,
+  "Selva Priya": `${basePath}/images/selva_priya.jpg`,
 };
 
 const groupCategories = [

@@ -228,6 +228,13 @@ const SCHOLAR_DIRECTORY = [
     photo: '/images/arun_varghese.jpg',
     patterns: [/arun/i],
   },
+  {
+    name: 'Dr. Selva Priya',
+    shortName: 'Dr. Selva Priya',
+    role: 'Research Scholar',
+    photo: '/images/selva_priya.jpg',
+    patterns: [/selva/i, /priya/i],
+  },
 ];
 
 function generateSlug(text) {
