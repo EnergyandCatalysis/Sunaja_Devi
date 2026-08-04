@@ -1,5 +1,29 @@
 [
   {
+    "id": "announcement-heteroatom-doped-mxene-for-sup",
+    "enabled": true,
+    "publishDate": "2026-08-04",
+    "activeDays": 4,
+    "publisherName": "Dr. Dephan Pinheiro, Dr. Sandra Mathew & Dr. Arun Varghese",
+    "publisherRole": "Post-Doctoral Researcher & Research Scholar",
+    "publisherPhoto": "/images/dephan_phinero.jpg",
+    "paperTitle": "Heteroatom doped MXene for supercapacitors",
+    "journal": "MXenes for Supercapacitors (2026): 505-531",
+    "link": "https://doi.org/10.1016/b978-0-443-38313-7.01014-8"
+  },
+  {
+    "id": "announcement-dual-purpose-behavior-of-ni-pt",
+    "enabled": true,
+    "publishDate": "2026-08-04",
+    "activeDays": 4,
+    "publisherName": "Dr. Dephan Pinheiro & Dr. Samika Anand",
+    "publisherRole": "Post-Doctoral Researcher & Research Scholar",
+    "publisherPhoto": "/images/dephan_phinero.jpg",
+    "paperTitle": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
+    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects (2026) 736: 139593",
+    "link": "https://doi.org/10.1016/j.colsurfa.2026.139593"
+  },
+  {
     "id": "announcement-fluorometric-sensors-based-on-",
     "enabled": true,
     "publishDate": "2026-08-04",
