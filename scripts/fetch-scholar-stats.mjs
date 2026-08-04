@@ -283,9 +283,8 @@ async function updateScholarData() {
         }
       });
 
-      const topTitles = articleTitleMatches.slice(0, 6);
+      const topTitles = articleTitleMatches.slice(0, 8);
       const enrichedPubs = [];
-      const newlyAddedTitles = [];
 
       for (const title of topTitles) {
         const existing = existingPubs.find(
@@ -294,7 +293,6 @@ async function updateScholarData() {
 
         if (!existing) {
           newlyDiscoveredPubsCount++;
-          newlyAddedTitles.push(title);
         }
 
         const crossref = await resolveCrossrefMetadataByTitle(title);
@@ -317,9 +315,16 @@ async function updateScholarData() {
         });
       }
 
+      // Sort publications in descending order by published date (newest first!)
+      enrichedPubs.sort((a, b) => {
+        const dateA = a.actualPublishDate || `${a.year}-01-01`;
+        const dateB = b.actualPublishDate || `${b.year}-01-01`;
+        return dateB.localeCompare(dateA);
+      });
+
       if (enrichedPubs.length > 0) {
         fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(enrichedPubs.map(({ isNewlyDiscovered, ...p }) => p), null, 2), 'utf8');
-        reportLogs.push(`✅ ${enrichedPubs.length} Latest Publications Synced (${newlyDiscoveredPubsCount} new additions).`);
+        reportLogs.push(`✅ ${enrichedPubs.length} Latest Publications Synced & Sorted by Date (${newlyDiscoveredPubsCount} new additions).`);
 
         // 3. Process Popup Announcements for Newly Discovered Publications
         const annResult = updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs);
@@ -407,7 +412,6 @@ function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
     const newId = `announcement-${generateSlug(pub.title)}`;
     if (existingMap.has(newId)) continue;
 
-    // Set publishDate to todayStr (the exact date it was updated/discovered on Google Scholar!)
     const newAnnouncement = {
       id: newId,
       enabled: true,
