@@ -1,14 +1,26 @@
 {
-  "lastRunTimestamp": "2026-08-04T08:22:39.842Z",
+  "lastRunTimestamp": "2026-08-04T08:29:25.499Z",
   "maxPopupDurationDays": 4,
   "status": "SUCCESS",
-  "scholarMetrics": {},
+  "scholarMetrics": {
+    "citations": 3039,
+    "citationsSince2021": 2793,
+    "hIndex": 32,
+    "hIndexSince2021": 31,
+    "i10Index": 79,
+    "i10IndexSince2021": 71,
+    "publicationsCount": 20,
+    "lastUpdated": "2026-08-04T08:29:25.499Z"
+  },
   "changesSummary": {
-    "newPublicationsDiscovered": 0,
-    "newPopupsCreated": 0,
+    "newPublicationsDiscovered": 4,
+    "newPopupsCreated": 2,
     "expiredPopupsPruned": 0
   },
   "logs": [
-    "⚠️ Fetch Warning: HTTP error 403 Forbidden. Retaining cached metrics."
+    "✅ Scholar Metrics Updated: 3039 Citations | h-index: 32 | Total Pubs: 20",
+    "✅ 8 Latest Publications Synced (4 new additions).",
+    "🎉 Created congratulatory popup for Dr. Samika Anand (4 days active window): \"MXene-polymer composites: an overview...\"",
+    "🎉 Created congratulatory popup for Cheriyan John, Jessica Jones W & Dr. Dephan Pinheiro (4 days active window): \"Fluorometric sensors based on MXene-poly...\""
   ]
 }

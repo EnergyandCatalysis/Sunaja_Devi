@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "announcement-fluorometric-sensors-based-on-",
+    "enabled": true,
+    "publishDate": "2026-08-04",
+    "activeDays": 4,
+    "publisherName": "Cheriyan John, Jessica Jones W & Dr. Dephan Pinheiro",
+    "publisherRole": "PhD Scholar & Post-Doctoral Researcher",
+    "publisherPhoto": "/images/cheriyan_john_present.jpg",
+    "paperTitle": "Fluorometric sensors based on MXene-polymer composites",
+    "journal": "Advances in MXene-Polymer Composites (2026): 331-347",
+    "link": "https://doi.org/10.1016/b978-0-443-27620-0.00006-0"
+  },
+  {
+    "id": "announcement-mxene-polymer-composites-an-ov",
+    "enabled": true,
+    "publishDate": "2026-08-04",
+    "activeDays": 4,
+    "publisherName": "Dr. Samika Anand",
+    "publisherRole": "Research Scholar",
+    "publisherPhoto": "/images/samika_anand.jpg",
+    "paperTitle": "MXene-polymer composites: an overview",
+    "journal": "Advances in MXene-Polymer Composites (2026): 3-23",
+    "link": "https://doi.org/10.1016/b978-0-443-27620-0.00012-6"
+  }
+]
