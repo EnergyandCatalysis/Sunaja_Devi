@@ -2359,4 +2359,34 @@ body {
   .highlights-list {
     grid-template-columns: 1fr;
   }
-}
+}
+
+.pub-abstract-placeholder {
+  width: 140px;
+  height: 95px;
+  background: linear-gradient(135deg, rgba(240, 244, 250, 1), rgba(225, 232, 245, 0.8));
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px;
+}
+
+.pub-abstract-placeholder svg {
+  color: var(--accent);
+}
+
+.scholar-fallback-badge {
+  transition: all 0.2s ease;
+}
+
+.scholar-fallback-badge:hover {
+  background: rgba(66, 133, 244, 0.2) !important;
+}

@@ -332,20 +332,30 @@ export default function HomePage() {
                       <p className="pub-authors">{pub.authors}</p>
                       <p className="pub-journal">
                         {pub.journal}
-                        {pub.doi && (
+                        {pub.doi ? (
                           <a
-                            href={`https://doi.org/${pub.doi}`}
+                            href={pub.doi.startsWith("http") ? pub.doi : `https://doi.org/${pub.doi}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="pub-doi-badge"
                           >
                             DOI: {pub.doi} ↗
                           </a>
+                        ) : (
+                          <a
+                            href={pub.scholarLink || "https://scholar.google.com/citations?view_op=list_works&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="pub-doi-badge scholar-fallback-badge"
+                            style={{ background: "rgba(66, 133, 244, 0.1)", color: "#1a73e8", borderColor: "rgba(66, 133, 244, 0.3)" }}
+                          >
+                            Google Scholar ↗
+                          </a>
                         )}
                       </p>
                     </div>
                   </div>
-                  <div className="pub-abstract-wrapper" title="Graphical Abstract">
+                  <div className="pub-abstract-wrapper" title={pub.graphicalAbstract ? "Graphical Abstract" : "Publication Article"}>
                     {pub.graphicalAbstract ? (
                       <Image
                         src={pub.graphicalAbstract}
@@ -356,12 +366,13 @@ export default function HomePage() {
                       />
                     ) : (
                       <div className="pub-abstract-placeholder">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                          <circle cx="8.5" cy="8.5" r="1.5" />
-                          <polyline points="21 15 16 10 5 21" />
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="22" height="22">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                          <polyline points="14 2 14 8 20 8" />
+                          <line x1="16" y1="13" x2="8" y2="13" />
+                          <line x1="16" y1="17" x2="8" y2="17" />
                         </svg>
-                        <span>Graphical Abstract</span>
+                        <span>Publication Article</span>
                       </div>
                     )}
                   </div>
