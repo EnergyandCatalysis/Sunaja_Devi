@@ -9,9 +9,9 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const activeAnnouncements = rawAnnouncements.map((item) => ({
   ...item,
-  publisherPhoto: item.publisherPhoto && !item.publisherPhoto.startsWith("http")
+  publisherPhoto: item.graphicalAbstract || (item.publisherPhoto && !item.publisherPhoto.startsWith("http")
     ? item.publisherPhoto.startsWith(basePath) ? item.publisherPhoto : `${basePath}${item.publisherPhoto}`
-    : item.publisherPhoto,
+    : item.publisherPhoto),
 }));
 
 function getPublisherInitials(name) {
@@ -28,54 +28,114 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
   const [isClosing, setIsClosing] = useState(false);
   const [progress, setProgress] = useState(100);
 
+  const markNotifiedInApi = async (id) => {
+    if (!id) return;
+    try {
+      await fetch(`${basePath}/api/publications/mark-notified`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+    } catch (_) {}
+  };
+
   const handleClose = () => {
     setIsClosing(true);
-    if (typeof window !== "undefined" && validItems[currentIndex]?.id) {
+    const current = validItems[currentIndex];
+    if (typeof window !== "undefined" && current?.id) {
       try {
-        localStorage.setItem(`dismissed_announcement_${validItems[currentIndex].id}`, "true");
+        localStorage.setItem(`dismissed_announcement_${current.id}`, "true");
       } catch (_) {}
+      markNotifiedInApi(current.id);
     }
     setTimeout(() => {
       setIsVisible(false);
     }, 400);
   };
 
-  // Filter active announcements within 4-day max window
+  // Fetch unnotified papers from API or fallback to static announcements
   useEffect(() => {
-    const list = Array.isArray(announcements) ? announcements : [announcements];
-    const nowTime = new Date().getTime();
+    let isMounted = true;
 
-    const activeList = list.filter((item) => {
-      if (!item || item.enabled === false) return false;
-
-      // LocalStorage check for visitor dismissal
-      if (typeof window !== "undefined" && item.id) {
-        try {
-          if (localStorage.getItem(`dismissed_announcement_${item.id}`) === "true") {
-            return false;
+    async function loadLatestNewPublications() {
+      try {
+        const res = await fetch(`${basePath}/api/publications/latest-new`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && Array.isArray(data.publications) && data.publications.length > 0) {
+            const mapped = data.publications.map((p) => ({
+              id: p.id,
+              enabled: true,
+              publishDate: p.publication_date || new Date().toISOString().slice(0, 10),
+              activeDays: 4,
+              publisherName: "Sunaja Devi Research Group",
+              publisherRole: "Department of Chemistry, Christ University",
+              publisherPhoto: p.graphical_abstract_url || "/images/sunaja_devi.png",
+              paperTitle: p.title,
+              journal: p.journal,
+              link: p.link || (p.doi ? `https://doi.org/${p.doi}` : ""),
+            }));
+            if (isMounted) processAnnouncementItems(mapped);
+            return;
           }
-        } catch (_) {}
+        }
+      } catch (_) {}
+
+      if (isMounted) {
+        processAnnouncementItems(Array.isArray(announcements) ? announcements : [announcements]);
       }
-
-      if (!item.publishDate) return true;
-
-      const pubTime = new Date(item.publishDate).getTime();
-      const activeDuration = (item.activeDays || 4) * 24 * 60 * 60 * 1000;
-      
-      return (nowTime - pubTime <= activeDuration) && (nowTime >= pubTime - 86400000);
-    });
-
-    setValidItems(activeList);
-
-    if (activeList.length === 0) {
-      setIsVisible(false);
-      return;
     }
 
-    setIsVisible(true);
-    setIsClosing(false);
+    function processAnnouncementItems(list) {
+      const nowTime = new Date().getTime();
+      const activeList = list.filter((item) => {
+        if (!item || item.enabled === false) return false;
 
-    const TOTAL_DURATION_MS = 10000; // 10 seconds total display time
+        if (typeof window !== "undefined" && item.id) {
+          try {
+            if (localStorage.getItem(`dismissed_announcement_${item.id}`) === "true") {
+              return false;
+            }
+          } catch (_) {}
+        }
+
+        if (!item.publishDate) return true;
+
+        const pubTime = new Date(item.publishDate).getTime();
+        const activeDuration = (item.activeDays || 4) * 24 * 60 * 60 * 1000;
+        
+        return (nowTime - pubTime <= activeDuration) && (nowTime >= pubTime - 86400000);
+      });
+
+      setValidItems(activeList);
+
+      if (activeList.length === 0) {
+        setIsVisible(false);
+        return;
+      }
+
+      setIsVisible(true);
+      setIsClosing(false);
+
+      // Trigger mark-notified API for displayed item
+      if (activeList[0]?.id) {
+        markNotifiedInApi(activeList[0].id);
+      }
+    }
+
+    loadLatestNewPublications();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [announcements]);
+
+  // 10-Second Progress Bar & Auto Close
+  useEffect(() => {
+    if (!isVisible || validItems.length === 0) return;
+
+    setProgress(100);
+    const TOTAL_DURATION_MS = 10000;
     const INTERVAL_MS = 100;
     const step = (INTERVAL_MS / TOTAL_DURATION_MS) * 100;
 
@@ -100,14 +160,20 @@ export default function CongratulatoryPopup({ announcements = activeAnnouncement
       clearInterval(progressTimer);
       clearTimeout(autoCloseTimer);
     };
-  }, [announcements]);
+  }, [isVisible, validItems, currentIndex]);
 
   // Auto rotate slides if multiple active announcements exist
   useEffect(() => {
     if (validItems.length <= 1) return;
 
     const rotateInterval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % validItems.length);
+      setCurrentIndex((prev) => {
+        const nextIdx = (prev + 1) % validItems.length;
+        if (validItems[nextIdx]?.id) {
+          markNotifiedInApi(validItems[nextIdx].id);
+        }
+        return nextIdx;
+      });
     }, 5000);
 
     return () => clearInterval(rotateInterval);

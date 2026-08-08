@@ -1,0 +1,264 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const ABSTRACTS_DIR = path.join(__dirname, '..', '..', 'public', 'images', 'graphical_abstracts');
+
+function sanitizeText(str) {
+  if (!str) return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+function truncateText(str, maxLen = 90) {
+  if (!str) return '';
+  if (str.length <= maxLen) return str;
+  return str.slice(0, maxLen - 3) + '...';
+}
+
+function extractThreeStepSummary(title, abstract = '') {
+  const combined = (title + ' ' + abstract).toLowerCase();
+
+  // 1. Methodology Extraction
+  let methodology = 'Advanced Nanomaterial Synthesis & Characterization';
+  if (combined.includes('zif') || combined.includes('mof')) {
+    methodology = 'MOF Hydrothermal & Heterojunction Assembly';
+  } else if (combined.includes('max phase') || combined.includes('mxene')) {
+    methodology = 'Etching & Intercalation of MAX Phase / MXene';
+  } else if (combined.includes('ldh') || combined.includes('layered double')) {
+    methodology = 'Layered Double Hydroxide Coprecipitation';
+  } else if (combined.includes('thin film') || combined.includes('electrodeposition')) {
+    methodology = 'In-situ Thin Film Deposition & Surface Engineering';
+  } else if (combined.includes('photocatalyst') || combined.includes('z-scheme')) {
+    methodology = 'Z-Scheme Heterojunction Construction';
+  } else if (combined.includes('pdnps') || combined.includes('qds') || combined.includes('quantum dots')) {
+    methodology = 'Quantum Dot Functionalization & Metallic Nanoparticle Anchoring';
+  }
+
+  // 2. Key Finding Extraction
+  let keyFinding = 'Enhanced Charge Transfer & Superior Catalytic Efficiency';
+  if (combined.includes('water splitting') || combined.includes('hydrogen evolution') || combined.includes('her')) {
+    keyFinding = 'Low Overpotential for Efficient Electrocatalytic Water Splitting';
+  } else if (combined.includes('supercapacitor') || combined.includes('energy storage')) {
+    keyFinding = 'High Specific Capacitance & Long-Term Cycling Stability';
+  } else if (combined.includes('adsorption') || combined.includes('dye') || combined.includes('wastewater')) {
+    keyFinding = 'High Specific Surface Area & Rapid Pollutant Adsorption';
+  } else if (combined.includes('co2') || combined.includes('oxidation')) {
+    keyFinding = 'Oxygen Vacancies & Reactive Lewis Pair Active Sites';
+  } else if (combined.includes('sers') || combined.includes('sensing')) {
+    keyFinding = 'High SERS Hotspot Density & Sensitive Molecular Sensing';
+  }
+
+  // 3. Impact Extraction
+  let impact = 'Clean Energy & Environmental Sustainability';
+  if (combined.includes('hydrogen') || combined.includes('water splitting')) {
+    impact = 'Zero-Emission Green Hydrogen Production Technology';
+  } else if (combined.includes('supercapacitor')) {
+    impact = 'Next-Generation Energy Storage Devices';
+  } else if (combined.includes('adsorption') || combined.includes('remediation')) {
+    impact = 'Sustainable Industrial Wastewater Purification';
+  } else if (combined.includes('co2')) {
+    impact = 'Carbon Capture & Value-Added Chemical Conversion';
+  }
+
+  return {
+    methodology,
+    keyFinding,
+    impact,
+  };
+}
+
+export function generateGraphicalAbstractSvg(paper) {
+  const title = paper.title || 'Research Paper';
+  const journal = paper.journal || 'Peer-Reviewed Journal';
+  const year = paper.year || '2026';
+  const authors = paper.authors || 'Sunaja Devi K R et al.';
+  
+  const { methodology, keyFinding, impact } = extractThreeStepSummary(title, paper.abstract);
+
+  const cleanTitle = sanitizeText(truncateText(title, 110));
+  const cleanJournal = sanitizeText(truncateText(journal, 60));
+  const cleanAuthors = sanitizeText(truncateText(authors, 70));
+  const cleanMethodology = sanitizeText(methodology);
+  const cleanKeyFinding = sanitizeText(keyFinding);
+  const cleanImpact = sanitizeText(impact);
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f2b46" />
+    </linearGradient>
+
+    <!-- Card Gradients -->
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.9" />
+    </linearGradient>
+
+    <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.9" />
+    </linearGradient>
+
+    <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#581c87" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.9" />
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#fbbf24" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="700" fill="url(#bgGrad)" />
+
+  <!-- Grid overlay lines -->
+  <path d="M0 100 L1200 100 M0 200 L1200 200 M0 300 L1200 300 M0 400 L1200 400 M0 500 L1200 500 M0 600 L1200 600" stroke="#334155" stroke-width="1" stroke-dasharray="4 8" opacity="0.3" />
+
+  <!-- Header Branding -->
+  <rect x="50" y="40" width="1100" height="120" rx="16" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" filter="url(#glow)" opacity="0.95" />
+  
+  <!-- Header Title -->
+  <text x="80" y="78" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">
+    ${cleanTitle}
+  </text>
+
+  <!-- Header Journal & Authors -->
+  <text x="80" y="112" font-family="'Segoe UI', Roboto, sans-serif" font-size="15" fill="#94a3b8">
+    ${cleanJournal} (${year})  •  <tspan fill="#38bdf8">${cleanAuthors}</tspan>
+  </text>
+  
+  <rect x="1000" y="65" width="120" height="32" rx="8" fill="url(#goldGrad)" />
+  <text x="1060" y="86" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">
+    GRAPHICAL
+  </text>
+
+  <!-- Flow Arrows between Cards -->
+  <path d="M 390 380 L 440 380" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)" />
+  <polygon points="435,372 450,380 435,388" fill="#38bdf8" />
+
+  <path d="M 760 380 L 810 380" stroke="#34d399" stroke-width="4" stroke-linecap="round" />
+  <polygon points="805,372 820,380 805,388" fill="#34d399" />
+
+  <!-- STEP 1: METHODOLOGY CARD -->
+  <g transform="translate(60, 200)">
+    <rect width="320" height="360" rx="20" fill="url(#cardGrad1)" stroke="#3b82f6" stroke-width="2" />
+    <circle cx="50" cy="50" r="24" fill="#2563eb" />
+    <text x="50" y="57" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">1</text>
+    
+    <text x="90" y="55" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="bold" fill="#60a5fa">METHODOLOGY</text>
+    
+    <!-- Icon: Molecule / Flask -->
+    <g transform="translate(130, 100)" fill="none" stroke="#93c5fd" stroke-width="3" stroke-linecap="round">
+      <path d="M20 0 L40 30 L40 60 C40 70 30 80 15 80 C0 80 -10 70 -10 60 L-10 30 Z" transform="translate(25, 10)" />
+      <circle cx="20" cy="55" r="5" fill="#60a5fa" />
+      <circle cx="35" cy="65" r="7" fill="#93c5fd" />
+    </g>
+
+    <rect x="20" y="210" width="280" height="125" rx="12" fill="#0f172a" opacity="0.7" />
+    <text x="35" y="240" font-family="'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#f8fafc">Synthesis &amp; Design:</text>
+    
+    <!-- Multi-line text for Methodology -->
+    <foreignObject x="35" y="250" width="250" height="75">
+      <xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" style="color:#cbd5e1; font-family:'Segoe UI', sans-serif; font-size:14px; line-height:1.4;">
+        ${cleanMethodology}
+      </xhtml:div>
+    </foreignObject>
+  </g>
+
+  <!-- STEP 2: KEY FINDING CARD -->
+  <g transform="translate(430, 200)">
+    <rect width="320" height="360" rx="20" fill="url(#cardGrad2)" stroke="#10b981" stroke-width="2" />
+    <circle cx="50" cy="50" r="24" fill="#059669" />
+    <text x="50" y="57" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">2</text>
+    
+    <text x="90" y="55" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="bold" fill="#34d399">KEY FINDING</text>
+    
+    <!-- Icon: Energy Catalyst / Atom -->
+    <g transform="translate(120, 100)" fill="none" stroke="#6ee7b7" stroke-width="3">
+      <ellipse cx="40" cy="40" rx="35" ry="14" transform="rotate(30 40 40)" />
+      <ellipse cx="40" cy="40" rx="35" ry="14" transform="rotate(-30 40 40)" />
+      <circle cx="40" cy="40" r="10" fill="#34d399" />
+    </g>
+
+    <rect x="20" y="210" width="280" height="125" rx="12" fill="#0f172a" opacity="0.7" />
+    <text x="35" y="240" font-family="'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#f8fafc">Core Performance:</text>
+    
+    <foreignObject x="35" y="250" width="250" height="75">
+      <xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" style="color:#cbd5e1; font-family:'Segoe UI', sans-serif; font-size:14px; line-height:1.4;">
+        ${cleanKeyFinding}
+      </xhtml:div>
+    </foreignObject>
+  </g>
+
+  <!-- STEP 3: IMPACT & APPLICATION CARD -->
+  <g transform="translate(800, 200)">
+    <rect width="320" height="360" rx="20" fill="url(#cardGrad3)" stroke="#a855f7" stroke-width="2" />
+    <circle cx="50" cy="50" r="24" fill="#7e22ce" />
+    <text x="50" y="57" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">3</text>
+    
+    <text x="90" y="55" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="bold" fill="#c084fc">TARGET IMPACT</text>
+    
+    <!-- Icon: Globe / Energy Plant -->
+    <g transform="translate(120, 100)" fill="none" stroke="#e9d5ff" stroke-width="3">
+      <circle cx="40" cy="40" r="32" />
+      <path d="M 8 40 Q 40 10 72 40 Q 40 70 8 40 Z" />
+      <line x1="40" y1="8" x2="40" y2="72" />
+    </g>
+
+    <rect x="20" y="210" width="280" height="125" rx="12" fill="#0f172a" opacity="0.7" />
+    <text x="35" y="240" font-family="'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" fill="#f8fafc">Domain Application:</text>
+    
+    <foreignObject x="35" y="250" width="250" height="75">
+      <xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" style="color:#cbd5e1; font-family:'Segoe UI', sans-serif; font-size:14px; line-height:1.4;">
+        ${cleanImpact}
+      </xhtml:div>
+    </foreignObject>
+  </g>
+
+  <!-- Footer Banner -->
+  <rect x="50" y="600" width="1100" height="60" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="80" y="636" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" fill="#94a3b8">
+    <tspan fill="#38bdf8" font-weight="bold">Sunaja Devi Research Group</tspan> • Department of Chemistry, Christ (Deemed to be University), Bangalore
+  </text>
+  <text x="1120" y="636" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="bold" fill="#f59e0b" text-anchor="end">
+    AI GRAPHICAL ABSTRACT
+  </text>
+</svg>`;
+}
+
+export function ensureGraphicalAbstract(paper) {
+  if (paper.graphical_abstract_url && paper.graphical_abstract_url.trim()) {
+    return paper.graphical_abstract_url;
+  }
+
+  if (!fs.existsSync(ABSTRACTS_DIR)) {
+    fs.mkdirSync(ABSTRACTS_DIR, { recursive: true });
+  }
+
+  const paperId = paper.id || paper.doi ? paper.doi.replace(/[^a-z0-9]/gi, '_') : 'abstract_' + Date.now();
+  const filename = `abstract_${paperId.replace(/^pub-|^doi-/, '')}.svg`;
+  const filePath = path.join(ABSTRACTS_DIR, filename);
+
+  const svgContent = generateGraphicalAbstractSvg(paper);
+  fs.writeFileSync(filePath, svgContent, 'utf8');
+
+  return `/images/graphical_abstracts/${filename}`;
+}

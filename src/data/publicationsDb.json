@@ -1,0 +1,44 @@
+[
+  {
+    "id": "doi-10-1021-acsanm-6c02084",
+    "title": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
+    "abstract": "Design and synthesis of ZIF-8/LDH nanohybrids for efficient dye adsorption from industrial wastewater.",
+    "authors": "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
+    "journal": "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
+    "publication_date": "2026-07-01",
+    "year": "2026",
+    "link": "https://doi.org/10.1021/acsanm.6c02084",
+    "doi": "10.1021/acsanm.6c02084",
+    "graphical_abstract_url": "/images/abstracts/abstract_zif8_ldh.png",
+    "is_new_notified": false,
+    "created_at": "2026-08-08T00:00:00.000Z"
+  },
+  {
+    "id": "doi-10-1002-ente-202600123",
+    "title": "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
+    "abstract": "Investigating electrocatalytic hydrogen evolution reaction performance of V2AlC MAX phase materials.",
+    "authors": "Cheriyan John, Kalathiparambil Rajendra Pai Sunajadevi et al.",
+    "journal": "Energy Technology (2026) 14 (7): 202600123",
+    "publication_date": "2026-06-15",
+    "year": "2026",
+    "link": "https://doi.org/10.1002/ente.202600123",
+    "doi": "10.1002/ente.202600123",
+    "graphical_abstract_url": "/images/abstracts/abstract_v2alc_max.png",
+    "is_new_notified": false,
+    "created_at": "2026-08-08T00:00:00.000Z"
+  },
+  {
+    "id": "doi-10-1039-d6dt00446f",
+    "title": "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
+    "abstract": "Synthesis of Cr2MoAlC2 MAX phase and Cr2MoC2Tx MXene derivatives for energy storage supercapacitors and electrocatalytic water splitting.",
+    "authors": "R. Madhushree, Kalathiparambil Rajendra Pai Sunajadevi et al.",
+    "journal": "Dalton Transactions (2026) 55 (23): 9005–9022",
+    "publication_date": "2026-05-10",
+    "year": "2026",
+    "link": "https://doi.org/10.1039/D6DT00446F",
+    "doi": "10.1039/D6DT00446F",
+    "graphical_abstract_url": "/images/abstracts/abstract_cr2moalc2_max.png",
+    "is_new_notified": true,
+    "created_at": "2026-08-08T00:00:00.000Z"
+  }
+]
