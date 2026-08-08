@@ -1,5 +1,5 @@
 {
-  "lastRunTimestamp": "2026-08-08T08:37:52.221Z",
+  "lastRunTimestamp": "2026-08-08T11:13:16.346Z",
   "status": "SUCCESS",
   "scholarMetrics": {
     "citations": 3040,
@@ -9,16 +9,16 @@
     "i10Index": 79,
     "i10IndexSince2021": 71,
     "publicationsCount": 20,
-    "lastUpdated": "2026-08-08T08:37:52.221Z"
+    "lastUpdated": "2026-08-08T11:13:16.346Z"
   },
   "changesSummary": {
     "newPublicationsDiscovered": 0,
-    "totalRecentPapers": 20,
-    "unnotifiedCount": 22
+    "totalRecentPapers": 0,
+    "unnotifiedCount": 2
   },
   "logs": [
-    "✅ Publications Sync Complete: 20 recent papers processed (0 new added, 20 updated).",
+    "✅ Publications Sync Complete: 0 recent papers processed (0 new added, 0 updated).",
     "✅ Scholar Metrics Saved: 3040 Citations | h-index: 32",
-    "🎉 Created 22 congratulatory popups for unnotified publications."
+    "🎉 Created 2 congratulatory popups for unnotified publications."
   ]
 }
