@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { syncPublicationsPipeline } from '@/lib/scholarFetcher.mjs';
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   return handleSync();
 }

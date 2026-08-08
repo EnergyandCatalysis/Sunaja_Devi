@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import { getUnnotifiedPublications, getPublications } from '@/lib/db.mjs';
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   try {
     const unnotified = getUnnotifiedPublications();
     
-    // Fallback: If no unnotified publications exist, return top recent publications for popup display test
     if (unnotified.length === 0) {
       const allPubs = getPublications();
       const recent = allPubs.filter((p) => p.is_new_notified === false);

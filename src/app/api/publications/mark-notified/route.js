@@ -1,6 +1,15 @@
 import { NextResponse } from 'next/server';
 import { markAsNotified } from '@/lib/db.mjs';
 
+export const dynamic = 'force-static';
+
+export async function GET() {
+  return NextResponse.json({
+    success: true,
+    message: 'Mark notified endpoint active',
+  });
+}
+
 export async function POST(request) {
   try {
     const body = await request.json().catch(() => ({}));
