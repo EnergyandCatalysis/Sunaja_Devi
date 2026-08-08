@@ -1,5 +1,5 @@
 {
-  "lastRunTimestamp": "2026-08-07T05:53:22.894Z",
+  "lastRunTimestamp": "2026-08-08T04:00:13.419Z",
   "maxPopupDurationDays": 4,
   "status": "SUCCESS",
   "scholarMetrics": {
@@ -10,15 +10,19 @@
     "i10Index": 79,
     "i10IndexSince2021": 71,
     "publicationsCount": 20,
-    "lastUpdated": "2026-08-07T05:53:22.894Z"
+    "lastUpdated": "2026-08-08T04:00:13.419Z"
   },
   "changesSummary": {
-    "newPublicationsDiscovered": 1,
+    "newPublicationsDiscovered": 0,
     "newPopupsCreated": 0,
-    "expiredPopupsPruned": 0
+    "expiredPopupsPruned": 4
   },
   "logs": [
     "✅ Scholar Metrics Updated: 3040 Citations | h-index: 32 | Total Pubs: 20",
-    "✅ 6 Latest Publications Synced (1 new additions)."
+    "✅ 6 Latest Publications Synced (0 new additions).",
+    "🧹 Pruned popup announcement (4d max window expired): \"Heteroatom doped MXene for supercapacito...\"",
+    "🧹 Pruned popup announcement (4d max window expired): \"Dual purpose behavior of Ni-PTC MOF for ...\"",
+    "🧹 Pruned popup announcement (4d max window expired): \"Fluorometric sensors based on MXene-poly...\"",
+    "🧹 Pruned popup announcement (4d max window expired): \"MXene-polymer composites: an overview...\""
   ]
 }
