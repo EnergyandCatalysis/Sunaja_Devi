@@ -16,7 +16,7 @@ function getRandomUserAgent() {
 
 export function isRecentPublication(pubYear, pubDate) {
   const currentYear = new Date().getFullYear();
-  const minAllowedYear = currentYear - 1; // Last 12 months / current year or previous year
+  const minAllowedYear = currentYear - 1;
 
   if (pubYear) {
     const yearNum = parseInt(String(pubYear), 10);
@@ -36,11 +36,11 @@ export function isRecentPublication(pubYear, pubDate) {
   return false;
 }
 
-export async function fetchCrossrefPublications() {
+export async function resolveCrossrefByTitle(title) {
   try {
-    const url = `https://api.crossref.org/works?query.author=Sunaja+Devi&sort=published&order=desc&rows=20`;
+    const url = `https://api.crossref.org/works?query.title=${encodeURIComponent(title)}&rows=1`;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
+    const timeout = setTimeout(() => controller.abort(), 6000);
 
     const res = await fetch(url, {
       signal: controller.signal,
@@ -50,56 +50,54 @@ export async function fetchCrossrefPublications() {
     });
 
     clearTimeout(timeout);
-    if (!res.ok) return [];
+    if (!res.ok) return null;
 
     const data = await res.json();
-    const items = data.message?.items || [];
+    const item = data.message?.items?.[0];
+    if (!item) return null;
 
-    return items.map((item) => {
-      const title = item.title?.[0] || '';
-      const doi = item.DOI || '';
-      const journal = item['container-title']?.[0] || 'Peer-reviewed Journal';
+    const itemTitle = item.title?.[0] || '';
+    if (normalizeTitle(itemTitle).slice(0, 25) !== normalizeTitle(title).slice(0, 25)) {
+      return null;
+    }
 
-      const dateParts =
-        item['published-online']?.['date-parts']?.[0] ||
-        item['published']?.['date-parts']?.[0] ||
-        item['issued']?.['date-parts']?.[0];
+    const doi = item.DOI || '';
+    const dateParts =
+      item['published-online']?.['date-parts']?.[0] ||
+      item['published']?.['date-parts']?.[0] ||
+      item['issued']?.['date-parts']?.[0];
 
-      let year = '2026';
-      let pubDate = '';
-      if (dateParts && dateParts.length > 0) {
-        year = String(dateParts[0]);
-        const m = dateParts[1] ? String(dateParts[1]).padStart(2, '0') : '01';
-        const d = dateParts[2] ? String(dateParts[2]).padStart(2, '0') : '01';
-        pubDate = `${year}-${m}-${d}`;
-      }
+    let year = '';
+    let pubDate = '';
+    if (dateParts && dateParts.length > 0) {
+      year = String(dateParts[0]);
+      const m = dateParts[1] ? String(dateParts[1]).padStart(2, '0') : '01';
+      const d = dateParts[2] ? String(dateParts[2]).padStart(2, '0') : '01';
+      pubDate = `${year}-${m}-${d}`;
+    }
 
-      const authorsList = (item.author || [])
-        .map((a) => `${a.given || ''} ${a.family || ''}`.trim())
-        .filter(Boolean)
-        .join(', ');
+    const authorsList = (item.author || [])
+      .map((a) => `${a.given || ''} ${a.family || ''}`.trim())
+      .filter(Boolean)
+      .join(', ');
 
-      return {
-        title,
-        doi,
-        journal,
-        authors: authorsList || 'Sunaja Devi K R et al.',
-        year,
-        publication_date: pubDate || `${year}-01-01`,
-        abstract: item.abstract ? item.abstract.replace(/<[^>]*>/g, '') : '',
-        link: doi ? `https://doi.org/${doi}` : '',
-      };
-    });
+    return {
+      doi,
+      year,
+      publication_date: pubDate,
+      authors: authorsList || '',
+      abstract: item.abstract ? item.abstract.replace(/<[^>]*>/g, '') : '',
+      doiLink: doi ? `https://doi.org/${doi}` : '',
+    };
   } catch (err) {
-    console.warn('Crossref fetch warning:', err.message);
-    return [];
+    return null;
   }
 }
 
 export async function fetchScholarScraper() {
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000);
+    const timeout = setTimeout(() => controller.abort(), 12000);
 
     const res = await fetch(SCHOLAR_PROFILE_URL, {
       signal: controller.signal,
@@ -114,50 +112,90 @@ export async function fetchScholarScraper() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const html = await res.text();
-    const titleMatches = [...html.matchAll(/<a[^>]+class="gsc_a_at"[^>]*>([^<]+)<\/a>/g)].map((m) => m[1].trim());
+    const trMatches = [...html.matchAll(/<tr class="gsc_a_tr">([\s\S]*?)<\/tr>/gi)];
 
-    return titleMatches.map((title) => ({
-      title,
-      authors: 'Sunaja Devi K R et al.',
-      journal: 'Google Scholar Discovered Journal',
-      year: String(new Date().getFullYear()),
-      publication_date: new Date().toISOString().slice(0, 10),
-    }));
+    const articles = [];
+    for (const trMatch of trMatches) {
+      const rowHtml = trMatch[1];
+
+      const titleMatch =
+        rowHtml.match(/<a[^>]+href=["']([^"']+)["'][^>]*class="gsc_a_at"[^>]*>([\s\S]*?)<\/a>/i) ||
+        rowHtml.match(/<a[^>]+class="gsc_a_at"[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/i);
+
+      if (!titleMatch) continue;
+
+      const rawHref = titleMatch[1].replace(/&amp;/g, '&');
+      const title = titleMatch[2].replace(/<[^>]*>/g, '').trim();
+      const scholarLink = rawHref.startsWith('http')
+        ? rawHref
+        : `https://scholar.google.com${rawHref}`;
+
+      const grayDivs = [...rowHtml.matchAll(/<div class="gs_gray">([\s\S]*?)<\/div>/gi)].map((m) =>
+        m[1].replace(/<[^>]*>/g, '').trim()
+      );
+
+      const authors = grayDivs[0] || 'Sunaja Devi K R et al.';
+      const journal = grayDivs[1] || 'Peer-reviewed Journal';
+
+      const yearMatch =
+        rowHtml.match(/class=["']?[^"']*gsc_a_h[^"']*["']?[^>]*>([^<]*)<\/span>/i) ||
+        rowHtml.match(/<td class="gsc_a_y">[\s\S]*?<span[^>]*>([^<]*)<\/span>/i);
+      const year = yearMatch ? yearMatch[1].trim() : journal.match(/\b(20\d\d)\b/)?.[1] || '2026';
+
+      const citeMatch = rowHtml.match(/class=["']?[^"']*gsc_a_ac[^"']*["']?[^>]*>([^<]*)<\/a>/i);
+      const citations = citeMatch ? parseInt(citeMatch[1].trim(), 10) || 0 : 0;
+
+      articles.push({
+        title,
+        authors,
+        journal,
+        year,
+        publication_date: `${year}-01-01`,
+        citations,
+        link: scholarLink,
+        scholarLink,
+      });
+    }
+
+    return articles;
   } catch (err) {
-    console.warn('Scholar scraper warning:', err.message);
+    console.warn('Scholar profile fetcher warning:', err.message);
     return [];
   }
 }
 
 export async function syncPublicationsPipeline() {
-  console.log('🔄 Executing Publications Sync Pipeline...');
+  console.log('🔄 Executing Scholar-Direct Publications Sync Pipeline...');
   
-  // 1. Multi-tier fetching
-  const crossrefPubs = await fetchCrossrefPublications();
+  // 1. Fetch publications directly from Google Scholar profile HmOcEpIAAAAJ
   const scholarPubs = await fetchScholarScraper();
 
-  const combinedRawPubs = [...crossrefPubs, ...scholarPubs];
-
   // 2. Strict Date Filtering (current year or last 12 months)
-  const recentPubs = combinedRawPubs.filter((p) => isRecentPublication(p.year, p.publication_date));
+  const recentPubs = scholarPubs.filter((p) => isRecentPublication(p.year, p.publication_date));
 
   let newCount = 0;
   let updatedCount = 0;
   const processedPubs = [];
 
-  // 3. Deduplication & Graphical Abstract Generation
-  for (const rawPaper of recentPubs) {
-    if (!rawPaper.title) continue;
+  // 3. Enrich with Crossref DOI matching & ensure Graphical Abstract
+  for (const paper of recentPubs) {
+    if (!paper.title) continue;
 
-    // Check graphical abstract
-    const graphical_abstract_url = ensureGraphicalAbstract(rawPaper);
-
-    const paperToSave = {
-      ...rawPaper,
-      graphical_abstract_url,
+    // Crossref DOI lookup for exact title
+    const crossrefData = await resolveCrossrefByTitle(paper.title);
+    const mergedPaper = {
+      ...paper,
+      doi: crossrefData?.doi || paper.doi || '',
+      abstract: crossrefData?.abstract || paper.abstract || '',
+      publication_date: crossrefData?.publication_date || paper.publication_date || `${paper.year}-01-01`,
+      authors: paper.authors || crossrefData?.authors || 'Sunaja Devi K R et al.',
+      link: crossrefData?.doiLink || paper.scholarLink || paper.link,
     };
 
-    const result = upsertPublication(paperToSave);
+    const graphical_abstract_url = ensureGraphicalAbstract(mergedPaper);
+    mergedPaper.graphical_abstract_url = graphical_abstract_url;
+
+    const result = upsertPublication(mergedPaper);
     if (result.isNew) {
       newCount++;
     } else {
@@ -166,7 +204,7 @@ export async function syncPublicationsPipeline() {
     processedPubs.push(result.publication);
   }
 
-  // Also verify existing DB records for graphical abstracts
+  // Ensure graphical abstracts for all existing DB records
   const dbPubs = getPublications();
   for (const p of dbPubs) {
     if (!p.graphical_abstract_url) {
@@ -175,7 +213,7 @@ export async function syncPublicationsPipeline() {
     }
   }
 
-  console.log(`✅ Publications Pipeline Finished. Discovered/Processed: ${processedPubs.length} recent papers (${newCount} new, ${updatedCount} updated).`);
+  console.log(`✅ Publications Pipeline Finished. Total profile recent papers processed: ${processedPubs.length} (${newCount} new, ${updatedCount} updated).`);
 
   return {
     success: true,
