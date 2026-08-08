@@ -193,9 +193,15 @@ export default function HomePage() {
             <a href="#contact" className="top-nav-link">
               Contact
             </a>
-            <Link href="/scholar" className="top-nav-link">
+            <a
+              href="https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="top-nav-link"
+              id="top-scholar-link"
+            >
               Google Scholar
-            </Link>
+            </a>
             <a
               href="https://www.sciencedirect.com/author/55450509500/kalathiparambil-rajendra-pai-sunajadevi"
               target="_blank"
