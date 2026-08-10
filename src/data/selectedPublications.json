@@ -13,7 +13,7 @@
     "doi": "10.1021/acs.inorgchem.5c05604",
     "graphicalAbstract": "/images/abstracts/abstract_keggin_pom_ldh.png",
     "highlightMetric": "Bifunctional Electrocatalyst",
-    "abstract": "Keggin-type polyoxometalates (H₅PMo₁₀V₂O₄₀) intercalated into MgAl layered double hydroxides (LDH) display exceptional structural integrity and robust bifunctional electrocatalytic performance for overall water splitting in alkaline media.",
+    "abstract": "Keggin-type polyoxometalates (H₅PMo₁₀V₂O₄₀) intercalated into MgAl layered double hydroxides (LDH) display exceptional structural integrity and robust bifunctional electrocatalytic performance for overall water splitting in alkaline media. The strong electrostatic interaction between the anionic Keggin POM units and the cationic LDH layers prevents active site aggregation and dissolution. Electrochemical measurements demonstrate low overpotentials for oxygen evolution reaction (OER) and hydrogen evolution reaction (HER), along with long-term durability over 100 hours of continuous operation.",
     "keyFindings": [
       "Bifunctional electrocatalytic activity for both OER and HER",
       "Intercalation maintains structural stability during prolonged electrocatalysis",
@@ -34,7 +34,7 @@
     "doi": "10.1021/acs.inorgchem.5c00316",
     "graphicalAbstract": "/images/abstracts/abstract_cu3mo2o9_co2.png",
     "highlightMetric": "High CO₂ Conversion Efficiency",
-    "abstract": "Highly reactive frustrated Lewis pairs created by oxygen vacancies in Cu₃Mo₂O₉ catalysts facilitate efficient cycloaddition of CO₂ to 1,2-propanediol under solvent-free conditions.",
+    "abstract": "Highly reactive frustrated Lewis pairs created by oxygen vacancies in Cu₃Mo₂O₉ catalysts facilitate efficient cycloaddition of CO₂ to 1,2-propanediol under solvent-free conditions. The synergistic interaction between copper Lewis acid sites and oxygen-vacancy-induced basic sites activates both the epoxide ring and CO₂ molecules simultaneously, achieving high turnover frequency (TOF) and excellent selectivity toward cyclic carbonate products with outstanding catalyst recyclability.",
     "keyFindings": [
       "Oxygen-vacancy engineered Lewis acid-base active sites",
       "High catalytic conversion of industrial CO₂ into cyclic carbonate",
@@ -55,7 +55,7 @@
     "doi": "10.1002/chem.202502616",
     "graphicalAbstract": "/images/abstracts/abstract_mof_ceo2.png",
     "highlightMetric": "Biomass Upcycling Pioneer",
-    "abstract": "MOF-templated synthesis of CeO₂ nanocatalysts with active frustrated Lewis pairs enables CO₂-promoted soft oxidation of biomass-derived furfural into furoic acid.",
+    "abstract": "MOF-templated synthesis of CeO₂ nanocatalysts with active frustrated Lewis pairs enables CO₂-promoted soft oxidation of biomass-derived furfural into furoic acid. The MOF-derived ceria architecture provides abundant surface oxygen vacancies and coordinatively unsaturated Ce³⁺ sites that serve as frustrated Lewis pairs, enabling mild, selective oxidation under ambient pressure and mild temperatures without requiring harsh chemical oxidants.",
     "keyFindings": [
       "MOF derivative featuring tailored Frustrated Lewis Pair active sites",
       "CO₂-activated catalytic pathway for mild biomass oxidation",
@@ -76,7 +76,7 @@
     "doi": "10.1021/acsanm.6c02084",
     "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
     "highlightMetric": "Ultra-High Adsorption Capacity",
-    "abstract": "ZIF-8 MOF integrated with layered double hydroxide (LDH) nanohybrids presents tailored porosity and composition-dependent structural stability for rapid dye decontamination.",
+    "abstract": "ZIF-8 MOF integrated with layered double hydroxide (LDH) nanohybrids presents tailored porosity and composition-dependent structural stability for rapid dye decontamination. The heterostructure exhibits enhanced adsorption capacities for anionic and cationic organic dyes from industrial wastewater, driven by electrostatic interactions, hydrogen bonding, and high specific surface area, showing complete regenerability across multiple adsorption-desorption cycles.",
     "keyFindings": [
       "Synergistic composite architecture combining ZIF-8 and LDH",
       "Composition-tunable surface area and active adsorption sites",
