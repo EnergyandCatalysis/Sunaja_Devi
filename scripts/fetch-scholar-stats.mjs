@@ -152,7 +152,9 @@ async function runDailyAutomation() {
       link: p.link,
     }));
 
-    fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(topRecentPubs, null, 2), 'utf8');
+    if (topRecentPubs.length > 0) {
+      fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(topRecentPubs, null, 2), 'utf8');
+    }
 
     // 4. Update Popup Announcements
     const unnotified = getUnnotifiedPublications();
