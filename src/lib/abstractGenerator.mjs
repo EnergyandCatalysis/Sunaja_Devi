@@ -244,9 +244,33 @@ export function generateGraphicalAbstractSvg(paper) {
 </svg>`;
 }
 
+const REAL_ABSTRACT_MAP = [
+  { match: 'zif-8/ldh', image: '/images/abstracts/abstract_zif8_ldh.png' },
+  { match: 'v2alc max', image: '/images/abstracts/abstract_v2alc_max.png' },
+  { match: 'cr2moalc2 max', image: '/images/abstracts/abstract_cr2moalc2_max.png' },
+  { match: 'frustrated lewis pair-ceo2', image: '/images/abstracts/abstract_mof_ceo2.png' },
+  { match: 'keggin-type', image: '/images/abstracts/abstract_keggin_pom_ldh.png' },
+  { match: 'ni-ptc mof', image: '/images/abstracts/abstract_ni_ptc_mof.png' },
+  { match: 'lacoo3/g-c3n5', image: '/images/abstracts/abstract_lacoo3_g_c3n5.jpg' },
+  { match: 'hydrous nickel oxyhydroxide', image: '/images/abstracts/abstract_hydrous_nickel.png' },
+  { match: 'pdnps@goqds', image: '/images/abstracts/abstract_pdnps_goqds.png' },
+  { match: 'cu3mo2o9', image: '/images/abstracts/abstract_cu3mo2o9_co2.png' },
+  { match: 'heteroatom doped mxene', image: '/images/abstracts/abstract_heteroatom_mxene.png' },
+];
+
 export function ensureGraphicalAbstract(paper) {
   if (paper.graphical_abstract_url && paper.graphical_abstract_url.trim()) {
     return paper.graphical_abstract_url;
+  }
+  if (paper.graphicalAbstract && paper.graphicalAbstract.trim()) {
+    return paper.graphicalAbstract;
+  }
+
+  const titleLower = (paper.title || '').toLowerCase();
+  for (const item of REAL_ABSTRACT_MAP) {
+    if (titleLower.includes(item.match)) {
+      return item.image;
+    }
   }
 
   if (!fs.existsSync(ABSTRACTS_DIR)) {

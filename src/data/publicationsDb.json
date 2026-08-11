@@ -1,4 +1,4 @@
-[
+﻿[
     {
         "id":  "doi-10-1002-ente-70560",
         "title":  "Unveiling the Hydrogen Evolution Catalytic Performance of V2AlC MAX Phase",
@@ -21,7 +21,7 @@
         "journal":  "Energy Technology (2026) 14 (7): 202600123",
         "publication_date":  "2026-06-15",
         "year":  "2026",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uWiczbcajpAC",
+        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:uWiczbcajpAC",
         "doi":  "10.1002/ente.202600123",
         "graphical_abstract_url":  "/images/abstracts/abstract_v2alc_max.png",
         "is_new_notified":  false,
@@ -35,7 +35,7 @@
         "journal":  "Dalton Transactions (2026) 55 (23): 9005–9022",
         "publication_date":  "2026-05-10",
         "year":  "2026",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC",
+        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC",
         "doi":  "10.1039/D6DT00446F",
         "graphical_abstract_url":  "/images/abstracts/abstract_cr2moalc2_max.png",
         "is_new_notified":  true,
@@ -69,7 +69,7 @@
         "is_new_notified":  true,
         "created_at":  "2026-08-08T00:00:00.000Z",
         "citations":  1,
-        "scholarLink":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:yB1At4FlUx8C"
+        "scholarLink":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:yB1At4FlUx8C"
     },
     {
         "id":  "doi-10-1016-j-microc-2025-116580",
@@ -149,43 +149,11 @@
         "journal":  "Dalton Transactions 55 (23), 9005-9022, 2026",
         "publication_date":  "2026-01-01",
         "year":  "2026",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC",
+        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC",
         "doi":  "",
         "graphical_abstract_url":  "/images/graphical_abstracts/abstract_abstract_1786335906844.svg",
         "is_new_notified":  false,
         "created_at":  "2026-08-10T04:25:06.844Z"
-    },
-    {
-        "id":  "doi-10-1021-acsanm-6c02084",
-        "title":  "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-        "abstract":  "",
-        "authors":  "P Loganathan, KR Pai Sunajadevi, M Priyadarshini, C John, S Sathish, ...",
-        "journal":  "ACS Applied Nano Materials, 2026",
-        "publication_date":  "null-01-01",
-        "year":  "2026",
-        "link":  "https://doi.org/10.1021/acsanm.6c02084.s001",
-        "doi":  "10.1021/acsanm.6c02084.s001",
-        "graphical_abstract_url":  "/images/graphical_abstracts/abstract_10_1021_acsanm_6c02084_s001.svg",
-        "is_new_notified":  false,
-        "created_at":  "2026-08-08T00:00:00.000Z",
-        "citations":  0,
-        "scholarLink":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:URolC5Kub84C"
-    },
-    {
-        "id":  "doi-10-1039-d5cy01321f",
-        "title":  "Hydrous nickel oxyhydroxide thin films on copper foil as robust electrocatalysts for alkaline oxygen evolution",
-        "abstract":  "Electrodeposition pH tailors Ni–Cu morphology, balancing activity and durability in NiOOH OER electrodes.",
-        "authors":  "A Shetty, P Mukherjee, K Higashimine, T Taniike, V RS, KRP Sunajadevi",
-        "journal":  "Catalysis Science &amp; Technology 16 (6), 2205-2216, 2026",
-        "publication_date":  "2026-01-01",
-        "year":  "2026",
-        "link":  "https://doi.org/10.1039/d5cy01321f",
-        "doi":  "10.1039/d5cy01321f",
-        "graphical_abstract_url":  "/images/graphical_abstracts/abstract_10_1039_d5cy01321f.svg",
-        "is_new_notified":  true,
-        "created_at":  "2026-08-08T00:00:00.000Z",
-        "citations":  0,
-        "scholarLink":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:0KyAp5RtaNEC"
     },
     {
         "id":  "doi-10-1039-d5ra08190d",
@@ -201,7 +169,39 @@
         "is_new_notified":  true,
         "created_at":  "2026-08-08T00:00:00.000Z",
         "citations":  1,
-        "scholarLink":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uc_IGeMz5qoC"
+        "scholarLink":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:uc_IGeMz5qoC"
+    },
+    {
+        "id":  "doi-10-1039-d5cy01321f",
+        "title":  "Hydrous nickel oxyhydroxide thin films on copper foil as robust electrocatalysts for alkaline oxygen evolution",
+        "abstract":  "Electrodeposition pH tailors Ni–Cu morphology, balancing activity and durability in NiOOH OER electrodes.",
+        "authors":  "A Shetty, P Mukherjee, K Higashimine, T Taniike, V RS, KRP Sunajadevi",
+        "journal":  "Catalysis Science \u0026amp; Technology 16 (6), 2205-2216, 2026",
+        "publication_date":  "2026-01-01",
+        "year":  "2026",
+        "link":  "https://doi.org/10.1039/d5cy01321f",
+        "doi":  "10.1039/d5cy01321f",
+        "graphical_abstract_url":  "/images/graphical_abstracts/abstract_10_1039_d5cy01321f.svg",
+        "is_new_notified":  true,
+        "created_at":  "2026-08-08T00:00:00.000Z",
+        "citations":  0,
+        "scholarLink":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:0KyAp5RtaNEC"
+    },
+    {
+        "id":  "doi-10-1021-acsanm-6c02084",
+        "title":  "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
+        "abstract":  "",
+        "authors":  "P Loganathan, KR Pai Sunajadevi, M Priyadarshini, C John, S Sathish, ...",
+        "journal":  "ACS Applied Nano Materials, 2026",
+        "publication_date":  "null-01-01",
+        "year":  "2026",
+        "link":  "https://doi.org/10.1021/acsanm.6c02084.s001",
+        "doi":  "10.1021/acsanm.6c02084.s001",
+        "graphical_abstract_url":  "/images/graphical_abstracts/abstract_10_1021_acsanm_6c02084_s001.svg",
+        "is_new_notified":  false,
+        "created_at":  "2026-08-08T00:00:00.000Z",
+        "citations":  0,
+        "scholarLink":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:URolC5Kub84C"
     },
     {
         "id":  "doi-10-1002-chem-202502616",
