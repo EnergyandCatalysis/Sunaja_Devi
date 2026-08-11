@@ -133,9 +133,14 @@ async function runDailyAutomation() {
     fs.writeFileSync(STATS_FILE_PATH, JSON.stringify(updatedStats, null, 2), 'utf8');
     reportLogs.push(`✅ Scholar Metrics Saved: ${updatedStats.citations} Citations | h-index: ${updatedStats.hIndex}`);
 
-    // 3. Export DB to latestPublications.json (Top 6 strictly recent)
+    // 3. Export DB to latestPublications.json (Top 6 strictly recent, sorted by date)
     const allDbPubs = getPublications();
-    const topRecentPubs = allDbPubs.slice(0, 6).map((p) => ({
+    const sortedDbPubs = [...allDbPubs].sort((a, b) => {
+      const dateA = a.publication_date && a.publication_date !== 'null-01-01' ? a.publication_date : `${a.year || '2000'}-01-01`;
+      const dateB = b.publication_date && b.publication_date !== 'null-01-01' ? b.publication_date : `${b.year || '2000'}-01-01`;
+      return dateB.localeCompare(dateA);
+    });
+    const topRecentPubs = sortedDbPubs.slice(0, 6).map((p) => ({
       id: p.id,
       year: p.year,
       actualPublishDate: p.publication_date,
