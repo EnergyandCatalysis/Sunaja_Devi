@@ -1,14 +1,14 @@
 [
   {
-    "id": "doi-10-1021-acsanm-6c02084",
+    "id": "doi-10-1002-ente-70560",
     "year": "2026",
-    "actualPublishDate": "2026-07-01",
-    "title": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-    "authors": "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
-    "journal": "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
-    "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
-    "doi": "10.1021/acsanm.6c02084",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:URolC5Kub84C"
+    "actualPublishDate": "2026-07-06",
+    "title": "Unveiling the Hydrogen Evolution Catalytic Performance of V2AlC MAX Phase",
+    "authors": "C John, KRP Sunajadevi",
+    "journal": "Energy Technology 14 (7), e70560, 2026",
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1002_ente_70560.svg",
+    "doi": "10.1002/ente.70560",
+    "link": "https://doi.org/10.1002/ente.70560"
   },
   {
     "id": "doi-10-1002-ente-202600123",
@@ -33,36 +33,36 @@
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
   },
   {
+    "id": "doi-10-1016-j-colsurfa-2026-139593",
+    "year": "2026",
+    "actualPublishDate": "2026-05-01",
+    "title": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
+    "authors": "TSS Sri, S Anand, KRP Sunajadevi, A Kumar, CV Yelamaggad, ...",
+    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_colsurfa_2026_139593.svg",
+    "doi": "10.1016/j.colsurfa.2026.139593",
+    "link": "https://doi.org/10.1016/j.colsurfa.2026.139593"
+  },
+  {
     "id": "doi-10-1016-j-nxmate-2026-101775",
     "year": "2026",
-    "actualPublishDate": "2026-04-12",
-    "title": "Fabrication of LaCoO₃/g-C₃N₅ Z-scheme photo catalyst for Allura Red dye degradation, ascorbic acid sensing and hydrogen evolution studies",
-    "authors": "B.N. Roopashree, K. Gurushantha, P.C. Ashly, Nagaraju Kottam, S. Meena, G.K. Raghu, Kalathiparambil Rajendra Pai Sunajadevi",
-    "journal": "Next Materials (2026) 11: 101775",
-    "graphicalAbstract": "/images/abstracts/abstract_lacoo3_g_c3n5.jpg",
+    "actualPublishDate": "2026-04-01",
+    "title": "Fabrication of LaCoO3/g-C3N5 Z-scheme photo catalyst for Allura Red dye degradation, ascorbic acid sensing and hydrogen evolution studies",
+    "authors": "BN Roopashree, K Gurushantha, PC Ashly, N Kottam, S Meena, ...",
+    "journal": "Next Materials 11, 101775, 2026",
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_nxmate_2026_101775.svg",
     "doi": "10.1016/j.nxmate.2026.101775",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:yB1At4FlUx8C"
+    "link": "https://doi.org/10.1016/j.nxmate.2026.101775"
   },
   {
-    "id": "doi-10-1039-d5cy01321f",
-    "year": "2026",
-    "actualPublishDate": "2026-03-20",
-    "title": "Hydrous nickel oxyhydroxide thin films on copper foil as robust electrocatalysts for alkaline oxygen evolution",
-    "authors": "Ankith Shetty, Poulami Mukherjee, Koichi Higashimine, Toshiaki Taniike, Vishwanath RS, Kalathiparambil Rajendra Pai Sunajadevi",
-    "journal": "Catalysis Science & Technology (2026) 16 (6): 2205–2216",
-    "graphicalAbstract": "/images/abstracts/abstract_hydrous_nickel.png",
-    "doi": "10.1039/d5cy01321f",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:0KyAp5RtaNEC"
-  },
-  {
-    "id": "doi-10-1039-d5ra08190d",
-    "year": "2026",
-    "actualPublishDate": "2026-02-15",
-    "title": "Catalytic performance and SERS substrate efficiency of PdNPs@GOQDs",
-    "authors": "T. P. Amrutha, T. P. Arathi, Ritu Gopal, P. B. Arya, V. Nidhisha, C. Anjali, T. D. Suja, K. R. Sunaja Devi, Suja Haridas, Renuka Neeroli Kizhakayil",
-    "journal": "RSC Advances (2026) 16 (16): 14535-14546",
-    "graphicalAbstract": "/images/abstracts/abstract_pdnps_goqds.png",
-    "doi": "10.1039/d5ra08190d",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uc_IGeMz5qoC"
+    "id": "doi-10-1016-j-microc-2025-116580",
+    "year": "2025",
+    "actualPublishDate": "2026-01-01",
+    "title": "Amine-functionalized MIL-101 (Fe)-NH2@ ZIF-8 composite for efficient adsorption of Pb2+ ions",
+    "authors": "P Loganathan, M Ramachandra, M Priyadarshini, S Manickam, ...",
+    "journal": "Microchemical Journal, 116580, 2025",
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_microc_2025_116580.svg",
+    "doi": "10.1016/j.microc.2025.116580",
+    "link": "https://doi.org/10.1016/j.microc.2025.116580"
   }
 ]
