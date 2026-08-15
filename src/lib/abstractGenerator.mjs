@@ -40,6 +40,8 @@ function extractThreeStepSummary(title, abstract = '') {
     methodology = 'Z-Scheme Heterojunction Construction';
   } else if (combined.includes('pdnps') || combined.includes('qds') || combined.includes('quantum dots')) {
     methodology = 'Quantum Dot Functionalization & Metallic Nanoparticle Anchoring';
+  } else if (combined.includes('oxide-sulphate') || combined.includes('sulphate') || combined.includes('phase transformation') || combined.includes('na2cu3')) {
+    methodology = 'High-Temperature Phase Transformation & Framework Synthesis';
   }
 
   // 2. Key Finding Extraction
