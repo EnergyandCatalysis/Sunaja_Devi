@@ -1,5 +1,18 @@
 [
   {
+    "id": "doi-10-21203-rs-3-rs-10597892-v1",
+    "enabled": true,
+    "publishDate": "2026-08-06",
+    "activeDays": 4,
+    "publisherName": "Sunaja Devi Research Group",
+    "publisherRole": "Department of Chemistry, Christ University",
+    "publisherPhoto": "/images/sunaja_devi.png",
+    "paperTitle": "A Novel Mineral-Inspired Mixed Oxide-Sulphate Framework (Na2Cu3 (SO4) 3O) Synthesised By A High-Temperature Phase Transformation Route For Electrocatalytic Water Splitting And …",
+    "journal": "Peer-reviewed Journal",
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_21203_rs_3_rs_10597892_v1.svg",
+    "link": "https://doi.org/10.21203/rs.3.rs-10597892/v1"
+  },
+  {
     "id": "doi-10-1002-ente-70560",
     "enabled": true,
     "publishDate": "2026-07-06",
@@ -119,7 +132,7 @@
   {
     "id": "doi-10-1021-acsanm-6c02084",
     "enabled": true,
-    "publishDate": "null-01-01",
+    "publishDate": "2026-07-07",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
@@ -127,7 +140,7 @@
     "paperTitle": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
     "journal": "ACS Applied Nano Materials, 2026",
     "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
-    "link": "https://doi.org/10.1021/acsanm.6c02084.s001"
+    "link": "https://doi.org/10.1021/acsanm.6c02084"
   },
   {
     "id": "doi-10-1002-chem-202502616",

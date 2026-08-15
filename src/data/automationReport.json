@@ -1,24 +1,24 @@
 {
-  "lastRunTimestamp": "2026-08-15T10:40:18.200Z",
+  "lastRunTimestamp": "2026-08-15T10:42:10.146Z",
   "status": "SUCCESS",
   "scholarMetrics": {
-    "citations": 3073,
-    "citationsSince2021": 2827,
+    "citations": 3077,
+    "citationsSince2021": 2831,
     "hIndex": 33,
     "hIndexSince2021": 31,
     "i10Index": 80,
     "i10IndexSince2021": 72,
     "publicationsCount": 20,
-    "lastUpdated": "2026-08-15T10:40:18.200Z"
+    "lastUpdated": "2026-08-15T10:42:10.146Z"
   },
   "changesSummary": {
-    "newPublicationsDiscovered": 0,
-    "totalRecentPapers": 0,
-    "unnotifiedCount": 18
+    "newPublicationsDiscovered": 1,
+    "totalRecentPapers": 20,
+    "unnotifiedCount": 19
   },
   "logs": [
-    "✅ Publications Sync Complete: 0 recent papers processed (0 new added, 0 updated).",
-    "✅ Scholar Metrics Saved: 3073 Citations | h-index: 33",
-    "🎉 Created 18 congratulatory popups for unnotified publications."
+    "✅ Publications Sync Complete: 20 recent papers processed (1 new added, 19 updated).",
+    "✅ Scholar Metrics Saved: 3077 Citations | h-index: 33",
+    "🎉 Created 19 congratulatory popups for unnotified publications."
   ]
 }

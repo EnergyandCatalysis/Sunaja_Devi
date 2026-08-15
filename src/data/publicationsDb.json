@@ -1,5 +1,19 @@
 [
   {
+    "id": "doi-10-21203-rs-3-rs-10597892-v1",
+    "title": "A Novel Mineral-Inspired Mixed Oxide-Sulphate Framework (Na2Cu3 (SO4) 3O) Synthesised By A High-Temperature Phase Transformation Route For Electrocatalytic Water Splitting And …",
+    "abstract": "The direction toward a hydrogen economy, along with rapid advancements in battery technology, urges the scientific community to develop new materials that are low-cost, sustainable, and efficient. Effective green hydrogen production offers a viable substitute for traditional fuels and effectively supports the achievement of SDGs 7 and 13. The rapid charge-discharge capability of supercapacitors makes them suitable for integration with batteries to enhance both power output and overall cycle life. This work describes the development of a low-cost, efficient oxide-sulphate structural type with exemplary supercapacitance and electrocatalytic water-splitting capabilities. The single crystal of the electroactive material was synthesised via a high-temperature phase transformation strategy and characterised by various physical and chemical techniques. The system exhibited an overpotential of 145 mV at 10 mA cm − 2 for the hydrogen evolution reaction (HER), which is close to the HER potential of the well-known Pt/C system. A low charge transfer resistance (R ct ) of 5.82 Ω, obtained from the Nyquist plot, supported the conducting nature of the material. The system exhibited a high specific capacitance of 692 F g − 1 at 1 A g − 1 , and the energy and power densities were calculated to be 15.37 Wh kg − 1 and 200 W kg − 1 , respectively. The electrochemical analyses unambiguously confirmed the versatility of the material for charge storage and hydrogen generation applications.",
+    "authors": "A Guha, AK Prajapati, S Anand, KRP Sunajadevi, S Kumar, NK Daniel, ...",
+    "journal": "Peer-reviewed Journal",
+    "publication_date": "2026-08-06",
+    "year": "2026",
+    "link": "https://doi.org/10.21203/rs.3.rs-10597892/v1",
+    "doi": "10.21203/rs.3.rs-10597892/v1",
+    "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_21203_rs_3_rs_10597892_v1.svg",
+    "is_new_notified": false,
+    "created_at": "2026-08-15T10:42:10.693Z"
+  },
+  {
     "id": "doi-10-1002-ente-70560",
     "title": "Unveiling the Hydrogen Evolution Catalytic Performance of V2AlC MAX Phase",
     "abstract": "The development of efficient, durable, and earth‐abundant electrocatalysts is critical for advancing sustainable hydrogen production through electrochemical water splitting. Herein, we report the synthesis of phase‐pure V 2 AlC MAX phase via vacuum‐assisted solid‐state reaction using elemental vanadium, aluminum, and carbon precursors, and systematically evaluate its intrinsic bifunctional electrocatalytic activity toward hydrogen evolution reaction (HER) and oxygen evolution reaction (OER). Structural and morphological characterizations confirm the successful formation of a well‐defined layered MAX‐phase architecture, which promotes efficient charge transport and exposes accessible catalytic sites. X‐ray photoelectron spectroscopy (XPS) further verifies the characteristic VC and AlC bonding environments, confirming the formation of the V 2 AlC structure. Electrochemical measurements reveal that pristine V 2 AlC delivers an overpotential of 185 mV for HER and 390 mV for OER at 10 mA cm −2 , accompanied by Tafel slopes of 93 and 121.8 mV dec −1 , respectively. Furthermore, the catalyst achieves an overall water‐splitting voltage of 1.7 V with excellent operational stability during prolonged electrolysis. Notably, these results demonstrate that unmodified V 2 AlC MAX phase can function as an efficient bifunctional electrocatalyst, highlighting the intrinsic catalytic potential of MAX‐phase materials and offering a promising pathway toward cost‐effective and scalable catalysts for sustainable hydrogen production.",
@@ -11,7 +25,9 @@
     "doi": "10.1002/ente.70560",
     "graphical_abstract_url": "/images/abstracts/abstract_v2alc_max.png",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:06.637Z"
+    "created_at": "2026-08-10T04:25:06.637Z",
+    "citations": 0,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uWiczbcajpAC"
   },
   {
     "id": "doi-10-1002-ente-202600123",
@@ -53,7 +69,9 @@
     "doi": "10.1016/j.colsurfa.2026.139593",
     "graphical_abstract_url": "/images/abstracts/abstract_ni_ptc_mof.png",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:07.961Z"
+    "created_at": "2026-08-10T04:25:07.961Z",
+    "citations": 4,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:9Nmd_mFXekcC"
   },
   {
     "id": "doi-10-1016-j-nxmate-2026-101775",
@@ -83,7 +101,9 @@
     "doi": "10.1016/j.microc.2025.116580",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1016_j_microc_2025_116580.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:08.874Z"
+    "created_at": "2026-08-10T04:25:08.874Z",
+    "citations": 6,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:z_wVstp3MssC"
   },
   {
     "id": "doi-10-1016-b978-0-443-27620-0-00006-0",
@@ -97,7 +117,9 @@
     "doi": "10.1016/b978-0-443-27620-0.00006-0",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1016_b978_0_443_27620_0_00006_0.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:08.664Z"
+    "created_at": "2026-08-10T04:25:08.664Z",
+    "citations": 0,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:zLWjf1WUPmwC"
   },
   {
     "id": "doi-10-1016-b978-0-443-27620-0-00012-6",
@@ -111,7 +133,9 @@
     "doi": "10.1016/b978-0-443-27620-0.00012-6",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1016_b978_0_443_27620_0_00012_6.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:08.352Z"
+    "created_at": "2026-08-10T04:25:08.352Z",
+    "citations": 0,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:epqYDVWIO7EC"
   },
   {
     "id": "doi-10-1016-b978-0-443-38313-7-01014-8",
@@ -125,12 +149,14 @@
     "doi": "10.1016/b978-0-443-38313-7.01014-8",
     "graphical_abstract_url": "/images/abstracts/abstract_heteroatom_mxene.png",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:08.049Z"
+    "created_at": "2026-08-10T04:25:08.049Z",
+    "citations": 0,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:vDijr-p_gm4C"
   },
   {
     "id": "doi-10-1021-acs-inorgchem-5c05604-s001",
     "title": "Keggin-Type H5PMo10V2O40 Intercalated MgAl-LDH: Structural Integrity and Bifunctional Electrocatalytic Activity",
-    "abstract": "Keggin-type polyoxometalates (H₅PMo₁₀V₂O₄₀) intercalated into MgAl layered double hydroxides (LDH) display exceptional structural integrity and robust bifunctional electrocatalytic performance for overall water splitting in alkaline media.",
+    "abstract": "This research investigates \"Keggin-Type H5PMo10V2O40 Intercalated MgAl-LDH: Structural Integrity and Bifunctional Electrocatalytic Activity\", focusing on layered double hydroxide coprecipitation. Structural and electrochemical analysis demonstrates enhanced charge transfer & superior catalytic efficiency, providing key insights for clean energy & environmental sustainability.",
     "authors": "P Loganathan, KRP Sunajadevi, D Muthukumar",
     "journal": "Inorganic Chemistry 65 (8), 4548-4568, 2026",
     "publication_date": "null-01-01",
@@ -139,12 +165,14 @@
     "doi": "10.1021/acs.inorgchem.5c05604.s001",
     "graphical_abstract_url": "/images/abstracts/abstract_keggin_pom_ldh.png",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:07.712Z"
+    "created_at": "2026-08-10T04:25:07.712Z",
+    "citations": 2,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:nrtMV_XWKgEC"
   },
   {
     "id": "pub-cr2moalc2-max-phase-and-its-derivative-cr2moc2tx-m",
     "title": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene for supercapacitors and electrocatalytic water splitting",
-    "abstract": "Synthesis of Cr2MoAlC2 MAX phase and Cr2MoC2Tx MXene derivatives for energy storage supercapacitors and electrocatalytic water splitting. The MXene derivative demonstrates enhanced electrical conductivity and abundant electroactive sites.",
+    "abstract": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene were synthesized and evaluated for dual energy storage (supercapacitors) and electrocatalytic water splitting applications. The MXene derivative demonstrates enhanced electrical conductivity and abundant electroactive sites.",
     "authors": "R Madhushree, KRP Sunajadevi",
     "journal": "Dalton Transactions 55 (23), 9005-9022, 2026",
     "publication_date": "2026-01-01",
@@ -153,7 +181,9 @@
     "doi": "",
     "graphical_abstract_url": "/images/abstracts/abstract_cr2moalc2_max.png",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:06.844Z"
+    "created_at": "2026-08-10T04:25:06.844Z",
+    "citations": 0,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
   },
   {
     "id": "doi-10-1039-d5ra08190d",
@@ -190,13 +220,13 @@
   {
     "id": "doi-10-1021-acsanm-6c02084",
     "title": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-    "abstract": "ZIF-8 MOF integrated with layered double hydroxide (LDH) nanohybrids presents tailored porosity and composition-dependent structural stability for rapid dye decontamination. The heterostructure exhibits enhanced adsorption capacities for organic dyes from industrial wastewater.",
+    "abstract": "ZIF-8/LDH nanohybrids were synthesized to study the effect of LDH composition on structural ordering and organic dye adsorption performance. The optimized hybrid displays exceptionally high specific surface area and rapid adsorption kinetics for industrial dye decontamination.",
     "authors": "P Loganathan, KR Pai Sunajadevi, M Priyadarshini, C John, S Sathish, ...",
     "journal": "ACS Applied Nano Materials, 2026",
-    "publication_date": "null-01-01",
+    "publication_date": "2026-07-07",
     "year": "2026",
-    "link": "https://doi.org/10.1021/acsanm.6c02084.s001",
-    "doi": "10.1021/acsanm.6c02084.s001",
+    "link": "https://doi.org/10.1021/acsanm.6c02084",
+    "doi": "10.1021/acsanm.6c02084",
     "graphical_abstract_url": "/images/abstracts/abstract_zif8_ldh.png",
     "is_new_notified": false,
     "created_at": "2026-08-08T00:00:00.000Z",
@@ -215,7 +245,9 @@
     "doi": "10.1002/chem.202502616",
     "graphical_abstract_url": "/images/abstracts/abstract_mof_ceo2.png",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:07.557Z"
+    "created_at": "2026-08-10T04:25:07.557Z",
+    "citations": 1,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:XD-gHx7UXLsC"
   },
   {
     "id": "doi-10-1002-chem-202502884",
@@ -229,7 +261,9 @@
     "doi": "10.1002/chem.202502884",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1002_chem_202502884.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:09.120Z"
+    "created_at": "2026-08-10T04:25:09.120Z",
+    "citations": 12,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:VLnqNzywnoUC"
   },
   {
     "id": "doi-10-1016-j-jpcs-2025-112958",
@@ -243,7 +277,9 @@
     "doi": "10.1016/j.jpcs.2025.112958",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1016_j_jpcs_2025_112958.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:09.266Z"
+    "created_at": "2026-08-10T04:25:09.266Z",
+    "citations": 2,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:NJ774b8OgUMC"
   },
   {
     "id": "doi-10-1002-slct-202503995",
@@ -257,7 +293,9 @@
     "doi": "10.1002/slct.202503995",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1002_slct_202503995.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:09.601Z"
+    "created_at": "2026-08-10T04:25:09.601Z",
+    "citations": 0,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:t7zJ5fGR-2UC"
   },
   {
     "id": "doi-10-1016-j-jpowsour-2025-238213",
@@ -271,7 +309,9 @@
     "doi": "10.1016/j.jpowsour.2025.238213",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1016_j_jpowsour_2025_238213.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:09.450Z"
+    "created_at": "2026-08-10T04:25:09.450Z",
+    "citations": 2,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:-_dYPAW6P2MC"
   },
   {
     "id": "doi-10-1039-d5ma00706b",
@@ -299,7 +339,9 @@
     "doi": "10.1039/d5na00753d",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1039_d5na00753d.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:10.007Z"
+    "created_at": "2026-08-10T04:25:10.007Z",
+    "citations": 2,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:evX43VCCuoAC"
   },
   {
     "id": "doi-10-1039-d5ra02731d",
@@ -313,6 +355,8 @@
     "doi": "10.1039/d5ra02731d",
     "graphical_abstract_url": "/images/graphical_abstracts/abstract_10_1039_d5ra02731d.svg",
     "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:09.769Z"
+    "created_at": "2026-08-10T04:25:09.769Z",
+    "citations": 3,
+    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uJ-U7cs_P_0C"
   }
 ]
