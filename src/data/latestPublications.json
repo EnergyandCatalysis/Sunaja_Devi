@@ -11,6 +11,17 @@
     "link": "https://doi.org/10.21203/rs.3.rs-10597892/v1"
   },
   {
+    "id": "doi-10-1021-acsanm-6c02084-s001",
+    "year": "2026",
+    "actualPublishDate": "2026-07-07",
+    "title": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
+    "authors": "P Loganathan, KR Pai Sunajadevi, M Priyadarshini, C John, S Sathish, ...",
+    "journal": "ACS Applied Nano Materials, 2026",
+    "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
+    "doi": "10.1021/acsanm.6c02084",
+    "link": "https://doi.org/10.1021/acsanm.6c02084"
+  },
+  {
     "id": "doi-10-1002-ente-70560",
     "year": "2026",
     "actualPublishDate": "2026-07-06",
@@ -53,16 +64,5 @@
     "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_microc_2025_116580.svg",
     "doi": "10.1016/j.microc.2025.116580",
     "link": "https://doi.org/10.1016/j.microc.2025.116580"
-  },
-  {
-    "id": "doi-10-1016-b978-0-443-27620-0-00006-0",
-    "year": "2026",
-    "actualPublishDate": "2026-01-01",
-    "title": "Fluorometric sensors based on MXene-polymer composites",
-    "authors": "C John, J Jones, S Chundattu, D Pinheiro, KRP Sunajadevi",
-    "journal": "Advances in MXene Polymer Composites, 331-347, 2026",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_b978_0_443_27620_0_00006_0.svg",
-    "doi": "10.1016/b978-0-443-27620-0.00006-0",
-    "link": "https://doi.org/10.1016/b978-0-443-27620-0.00006-0"
   }
 ]

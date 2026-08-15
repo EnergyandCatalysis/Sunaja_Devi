@@ -9,8 +9,8 @@
     "publisherPhoto": "/images/sunaja_devi.png",
     "paperTitle": "Unveiling the supercapacitive behavior of electrospun Cr2CTx/carbon nanofiber membrane",
     "journal": "Nanoscale Advances 7 (21), 6791-6795, 2025",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1039_d5na00753d.svg",
-    "link": "https://doi.org/10.1039/d5na00753d"
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_abstract_1786762966990.svg",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:evX43VCCuoAC"
   },
   {
     "id": "doi-10-1039-d5ra02731d",
@@ -236,7 +236,7 @@
   {
     "id": "doi-10-1021-acsanm-6c02084-s001",
     "enabled": true,
-    "publishDate": "null-01-01",
+    "publishDate": "2026-07-07",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
@@ -244,7 +244,7 @@
     "paperTitle": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
     "journal": "ACS Applied Nano Materials, 2026",
     "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
-    "link": "https://doi.org/10.1021/acsanm.6c02084.s001"
+    "link": "https://doi.org/10.1021/acsanm.6c02084"
   },
   {
     "id": "doi-10-21203-rs-3-rs-10597892-v1",
