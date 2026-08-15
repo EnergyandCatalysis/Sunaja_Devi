@@ -282,8 +282,15 @@ function normalizeForMatching(str) {
 export function ensureGraphicalAbstract(paper) {
   const existingUrl = (paper.graphical_abstract_url || paper.graphicalAbstract || '').trim();
 
-  // 1. If existing URL points to a real image (png, jpg, jpeg, webp, gif), keep it
-  if (existingUrl && !existingUrl.endsWith('.svg') && !existingUrl.includes('/graphical_abstracts/')) {
+  const checkPublicFileExists = (urlPath) => {
+    if (!urlPath) return false;
+    const relPath = urlPath.startsWith('/') ? urlPath.slice(1) : urlPath;
+    const fullPath = path.join(__dirname, '..', '..', 'public', relPath);
+    return fs.existsSync(fullPath);
+  };
+
+  // 1. If existing URL points to an actual file on disk, keep it
+  if (existingUrl && checkPublicFileExists(existingUrl)) {
     return existingUrl;
   }
 
@@ -296,17 +303,14 @@ export function ensureGraphicalAbstract(paper) {
     for (const pattern of matches) {
       const patNorm = normalizeForMatching(pattern);
       if (patNorm && (titleNorm.includes(patNorm) || (doiNorm && doiNorm.includes(patNorm)))) {
-        return item.image;
+        if (checkPublicFileExists(item.image)) {
+          return item.image;
+        }
       }
     }
   }
 
-  // 3. If paper already has a generated SVG or other URL, keep it
-  if (existingUrl) {
-    return existingUrl;
-  }
-
-  // 4. Otherwise, generate dynamic SVG abstract file
+  // 3. Otherwise, create a new dynamic SVG graphical abstract file on disk
   if (!fs.existsSync(ABSTRACTS_DIR)) {
     fs.mkdirSync(ABSTRACTS_DIR, { recursive: true });
   }
