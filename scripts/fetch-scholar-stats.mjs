@@ -147,6 +147,7 @@ async function runDailyAutomation() {
       title: p.title,
       authors: p.authors,
       journal: p.journal,
+      abstract: p.abstract || '',
       graphicalAbstract: p.graphical_abstract_url,
       doi: p.doi,
       link: p.link,
@@ -197,4 +198,6 @@ async function runDailyAutomation() {
   }
 }
 
-runDailyAutomation();
+runDailyAutomation().catch((err) => {
+  console.warn('Daily automation top-level warning:', err.message);
+});
