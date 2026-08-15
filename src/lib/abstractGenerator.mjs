@@ -245,39 +245,71 @@ export function generateGraphicalAbstractSvg(paper) {
 }
 
 const REAL_ABSTRACT_MAP = [
-  { match: 'zif-8/ldh', image: '/images/abstracts/abstract_zif8_ldh.png' },
-  { match: 'v2alc max', image: '/images/abstracts/abstract_v2alc_max.png' },
-  { match: 'cr2moalc2 max', image: '/images/abstracts/abstract_cr2moalc2_max.png' },
-  { match: 'frustrated lewis pair-ceo2', image: '/images/abstracts/abstract_mof_ceo2.png' },
-  { match: 'keggin-type', image: '/images/abstracts/abstract_keggin_pom_ldh.png' },
-  { match: 'ni-ptc mof', image: '/images/abstracts/abstract_ni_ptc_mof.png' },
-  { match: 'lacoo3/g-c3n5', image: '/images/abstracts/abstract_lacoo3_g_c3n5.jpg' },
-  { match: 'hydrous nickel oxyhydroxide', image: '/images/abstracts/abstract_hydrous_nickel.png' },
-  { match: 'pdnps@goqds', image: '/images/abstracts/abstract_pdnps_goqds.png' },
-  { match: 'cu3mo2o9', image: '/images/abstracts/abstract_cu3mo2o9_co2.png' },
-  { match: 'heteroatom doped mxene', image: '/images/abstracts/abstract_heteroatom_mxene.png' },
+  { match: ['zif-8/ldh', 'zif8/ldh', 'zif 8/ldh', '10.1021/acsanm.6c02084'], image: '/images/abstracts/abstract_zif8_ldh.png' },
+  { match: ['v2alc', 'v2alc max', '10.1002/ente.202600123', '10.1002/ente.70560'], image: '/images/abstracts/abstract_v2alc_max.png' },
+  { match: ['cr2moalc2', 'cr2moc2tx', '10.1039/d6dt00446f'], image: '/images/abstracts/abstract_cr2moalc2_max.png' },
+  { match: ['frustrated lewis pair', 'furfural to furoic', 'mof derived frustrated lewis pair-ceo2', '10.1002/chem.202502616'], image: '/images/abstracts/abstract_mof_ceo2.png' },
+  { match: ['keggin', 'h5pmo10v2o40', '10.1021/acs.inorgchem.5c05604'], image: '/images/abstracts/abstract_keggin_pom_ldh.png' },
+  { match: ['ni-ptc', 'ni ptc', '10.1016/j.colsurfa.2026.139593'], image: '/images/abstracts/abstract_ni_ptc_mof.png' },
+  { match: ['lacoo3', 'g-c3n5', 'lacoo3/g-c3n5', '10.1016/j.nxmate.2026.101775'], image: '/images/abstracts/abstract_lacoo3_g_c3n5.jpg' },
+  { match: ['hydrous nickel', 'nickel oxyhydroxide', 'niooh', '10.1039/d5cy01321f'], image: '/images/abstracts/abstract_hydrous_nickel.png' },
+  { match: ['pdnps', 'goqds', '10.1039/d5ra08190d'], image: '/images/abstracts/abstract_pdnps_goqds.png' },
+  { match: ['cu3mo2o9', '1,2-propanediol', '10.1021/acs.inorgchem.5c00316'], image: '/images/abstracts/abstract_cu3mo2o9_co2.png' },
+  { match: ['heteroatom doped mxene', '10.1016/b978-0-443-38313-7.01014-8'], image: '/images/abstracts/abstract_heteroatom_mxene.png' },
 ];
 
+function normalizeForMatching(str) {
+  if (!str) return '';
+  return str
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[₀0]/g, '0')
+    .replace(/[₁1]/g, '1')
+    .replace(/[₂2]/g, '2')
+    .replace(/[₃3]/g, '3')
+    .replace(/[₄4]/g, '4')
+    .replace(/[₅5]/g, '5')
+    .replace(/[₆6]/g, '6')
+    .replace(/[₇7]/g, '7')
+    .replace(/[₈8]/g, '8')
+    .replace(/[₉9]/g, '9')
+    .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015]/g, '-')
+    .replace(/\s+/g, ' ');
+}
+
 export function ensureGraphicalAbstract(paper) {
-  if (paper.graphical_abstract_url && paper.graphical_abstract_url.trim()) {
-    return paper.graphical_abstract_url;
-  }
-  if (paper.graphicalAbstract && paper.graphicalAbstract.trim()) {
-    return paper.graphicalAbstract;
+  const existingUrl = (paper.graphical_abstract_url || paper.graphicalAbstract || '').trim();
+
+  // 1. If existing URL points to a real image (png, jpg, jpeg, webp, gif), keep it
+  if (existingUrl && !existingUrl.endsWith('.svg') && !existingUrl.includes('/graphical_abstracts/')) {
+    return existingUrl;
   }
 
-  const titleLower = (paper.title || '').toLowerCase();
+  // 2. Check if paper title or DOI matches any real image in REAL_ABSTRACT_MAP
+  const titleNorm = normalizeForMatching(paper.title || '');
+  const doiNorm = (paper.doi || '').toLowerCase().trim();
+
   for (const item of REAL_ABSTRACT_MAP) {
-    if (titleLower.includes(item.match)) {
-      return item.image;
+    const matches = Array.isArray(item.match) ? item.match : [item.match];
+    for (const pattern of matches) {
+      const patNorm = normalizeForMatching(pattern);
+      if (patNorm && (titleNorm.includes(patNorm) || (doiNorm && doiNorm.includes(patNorm)))) {
+        return item.image;
+      }
     }
   }
 
+  // 3. If paper already has a generated SVG or other URL, keep it
+  if (existingUrl) {
+    return existingUrl;
+  }
+
+  // 4. Otherwise, generate dynamic SVG abstract file
   if (!fs.existsSync(ABSTRACTS_DIR)) {
     fs.mkdirSync(ABSTRACTS_DIR, { recursive: true });
   }
 
-  const paperId = paper.id || paper.doi ? paper.doi.replace(/[^a-z0-9]/gi, '_') : 'abstract_' + Date.now();
+  const paperId = paper.id || (paper.doi ? paper.doi.replace(/[^a-z0-9]/gi, '_') : 'abstract_' + Date.now());
   const filename = `abstract_${paperId.replace(/^pub-|^doi-/, '')}.svg`;
   const filePath = path.join(ABSTRACTS_DIR, filename);
 
