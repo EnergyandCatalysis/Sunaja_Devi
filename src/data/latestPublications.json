@@ -1,74 +1,68 @@
 [
-    {
-        "id":  "doi-10-1021-acsanm-6c02084",
-        "year":  "2026",
-        "actualPublishDate":  "2026-07-01",
-        "title":  "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-        "authors":  "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
-        "journal":  "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
-        "graphicalAbstract":  "/images/abstracts/abstract_zif8_ldh.png",
-        "abstract":  "ZIF-8 MOF integrated with layered double hydroxide (LDH) nanohybrids presents tailored porosity and composition-dependent structural stability for rapid dye decontamination. The heterostructure exhibits enhanced adsorption capacities for anionic and cationic organic dyes from industrial wastewater.",
-        "doi":  "10.1021/acsanm.6c02084",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:URolC5Kub84C"
-    },
-    {
-        "id":  "doi-10-1002-ente-202600123",
-        "year":  "2026",
-        "actualPublishDate":  "2026-06-15",
-        "title":  "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
-        "authors":  "Cheriyan John, Kalathiparambil Rajendra Pai Sunajadevi et al.",
-        "journal":  "Energy Technology (2026) 14 (7): 202600123",
-        "graphicalAbstract":  "/images/abstracts/abstract_v2alc_max.png",
-        "abstract":  "The development of efficient, durable, and earth-abundant electrocatalysts is critical for advancing sustainable hydrogen production. This study investigates the intrinsic electrocatalytic hydrogen evolution reaction (HER) performance of phase-pure V₂AlC MAX phase materials.",
-        "doi":  "10.1002/ente.202600123",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:uWiczbcajpAC"
-    },
-    {
-        "id":  "doi-10-1039-d6dt00446f",
-        "year":  "2026",
-        "actualPublishDate":  "2026-05-10",
-        "title":  "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
-        "authors":  "R. Madhushree, Kalathiparambil Rajendra Pai Sunajadevi et al.",
-        "journal":  "Dalton Transactions (2026) 55 (23): 9005–9022",
-        "graphicalAbstract":  "/images/abstracts/abstract_cr2moalc2_max.png",
-        "abstract":  "Synthesis of Cr2MoAlC2 MAX phase and Cr2MoC2Tx MXene derivatives for energy storage supercapacitors and electrocatalytic water splitting applications. The MXene derivative demonstrates enhanced electrical conductivity and abundant electroactive sites.",
-        "doi":  "10.1039/D6DT00446F",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
-    },
-    {
-        "id":  "doi-10-1002-chem-202502616",
-        "year":  "2026",
-        "actualPublishDate":  "2026-05-05",
-        "title":  "Harnessing MOF Derived Frustrated Lewis Pair-CeO₂ Nano Catalyst for CO₂-Activated Soft Oxidation of Furfural to Furoic Acid",
-        "authors":  "S. Sujith, H. K. Meghana, M. Harsha, B. J. Vaishnavi, Chaitra N. Mallannavar, Kalathiparambil Rajendra Pai Sunajadevi, Ganapati V. Shanbhag",
-        "journal":  "Chemistry – A European Journal (2026) 32 (8): e202502616",
-        "graphicalAbstract":  "/images/abstracts/abstract_mof_ceo2.png",
-        "abstract":  "MOF-templated synthesis of CeO₂ nanocatalysts with active frustrated Lewis pairs enables CO₂-promoted soft oxidation of biomass-derived furfural into furoic acid. Surface oxygen vacancies and Ce³⁺ sites modulate high conversion (99%) and selectivity under mild conditions.",
-        "doi":  "10.1002/chem.202502616",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:XD-gHx7UXLsC"
-    },
-    {
-        "id":  "doi-10-1021-acs-inorgchem-5c05604",
-        "year":  "2026",
-        "actualPublishDate":  "2026-05-02",
-        "title":  "Keggin-Type H₅PMo₁₀V₂O₄₀ Intercalated MgAl-LDH: Structural Integrity and Bifunctional Electrocatalytic Activity",
-        "authors":  "Pushparaj Loganathan, Kalathiparambil Rajendra Pai Sunajadevi, Devaraj Muthukumar",
-        "journal":  "Inorganic Chemistry (2026) 65 (8): 4548–4568",
-        "graphicalAbstract":  "/images/abstracts/abstract_keggin_pom_ldh.png",
-        "abstract":  "Keggin-type polyoxometalates (H₅PMo₁₀V₂O₄₀) intercalated into MgAl layered double hydroxides (LDH) display exceptional structural integrity and robust bifunctional electrocatalytic performance for overall water splitting in alkaline media.",
-        "doi":  "10.1021/acs.inorgchem.5c05604",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:nrtMV_XWKgEC"
-    },
-    {
-        "id":  "doi-10-1016-j-colsurfa-2026-139593",
-        "year":  "2026",
-        "actualPublishDate":  "2026-05-01",
-        "title":  "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
-        "authors":  "T. S. Sai Sri, Samika Anand, Kalathiparambil Rajendra Pai Sunajadevi, Abhishek Kumar, Channabasaveshwar V. Yelamaggad, B. Saravanakumar, Dephan Pinheiro",
-        "journal":  "Colloids and Surfaces A: Physicochemical and Engineering Aspects (2026) 736: 139593",
-        "graphicalAbstract":  "/images/abstracts/abstract_ni_ptc_mof.png",
-        "abstract":  "This study reports the synthesis and multifunctional electrochemical characterization of Ni-PTC metal-organic frameworks (MOFs). The porous hybrid architecture provides high surface area and abundant redox-active sites for high performance supercapacitor and water splitting applications.",
-        "doi":  "10.1016/j.colsurfa.2026.139593",
-        "link":  "https://scholar.google.com/citations?view_op=view_citation\u0026hl=en\u0026user=HmOcEpIAAAAJ\u0026sortby=pubdate\u0026citation_for_view=HmOcEpIAAAAJ:9Nmd_mFXekcC"
-    }
+  {
+    "id": "doi-10-1002-ente-70560",
+    "year": "2026",
+    "actualPublishDate": "2026-07-06",
+    "title": "Unveiling the Hydrogen Evolution Catalytic Performance of V2AlC MAX Phase",
+    "authors": "C John, KRP Sunajadevi",
+    "journal": "Energy Technology 14 (7), e70560, 2026",
+    "graphicalAbstract": "/images/abstracts/abstract_v2alc_max.png",
+    "doi": "10.1002/ente.70560",
+    "link": "https://doi.org/10.1002/ente.70560"
+  },
+  {
+    "id": "doi-10-1002-ente-202600123",
+    "year": "2026",
+    "actualPublishDate": "2026-06-15",
+    "title": "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
+    "authors": "Cheriyan John, Kalathiparambil Rajendra Pai Sunajadevi et al.",
+    "journal": "Energy Technology (2026) 14 (7): 202600123",
+    "graphicalAbstract": "/images/abstracts/abstract_v2alc_max.png",
+    "doi": "10.1002/ente.202600123",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uWiczbcajpAC"
+  },
+  {
+    "id": "doi-10-1039-d6dt00446f",
+    "year": "2026",
+    "actualPublishDate": "2026-05-10",
+    "title": "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
+    "authors": "R. Madhushree, Kalathiparambil Rajendra Pai Sunajadevi et al.",
+    "journal": "Dalton Transactions (2026) 55 (23): 9005–9022",
+    "graphicalAbstract": "/images/abstracts/abstract_cr2moalc2_max.png",
+    "doi": "10.1039/D6DT00446F",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
+  },
+  {
+    "id": "doi-10-1016-j-colsurfa-2026-139593",
+    "year": "2026",
+    "actualPublishDate": "2026-05-01",
+    "title": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
+    "authors": "TSS Sri, S Anand, KRP Sunajadevi, A Kumar, CV Yelamaggad, ...",
+    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
+    "graphicalAbstract": "/images/abstracts/abstract_ni_ptc_mof.png",
+    "doi": "10.1016/j.colsurfa.2026.139593",
+    "link": "https://doi.org/10.1016/j.colsurfa.2026.139593"
+  },
+  {
+    "id": "doi-10-1016-j-nxmate-2026-101775",
+    "year": "2026",
+    "actualPublishDate": "2026-04-01",
+    "title": "Fabrication of LaCoO3/g-C3N5 Z-scheme photo catalyst for Allura Red dye degradation, ascorbic acid sensing and hydrogen evolution studies",
+    "authors": "BN Roopashree, K Gurushantha, PC Ashly, N Kottam, S Meena, ...",
+    "journal": "Next Materials 11, 101775, 2026",
+    "graphicalAbstract": "/images/abstracts/abstract_lacoo3_g_c3n5.jpg",
+    "doi": "10.1016/j.nxmate.2026.101775",
+    "link": "https://doi.org/10.1016/j.nxmate.2026.101775"
+  },
+  {
+    "id": "doi-10-1016-j-microc-2025-116580",
+    "year": "2025",
+    "actualPublishDate": "2026-01-01",
+    "title": "Amine-functionalized MIL-101 (Fe)-NH2@ ZIF-8 composite for efficient adsorption of Pb2+ ions",
+    "authors": "P Loganathan, M Ramachandra, M Priyadarshini, S Manickam, ...",
+    "journal": "Microchemical Journal, 116580, 2025",
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_microc_2025_116580.svg",
+    "doi": "10.1016/j.microc.2025.116580",
+    "link": "https://doi.org/10.1016/j.microc.2025.116580"
+  }
 ]
