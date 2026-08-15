@@ -26,19 +26,6 @@
     "link": "https://doi.org/10.1002/ente.70560"
   },
   {
-    "id": "doi-10-1002-ente-202600123",
-    "enabled": true,
-    "publishDate": "2026-06-15",
-    "activeDays": 4,
-    "publisherName": "Sunaja Devi Research Group",
-    "publisherRole": "Department of Chemistry, Christ University",
-    "publisherPhoto": "/images/sunaja_devi.png",
-    "paperTitle": "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
-    "journal": "Energy Technology (2026) 14 (7): 202600123",
-    "graphicalAbstract": "/images/abstracts/abstract_v2alc_max.png",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uWiczbcajpAC"
-  },
-  {
     "id": "doi-10-1016-j-colsurfa-2026-139593",
     "enabled": true,
     "publishDate": "2026-05-01",
@@ -115,19 +102,6 @@
     "journal": "Inorganic Chemistry 65 (8), 4548-4568, 2026",
     "graphicalAbstract": "/images/abstracts/abstract_keggin_pom_ldh.png",
     "link": "https://doi.org/10.1021/acs.inorgchem.5c05604.s001"
-  },
-  {
-    "id": "pub-cr2moalc2-max-phase-and-its-derivative-cr2moc2tx-m",
-    "enabled": true,
-    "publishDate": "2026-01-01",
-    "activeDays": 4,
-    "publisherName": "Sunaja Devi Research Group",
-    "publisherRole": "Department of Chemistry, Christ University",
-    "publisherPhoto": "/images/sunaja_devi.png",
-    "paperTitle": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene for supercapacitors and electrocatalytic water splitting",
-    "journal": "Dalton Transactions 55 (23), 9005-9022, 2026",
-    "graphicalAbstract": "/images/abstracts/abstract_cr2moalc2_max.png",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
   },
   {
     "id": "doi-10-1021-acsanm-6c02084",

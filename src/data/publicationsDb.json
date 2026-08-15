@@ -30,20 +30,6 @@
     "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uWiczbcajpAC"
   },
   {
-    "id": "doi-10-1002-ente-202600123",
-    "title": "Unveiling the Hydrogen Evolution Catalytic Performance of V₂AlC MAX Phase",
-    "abstract": "Investigating electrocatalytic hydrogen evolution reaction performance of V2AlC MAX phase materials.",
-    "authors": "Cheriyan John, Kalathiparambil Rajendra Pai Sunajadevi et al.",
-    "journal": "Energy Technology (2026) 14 (7): 202600123",
-    "publication_date": "2026-06-15",
-    "year": "2026",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uWiczbcajpAC",
-    "doi": "10.1002/ente.202600123",
-    "graphical_abstract_url": "/images/abstracts/abstract_v2alc_max.png",
-    "is_new_notified": false,
-    "created_at": "2026-08-08T00:00:00.000Z"
-  },
-  {
     "id": "doi-10-1039-d6dt00446f",
     "title": "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
     "abstract": "Synthesis of Cr2MoAlC2 MAX phase and Cr2MoC2Tx MXene derivatives for energy storage supercapacitors and electrocatalytic water splitting.",
@@ -168,22 +154,6 @@
     "created_at": "2026-08-10T04:25:07.712Z",
     "citations": 2,
     "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:nrtMV_XWKgEC"
-  },
-  {
-    "id": "pub-cr2moalc2-max-phase-and-its-derivative-cr2moc2tx-m",
-    "title": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene for supercapacitors and electrocatalytic water splitting",
-    "abstract": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene were synthesized and evaluated for dual energy storage (supercapacitors) and electrocatalytic water splitting applications. The MXene derivative demonstrates enhanced electrical conductivity and abundant electroactive sites.",
-    "authors": "R Madhushree, KRP Sunajadevi",
-    "journal": "Dalton Transactions 55 (23), 9005-9022, 2026",
-    "publication_date": "2026-01-01",
-    "year": "2026",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC",
-    "doi": "",
-    "graphical_abstract_url": "/images/abstracts/abstract_cr2moalc2_max.png",
-    "is_new_notified": false,
-    "created_at": "2026-08-10T04:25:06.844Z",
-    "citations": 0,
-    "scholarLink": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
   },
   {
     "id": "doi-10-1039-d5ra08190d",

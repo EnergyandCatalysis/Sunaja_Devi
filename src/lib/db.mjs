@@ -59,7 +59,21 @@ export function generatePaperId(title, doi) {
 
 export function normalizeTitle(title) {
   if (!title) return '';
-  return title.toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+  return title
+    .normalize('NFKD')
+    .toLowerCase()
+    .replace(/[₀0]/g, '0')
+    .replace(/[₁1]/g, '1')
+    .replace(/[₂2]/g, '2')
+    .replace(/[₃3]/g, '3')
+    .replace(/[₄4]/g, '4')
+    .replace(/[₅5]/g, '5')
+    .replace(/[₆6]/g, '6')
+    .replace(/[₇7]/g, '7')
+    .replace(/[₈8]/g, '8')
+    .replace(/[₉9]/g, '9')
+    .replace(/[^a-z0-9]/g, '')
+    .trim();
 }
 
 export function getPublications() {
