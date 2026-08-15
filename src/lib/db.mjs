@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { generateTextAbstract } from './abstractGenerator.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -120,10 +121,14 @@ export function upsertPublication(paperData) {
 
   if (existingIndex >= 0) {
     const existing = pubs[existingIndex];
+    const candidateAbstract = paperData.abstract || existing.abstract || '';
+    const mergedAbstract = generateTextAbstract({ ...existing, ...paperData, abstract: candidateAbstract });
+
     const merged = {
       ...existing,
       ...paperData,
       id: existing.id,
+      abstract: mergedAbstract,
       graphical_abstract_url: paperData.graphical_abstract_url || existing.graphical_abstract_url || '',
       is_new_notified: existing.is_new_notified !== undefined ? existing.is_new_notified : false,
     };
@@ -134,7 +139,7 @@ export function upsertPublication(paperData) {
     const newRecord = {
       id: targetId,
       title: paperData.title || 'Untitled Publication',
-      abstract: paperData.abstract || '',
+      abstract: generateTextAbstract(paperData),
       authors: paperData.authors || 'Sunaja Devi K R et al.',
       journal: paperData.journal || 'Peer-reviewed Journal',
       publication_date: paperData.publication_date || `${paperData.year || new Date().getFullYear()}-01-01`,

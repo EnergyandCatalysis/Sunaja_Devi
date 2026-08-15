@@ -1,5 +1,5 @@
 import { upsertPublication, getPublications, generatePaperId, normalizeTitle } from './db.mjs';
-import { ensureGraphicalAbstract } from './abstractGenerator.mjs';
+import { ensureGraphicalAbstract, generateTextAbstract } from './abstractGenerator.mjs';
 
 const SCHOLAR_USER_ID = 'HmOcEpIAAAAJ';
 const SCHOLAR_PROFILE_URL = `https://scholar.google.com/citations?user=${SCHOLAR_USER_ID}&hl=en&sortby=pubdate`;
@@ -183,10 +183,13 @@ export async function syncPublicationsPipeline() {
 
     // Crossref DOI lookup for exact title
     const crossrefData = await resolveCrossrefByTitle(paper.title);
+    const candidateAbstract = crossrefData?.abstract || paper.abstract || '';
+    const finalAbstract = generateTextAbstract({ ...paper, abstract: candidateAbstract });
+
     const mergedPaper = {
       ...paper,
       doi: crossrefData?.doi || paper.doi || '',
-      abstract: crossrefData?.abstract || paper.abstract || '',
+      abstract: finalAbstract,
       publication_date: crossrefData?.publication_date || paper.publication_date || `${paper.year}-01-01`,
       authors: paper.authors || crossrefData?.authors || 'Sunaja Devi K R et al.',
       link: crossrefData?.doiLink || paper.scholarLink || paper.link,
@@ -204,12 +207,13 @@ export async function syncPublicationsPipeline() {
     processedPubs.push(result.publication);
   }
 
-  // Ensure graphical abstracts for all existing DB records
+  // Ensure graphical and text abstracts for all existing DB records
   const dbPubs = getPublications();
   for (const p of dbPubs) {
-    if (!p.graphical_abstract_url) {
-      const generatedUrl = ensureGraphicalAbstract(p);
-      upsertPublication({ ...p, graphical_abstract_url: generatedUrl });
+    const generatedAbstract = generateTextAbstract(p);
+    const generatedGraphicalUrl = ensureGraphicalAbstract(p);
+    if (!p.abstract || p.abstract !== generatedAbstract || !p.graphical_abstract_url || p.graphical_abstract_url !== generatedGraphicalUrl) {
+      upsertPublication({ ...p, abstract: generatedAbstract, graphical_abstract_url: generatedGraphicalUrl });
     }
   }
 

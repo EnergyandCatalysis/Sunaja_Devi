@@ -365,6 +365,11 @@ export default function HomePage() {
                           </a>
                         )}
                       </p>
+                      {pub.abstract && (
+                        <p className="pub-abstract-preview" style={{ fontSize: "0.85rem", color: "#64748b", marginTop: "6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", lineHeight: "1.4" }}>
+                          {pub.abstract}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="pub-abstract-wrapper" title={pub.graphicalAbstract ? "Graphical Abstract" : "Publication Article"}>

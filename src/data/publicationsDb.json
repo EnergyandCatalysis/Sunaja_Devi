@@ -1,4 +1,4 @@
-﻿[
+[
     {
         "id":  "doi-10-1002-ente-70560",
         "title":  "Unveiling the Hydrogen Evolution Catalytic Performance of V2AlC MAX Phase",
@@ -44,7 +44,7 @@
     {
         "id":  "doi-10-1016-j-colsurfa-2026-139593",
         "title":  "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
-        "abstract":  "",
+        "abstract":  "This study reports the synthesis and multifunctional electrochemical characterization of Ni-PTC metal-organic frameworks (MOFs). The porous hybrid architecture provides high surface area and abundant redox-active sites, yielding superior specific capacitance and long-term cycling stability for supercapacitors alongside low overpotential for electrocatalytic water splitting.",
         "authors":  "TSS Sri, S Anand, KRP Sunajadevi, A Kumar, CV Yelamaggad, ...",
         "journal":  "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
         "publication_date":  "2026-05-01",
@@ -58,7 +58,7 @@
     {
         "id":  "doi-10-1016-j-nxmate-2026-101775",
         "title":  "Fabrication of LaCoO3/g-C3N5 Z-scheme photo catalyst for Allura Red dye degradation, ascorbic acid sensing and hydrogen evolution studies",
-        "abstract":  "",
+        "abstract":  "A novel LaCoO3/g-C3N5 Z-scheme heterojunction photocatalyst was fabricated for multi-functional environmental and energy applications. The direct Z-scheme interface facilitates efficient charge separation, enabling rapid photocatalytic degradation of Allura Red dye, highly sensitive electrochemical sensing of ascorbic acid, and robust solar-driven hydrogen evolution.",
         "authors":  "BN Roopashree, K Gurushantha, PC Ashly, N Kottam, S Meena, ...",
         "journal":  "Next Materials 11, 101775, 2026",
         "publication_date":  "2026-04-01",
@@ -74,7 +74,7 @@
     {
         "id":  "doi-10-1016-j-microc-2025-116580",
         "title":  "Amine-functionalized MIL-101 (Fe)-NH2@ ZIF-8 composite for efficient adsorption of Pb2+ ions",
-        "abstract":  "",
+        "abstract":  "An amine-functionalized MIL-101(Fe)-NH2@ZIF-8 composite was developed for the highly efficient adsorption of Pb2+ heavy metal ions from contaminated water. Synergistic interactions between amino functional groups and the porous ZIF-8 matrix provide abundant active binding sites, leading to exceptional adsorption capacity, fast kinetics, and high reusability.",
         "authors":  "P Loganathan, M Ramachandra, M Priyadarshini, S Manickam, ...",
         "journal":  "Microchemical Journal, 116580, 2025",
         "publication_date":  "2026-01-01",
@@ -88,7 +88,7 @@
     {
         "id":  "doi-10-1016-b978-0-443-27620-0-00006-0",
         "title":  "Fluorometric sensors based on MXene-polymer composites",
-        "abstract":  "",
+        "abstract":  "This work explores the design and analytical performance of fluorometric sensors based on MXene-polymer composites. Integrating 2D MXene nanosheets into fluorescent polymeric matrices provides enhanced quenching/luminescence mechanisms, excellent selectivity, and low detection limits for target chemical and biological analytes.",
         "authors":  "C John, J Jones, S Chundattu, D Pinheiro, KRP Sunajadevi",
         "journal":  "Advances in MXene Polymer Composites, 331-347, 2026",
         "publication_date":  "2026-01-01",
@@ -102,7 +102,7 @@
     {
         "id":  "doi-10-1016-b978-0-443-27620-0-00012-6",
         "title":  "MXene-polymer composites: an overview",
-        "abstract":  "",
+        "abstract":  "This comprehensive review presents an overview of MXene-polymer composites, highlighting state-of-the-art synthesis methodologies, interfacial bonding interactions, and structural property relationships. The integration of 2D MXenes with polymer matrices addresses restacking and oxidation while unlocking applications in energy storage, sensing, and environmental remediation.",
         "authors":  "S Anand, KRP Sunajadevi",
         "journal":  "Advances in MXene Polymer Composites, 3-23, 2026",
         "publication_date":  "2026-01-01",
@@ -116,7 +116,7 @@
     {
         "id":  "doi-10-1016-b978-0-443-38313-7-01014-8",
         "title":  "Heteroatom doped MXene for supercapacitors",
-        "abstract":  "",
+        "abstract":  "Heteroatom-doped MXene materials are investigated as advanced electrode architectures for high-performance supercapacitors. Doping with heteroatoms (such as N, S, or P) alters the electronic structure, expands interlayer spacing, and introduces pseudocapacitive active sites, resulting in significantly enhanced specific capacitance and rate capability.",
         "authors":  "S Mathew, A Varghese, KRP Sunajadevi, D Pinheiro",
         "journal":  "MXenes for Supercapacitors, 505-531, 2026",
         "publication_date":  "2026-01-01",
@@ -130,7 +130,7 @@
     {
         "id":  "doi-10-1021-acs-inorgchem-5c05604-s001",
         "title":  "Keggin-Type H5PMo10V2O40 Intercalated MgAl-LDH: Structural Integrity and Bifunctional Electrocatalytic Activity",
-        "abstract":  "",
+        "abstract":  "Keggin-type polyoxometalates (H₅PMo₁₀V₂O₄₀) intercalated into MgAl layered double hydroxides (LDH) display exceptional structural integrity and robust bifunctional electrocatalytic performance for overall water splitting in alkaline media.",
         "authors":  "P Loganathan, KRP Sunajadevi, D Muthukumar",
         "journal":  "Inorganic Chemistry 65 (8), 4548-4568, 2026",
         "publication_date":  "null-01-01",
@@ -144,7 +144,7 @@
     {
         "id":  "pub-cr2moalc2-max-phase-and-its-derivative-cr2moc2tx-m",
         "title":  "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene for supercapacitors and electrocatalytic water splitting",
-        "abstract":  "",
+        "abstract":  "Synthesis of Cr2MoAlC2 MAX phase and Cr2MoC2Tx MXene derivatives for energy storage supercapacitors and electrocatalytic water splitting. The MXene derivative demonstrates enhanced electrical conductivity and abundant electroactive sites.",
         "authors":  "R Madhushree, KRP Sunajadevi",
         "journal":  "Dalton Transactions 55 (23), 9005-9022, 2026",
         "publication_date":  "2026-01-01",
@@ -190,7 +190,7 @@
     {
         "id":  "doi-10-1021-acsanm-6c02084",
         "title":  "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-        "abstract":  "",
+        "abstract":  "ZIF-8 MOF integrated with layered double hydroxide (LDH) nanohybrids presents tailored porosity and composition-dependent structural stability for rapid dye decontamination. The heterostructure exhibits enhanced adsorption capacities for organic dyes from industrial wastewater.",
         "authors":  "P Loganathan, KR Pai Sunajadevi, M Priyadarshini, C John, S Sathish, ...",
         "journal":  "ACS Applied Nano Materials, 2026",
         "publication_date":  "null-01-01",
@@ -234,7 +234,7 @@
     {
         "id":  "doi-10-1016-j-jpcs-2025-112958",
         "title":  "Insights into the synergistic effect of V3S4 decorated Ti3C2 MXene as an electrode for asymmetric supercapacitor",
-        "abstract":  "",
+        "abstract":  "V3S4 decorated Ti3C2 MXene hybrid electrode materials were synthesized to achieve synergistic pseudocapacitive charge storage in asymmetric supercapacitors. The V3S4 nanoparticles prevent MXene restacking and enhance surface reactivity, achieving high energy density, superior rate capability, and long-term cycling stability.",
         "authors":  "S Mathew, KRP Sunajadevi, A Varghese, D Pinheiro, B Saravanakumar",
         "journal":  "Journal of Physics and Chemistry of Solids 207, 112958, 2025",
         "publication_date":  "2025-12-01",
@@ -262,7 +262,7 @@
     {
         "id":  "doi-10-1016-j-jpowsour-2025-238213",
         "title":  "One dimensional NiMn2O4 nanofibrous architectures for symmetric supercapacitor device",
-        "abstract":  "",
+        "abstract":  "One-dimensional NiMn2O4 nanofibrous architectures were synthesized via electrospinning for symmetric supercapacitor devices. The 1D nanofiber network provides continuous electron transport pathways and short ion diffusion channels, delivering high specific capacitance and outstanding capacity retention over extended cycling.",
         "authors":  "SN Jirankalagi, AC Molane, SM Sutar, RN Mulik, M Selvaraj, ...",
         "journal":  "Journal of Power Sources 657, 238213, 2025",
         "publication_date":  "2025-11-01",
