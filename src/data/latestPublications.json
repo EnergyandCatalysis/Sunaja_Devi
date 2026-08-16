@@ -3,25 +3,13 @@
     "id": "doi-10-21203-rs-3-rs-10597892-v1",
     "year": "2026",
     "actualPublishDate": "2026-08-06",
-    "title": "A Novel Mineral-Inspired Mixed Oxide-Sulphate Framework (Na2Cu3 (SO4) 3O) Synthesised By A High-Temperature Phase Transformation Route For Electrocatalytic Water Splitting",
+    "title": "A Novel Mineral-Inspired Mixed Oxide-Sulphate Framework (Na2Cu3 (SO4) 3O) Synthesised By A High-Temperature Phase Transformation Route For Electrocatalytic Water Splitting And …",
     "authors": "A Guha, AK Prajapati, S Anand, KRP Sunajadevi, S Kumar, NK Daniel, ...",
     "journal": "Peer-reviewed Journal",
     "abstract": "The direction toward a hydrogen economy, along with rapid advancements in battery technology, urges the scientific community to develop new materials that are low-cost, sustainable, and efficient. Effective green hydrogen production offers a viable substitute for traditional fuels and effectively supports the achievement of SDGs 7 and 13. The rapid charge-discharge capability of supercapacitors makes them suitable for integration with batteries to enhance both power output and overall cycle life. This work describes the development of a low-cost, efficient oxide-sulphate structural type with exemplary supercapacitance and electrocatalytic water-splitting capabilities. The single crystal of the electroactive material was synthesised via a high-temperature phase transformation strategy and characterised by various physical and chemical techniques. The system exhibited an overpotential of 145 mV at 10 mA cm − 2 for the hydrogen evolution reaction (HER), which is close to the HER potential of the well-known Pt/C system. A low charge transfer resistance (R ct ) of 5.82 Ω, obtained from the Nyquist plot, supported the conducting nature of the material. The system exhibited a high specific capacitance of 692 F g − 1 at 1 A g − 1 , and the energy and power densities were calculated to be 15.37 Wh kg − 1 and 200 W kg − 1 , respectively. The electrochemical analyses unambiguously confirmed the versatility of the material for charge storage and hydrogen generation applications.",
     "graphicalAbstract": "/images/graphical_abstracts/abstract_10_21203_rs_3_rs_10597892_v1.svg",
     "doi": "10.21203/rs.3.rs-10597892/v1",
     "link": "https://doi.org/10.21203/rs.3.rs-10597892/v1"
-  },
-  {
-    "id": "doi-10-1021-acsanm-6c02084",
-    "year": "2026",
-    "actualPublishDate": "2026-07-07",
-    "title": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-    "authors": "P Loganathan, KR Pai Sunajadevi, M Priyadarshini, C John, S Sathish, ...",
-    "journal": "ACS Applied Nano Materials, 2026",
-    "abstract": "ZIF-8/LDH nanohybrids were synthesized to study the effect of LDH composition on structural ordering and organic dye adsorption performance. The optimized hybrid displays exceptionally high specific surface area and rapid adsorption kinetics for industrial dye decontamination.",
-    "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
-    "doi": "10.1021/acsanm.6c02084",
-    "link": "https://doi.org/10.1021/acsanm.6c02084"
   },
   {
     "id": "doi-10-1002-ente-70560",
@@ -36,30 +24,6 @@
     "link": "https://doi.org/10.1002/ente.70560"
   },
   {
-    "id": "doi-10-1039-d6dt00446f",
-    "year": "2026",
-    "actualPublishDate": "2026-05-10",
-    "title": "Cr₂MoAlC₂ MAX phase and its derivative Cr₂MoC₂Tₓ MXene for supercapacitors and electrocatalytic water splitting",
-    "authors": "R. Madhushree, Kalathiparambil Rajendra Pai Sunajadevi et al.",
-    "journal": "Dalton Transactions (2026) 55 (23): 9005–9022",
-    "abstract": "Synthesis of Cr2MoAlC2 MAX phase and Cr2MoC2Tx MXene derivatives for energy storage supercapacitors and electrocatalytic water splitting.",
-    "graphicalAbstract": "/images/abstracts/abstract_cr2moalc2_max.png",
-    "doi": "10.1039/D6DT00446F",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
-  },
-  {
-    "id": "doi-10-1016-j-colsurfa-2026-139593",
-    "year": "2026",
-    "actualPublishDate": "2026-05-01",
-    "title": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
-    "authors": "TSS Sri, S Anand, KRP Sunajadevi, A Kumar, CV Yelamaggad, ...",
-    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
-    "abstract": "This study reports the synthesis and multifunctional electrochemical characterization of Ni-PTC metal-organic frameworks (MOFs). The porous hybrid architecture provides high surface area and abundant redox-active sites, yielding superior specific capacitance and long-term cycling stability for supercapacitors alongside low overpotential for electrocatalytic water splitting.",
-    "graphicalAbstract": "/images/abstracts/abstract_ni_ptc_mof.png",
-    "doi": "10.1016/j.colsurfa.2026.139593",
-    "link": "https://doi.org/10.1016/j.colsurfa.2026.139593"
-  },
-  {
     "id": "doi-10-1016-j-nxmate-2026-101775",
     "year": "2026",
     "actualPublishDate": "2026-04-01",
@@ -70,5 +34,41 @@
     "graphicalAbstract": "/images/abstracts/abstract_lacoo3_g_c3n5.jpg",
     "doi": "10.1016/j.nxmate.2026.101775",
     "link": "https://doi.org/10.1016/j.nxmate.2026.101775"
+  },
+  {
+    "id": "doi-10-1039-d6dt00446f",
+    "year": "2026",
+    "actualPublishDate": "2026-01-01",
+    "title": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene for supercapacitors and electrocatalytic water splitting",
+    "authors": "R Madhushree, KRP Sunajadevi",
+    "journal": "Dalton Transactions 55 (23), 9005-9022, 2026",
+    "abstract": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene were synthesized and evaluated for dual energy storage (supercapacitors) and electrocatalytic water splitting applications. The MXene derivative demonstrates enhanced electrical conductivity and abundant electroactive sites.",
+    "graphicalAbstract": "/images/abstracts/abstract_cr2moalc2_max.png",
+    "doi": "",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
+  },
+  {
+    "id": "doi-10-1016-j-colsurfa-2026-139593",
+    "year": "2026",
+    "actualPublishDate": "2026-01-01",
+    "title": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
+    "authors": "TSS Sri, S Anand, KRP Sunajadevi, A Kumar, CV Yelamaggad, ...",
+    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
+    "abstract": "This study reports the synthesis and multifunctional electrochemical characterization of Ni-PTC metal-organic frameworks (MOFs). The porous hybrid architecture provides high surface area and abundant redox-active sites, yielding superior specific capacitance and long-term cycling stability for supercapacitors alongside low overpotential for electrocatalytic water splitting.",
+    "graphicalAbstract": "/images/abstracts/abstract_ni_ptc_mof.png",
+    "doi": "",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:9Nmd_mFXekcC"
+  },
+  {
+    "id": "doi-10-1016-j-microc-2025-116580",
+    "year": "2025",
+    "actualPublishDate": "2026-01-01",
+    "title": "Amine-functionalized MIL-101 (Fe)-NH2@ ZIF-8 composite for efficient adsorption of Pb2+ ions",
+    "authors": "P Loganathan, M Ramachandra, M Priyadarshini, S Manickam, ...",
+    "journal": "Microchemical Journal, 116580, 2025",
+    "abstract": "An amine-functionalized MIL-101(Fe)-NH2@ZIF-8 composite was developed for the highly efficient adsorption of Pb2+ heavy metal ions from contaminated water. Synergistic interactions between amino functional groups and the porous ZIF-8 matrix provide abundant active binding sites, leading to exceptional adsorption capacity, fast kinetics, and high reusability.",
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_microc_2025_116580.svg",
+    "doi": "10.1016/j.microc.2025.116580",
+    "link": "https://doi.org/10.1016/j.microc.2025.116580"
   }
 ]

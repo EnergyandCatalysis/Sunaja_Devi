@@ -7,7 +7,7 @@
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
     "publisherPhoto": "/images/sunaja_devi.png",
-    "paperTitle": "A Novel Mineral-Inspired Mixed Oxide-Sulphate Framework (Na2Cu3 (SO4) 3O) Synthesised By A High-Temperature Phase Transformation Route For Electrocatalytic Water Splitting",
+    "paperTitle": "A Novel Mineral-Inspired Mixed Oxide-Sulphate Framework (Na2Cu3 (SO4) 3O) Synthesised By A High-Temperature Phase Transformation Route For Electrocatalytic Water Splitting And …",
     "journal": "Peer-reviewed Journal",
     "graphicalAbstract": "/images/graphical_abstracts/abstract_10_21203_rs_3_rs_10597892_v1.svg",
     "link": "https://doi.org/10.21203/rs.3.rs-10597892/v1"
@@ -28,7 +28,7 @@
   {
     "id": "doi-10-1016-j-colsurfa-2026-139593",
     "enabled": true,
-    "publishDate": "2026-05-01",
+    "publishDate": "2026-01-01",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
@@ -36,7 +36,7 @@
     "paperTitle": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
     "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
     "graphicalAbstract": "/images/abstracts/abstract_ni_ptc_mof.png",
-    "link": "https://doi.org/10.1016/j.colsurfa.2026.139593"
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:9Nmd_mFXekcC"
   },
   {
     "id": "doi-10-1016-j-microc-2025-116580",
@@ -61,8 +61,8 @@
     "publisherPhoto": "/images/sunaja_devi.png",
     "paperTitle": "Fluorometric sensors based on MXene-polymer composites",
     "journal": "Advances in MXene Polymer Composites, 331-347, 2026",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_b978_0_443_27620_0_00006_0.svg",
-    "link": "https://doi.org/10.1016/b978-0-443-27620-0.00006-0"
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_abstract_1786850164578.svg",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:zLWjf1WUPmwC"
   },
   {
     "id": "doi-10-1016-b978-0-443-27620-0-00012-6",
@@ -88,7 +88,7 @@
     "paperTitle": "Heteroatom doped MXene for supercapacitors",
     "journal": "MXenes for Supercapacitors, 505-531, 2026",
     "graphicalAbstract": "/images/abstracts/abstract_heteroatom_mxene.png",
-    "link": "https://doi.org/10.1016/b978-0-443-38313-7.01014-8"
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:vDijr-p_gm4C"
   },
   {
     "id": "doi-10-1021-acs-inorgchem-5c05604-s001",
@@ -106,7 +106,7 @@
   {
     "id": "doi-10-1021-acsanm-6c02084",
     "enabled": true,
-    "publishDate": "2026-07-07",
+    "publishDate": "null-01-01",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
@@ -114,12 +114,12 @@
     "paperTitle": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
     "journal": "ACS Applied Nano Materials, 2026",
     "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
-    "link": "https://doi.org/10.1021/acsanm.6c02084"
+    "link": "https://doi.org/10.1021/acsanm.6c02084.s001"
   },
   {
     "id": "doi-10-1002-chem-202502616",
     "enabled": true,
-    "publishDate": "2025-12-31",
+    "publishDate": "2026-01-01",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
@@ -127,59 +127,59 @@
     "paperTitle": "Harnessing MOF Derived Frustrated Lewis Pair‐CeO2 Nano Catalyst for CO2‐Activated Soft Oxidation of Furfural to Furoic Acid",
     "journal": "Chemistry–A European Journal 32 (8), e02616, 2026",
     "graphicalAbstract": "/images/abstracts/abstract_mof_ceo2.png",
-    "link": "https://doi.org/10.1002/chem.202502616"
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:XD-gHx7UXLsC"
   },
   {
     "id": "doi-10-1002-chem-202502884",
     "enabled": true,
-    "publishDate": "2025-12-04",
+    "publishDate": "2025-01-01",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
     "publisherPhoto": "/images/sunaja_devi.png",
     "paperTitle": "MXene@ MOF composites: converging synthesis strategies, structural features, and emerging applications",
     "journal": "Chemistry–A European Journal, e02884, 2025",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1002_chem_202502884.svg",
-    "link": "https://doi.org/10.1002/chem.202502884"
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_abstract_1786850164740.svg",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:VLnqNzywnoUC"
   },
   {
     "id": "doi-10-1016-j-jpcs-2025-112958",
     "enabled": true,
-    "publishDate": "2025-12-01",
+    "publishDate": "2025-01-01",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
     "publisherPhoto": "/images/sunaja_devi.png",
     "paperTitle": "Insights into the synergistic effect of V3S4 decorated Ti3C2 MXene as an electrode for asymmetric supercapacitor",
     "journal": "Journal of Physics and Chemistry of Solids 207, 112958, 2025",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_jpcs_2025_112958.svg",
-    "link": "https://doi.org/10.1016/j.jpcs.2025.112958"
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_abstract_1786850164747.svg",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:NJ774b8OgUMC"
   },
   {
     "id": "doi-10-1002-slct-202503995",
     "enabled": true,
-    "publishDate": "2025-11-19",
+    "publishDate": "2025-01-01",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
     "publisherPhoto": "/images/sunaja_devi.png",
     "paperTitle": "Sustainable Peanut Shell-Derived Carbon Dots for Fluorescent Sensing of Pb2+ Ions",
     "journal": "CHEMISTRYSELECT 10 (44), 2025",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1002_slct_202503995.svg",
-    "link": "https://doi.org/10.1002/slct.202503995"
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_abstract_1786850164758.svg",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:t7zJ5fGR-2UC"
   },
   {
     "id": "doi-10-1016-j-jpowsour-2025-238213",
     "enabled": true,
-    "publishDate": "2025-11-01",
+    "publishDate": "2025-01-01",
     "activeDays": 4,
     "publisherName": "Sunaja Devi Research Group",
     "publisherRole": "Department of Chemistry, Christ University",
     "publisherPhoto": "/images/sunaja_devi.png",
     "paperTitle": "One dimensional NiMn2O4 nanofibrous architectures for symmetric supercapacitor device",
     "journal": "Journal of Power Sources 657, 238213, 2025",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_jpowsour_2025_238213.svg",
-    "link": "https://doi.org/10.1016/j.jpowsour.2025.238213"
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_abstract_1786850164753.svg",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:-_dYPAW6P2MC"
   },
   {
     "id": "doi-10-1039-d5ma00706b",
@@ -204,8 +204,8 @@
     "publisherPhoto": "/images/sunaja_devi.png",
     "paperTitle": "Unveiling the supercapacitive behavior of electrospun Cr2CTx/carbon nanofiber membrane",
     "journal": "Nanoscale Advances 7 (21), 6791-6795, 2025",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1039_d5na00753d.svg",
-    "link": "https://doi.org/10.1039/d5na00753d"
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_abstract_1786850164771.svg",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:evX43VCCuoAC"
   },
   {
     "id": "doi-10-1039-d5ra02731d",
@@ -217,7 +217,7 @@
     "publisherPhoto": "/images/sunaja_devi.png",
     "paperTitle": "Lanthanide-based coordination polymers: a fluorometric Frontier in explosive sensing",
     "journal": "RSC advances 15 (52), 44797-44811, 2025",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1039_d5ra02731d.svg",
-    "link": "https://doi.org/10.1039/d5ra02731d"
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_abstract_1786850164764.svg",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:uJ-U7cs_P_0C"
   }
 ]

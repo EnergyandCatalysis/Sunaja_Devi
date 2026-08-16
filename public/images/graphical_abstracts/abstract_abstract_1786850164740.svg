@@ -45,12 +45,12 @@
   
   <!-- Header Title -->
   <text x="80" y="78" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">
-    A Novel Mineral-Inspired Mixed Oxide-Sulphate Framework (Na2Cu3 (SO4) 3O) Synthesised By A High-Temperature...
+    MXene@ MOF composites: converging synthesis strategies, structural features, and emerging applications
   </text>
 
   <!-- Header Journal & Authors -->
   <text x="80" y="112" font-family="'Segoe UI', Roboto, sans-serif" font-size="15" fill="#94a3b8">
-    Peer-reviewed Journal (2026)  •  <tspan fill="#38bdf8">A Guha, AK Prajapati, S Anand, KRP Sunajadevi, S Kumar, NK Daniel, ...</tspan>
+    Chemistry–A European Journal, e02884, 2025 (2025)  •  <tspan fill="#38bdf8">C John, KRP Sunajadevi, D Pinheiro, RS Vishwanath</tspan>
   </text>
   
   <rect x="1000" y="65" width="120" height="32" rx="8" fill="url(#goldGrad)" />
@@ -86,7 +86,7 @@
     <!-- Multi-line text for Methodology -->
     <foreignObject x="35" y="250" width="250" height="75">
       <xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" style="color:#cbd5e1; font-family:'Segoe UI', sans-serif; font-size:14px; line-height:1.4;">
-        High-Temperature Phase Transformation &amp; Framework Synthesis
+        MOF Hydrothermal &amp; Heterojunction Assembly
       </xhtml:div>
     </foreignObject>
   </g>
@@ -136,7 +136,7 @@
     
     <foreignObject x="35" y="250" width="250" height="75">
       <xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" style="color:#cbd5e1; font-family:'Segoe UI', sans-serif; font-size:14px; line-height:1.4;">
-        Zero-Emission Green Hydrogen Production Technology
+        Clean Energy &amp; Environmental Sustainability
       </xhtml:div>
     </foreignObject>
   </g>
