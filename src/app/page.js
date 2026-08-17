@@ -193,9 +193,15 @@ export default function HomePage() {
             <a href="#contact" className="top-nav-link">
               Contact
             </a>
-            <Link href="/scholar" className="top-nav-link">
+            <a
+              href="https://scholar.google.com/citations?user=HmOcEpIAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="top-nav-link"
+              id="top-scholar-link"
+            >
               Google Scholar
-            </Link>
+            </a>
             <a
               href="https://www.sciencedirect.com/author/55450509500/kalathiparambil-rajendra-pai-sunajadevi"
               target="_blank"
@@ -359,6 +365,11 @@ export default function HomePage() {
                           </a>
                         )}
                       </p>
+                      {pub.abstract && (
+                        <p className="pub-abstract-preview" style={{ fontSize: "0.85rem", color: "#64748b", marginTop: "6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", lineHeight: "1.4" }}>
+                          {pub.abstract}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="pub-abstract-wrapper" title={pub.graphicalAbstract ? "Graphical Abstract" : "Publication Article"}>

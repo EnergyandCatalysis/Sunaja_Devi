@@ -1,26 +1,24 @@
 {
-  "lastRunTimestamp": "2026-08-04T10:15:00.821Z",
-  "maxPopupDurationDays": 4,
+  "lastRunTimestamp": "2026-08-17T00:45:39.012Z",
   "status": "SUCCESS",
   "scholarMetrics": {
-    "citations": 3039,
-    "citationsSince2021": 2793,
-    "hIndex": 32,
+    "citations": 3081,
+    "citationsSince2021": 2835,
+    "hIndex": 33,
     "hIndexSince2021": 31,
-    "i10Index": 79,
-    "i10IndexSince2021": 71,
+    "i10Index": 80,
+    "i10IndexSince2021": 72,
     "publicationsCount": 166,
     "lastUpdated": "2026-08-17T15:19:18.000Z"
   },
   "changesSummary": {
-    "newPublicationsDiscovered": 4,
-    "newPopupsCreated": 2,
-    "expiredPopupsPruned": 0
+    "newPublicationsDiscovered": 0,
+    "totalRecentPapers": 20,
+    "unnotifiedCount": 17
   },
   "logs": [
-    "✅ Scholar Metrics Updated: 3039 Citations | h-index: 32 | Total Pubs: 166",
-    "✅ 6 Latest Publications Synced (4 new additions).",
-    "🎉 Created congratulatory popup for Dr. Dephan Pinheiro & Dr. Samika Anand (4 days active window): \"Dual purpose behavior of Ni-PTC MOF for ...\"",
-    "🎉 Created congratulatory popup for Dr. Dephan Pinheiro, Dr. Sandra Mathew & Dr. Arun Varghese (4 days active window): \"Heteroatom doped MXene for supercapacito...\""
+    "✅ Publications Sync Complete: 20 recent papers processed (0 new added, 20 updated).",
+    "✅ Scholar Metrics Saved: 3081 Citations | h-index: 33 | Total Pubs: 166",
+    "🎉 Created 17 congratulatory popups for unnotified publications."
   ]
 }

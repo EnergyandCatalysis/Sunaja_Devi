@@ -1,56 +1,74 @@
 [
   {
+    "id": "doi-10-21203-rs-3-rs-10597892-v1",
+    "year": "2026",
+    "actualPublishDate": "2026-08-06",
+    "title": "A Novel Mineral-Inspired Mixed Oxide-Sulphate Framework (Na2Cu3 (SO4) 3O) Synthesised By A High-Temperature Phase Transformation Route For Electrocatalytic Water Splitting And …",
+    "authors": "A Guha, AK Prajapati, S Anand, KRP Sunajadevi, S Kumar, NK Daniel, ...",
+    "journal": "Peer-reviewed Journal",
+    "abstract": "The direction toward a hydrogen economy, along with rapid advancements in battery technology, urges the scientific community to develop new materials that are low-cost, sustainable, and efficient. Effective green hydrogen production offers a viable substitute for traditional fuels and effectively supports the achievement of SDGs 7 and 13. The rapid charge-discharge capability of supercapacitors makes them suitable for integration with batteries to enhance both power output and overall cycle life. This work describes the development of a low-cost, efficient oxide-sulphate structural type with exemplary supercapacitance and electrocatalytic water-splitting capabilities. The single crystal of the electroactive material was synthesised via a high-temperature phase transformation strategy and characterised by various physical and chemical techniques. The system exhibited an overpotential of 145 mV at 10 mA cm − 2 for the hydrogen evolution reaction (HER), which is close to the HER potential of the well-known Pt/C system. A low charge transfer resistance (R ct ) of 5.82 Ω, obtained from the Nyquist plot, supported the conducting nature of the material. The system exhibited a high specific capacitance of 692 F g − 1 at 1 A g − 1 , and the energy and power densities were calculated to be 15.37 Wh kg − 1 and 200 W kg − 1 , respectively. The electrochemical analyses unambiguously confirmed the versatility of the material for charge storage and hydrogen generation applications.",
+    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_21203_rs_3_rs_10597892_v1.svg",
+    "doi": "10.21203/rs.3.rs-10597892/v1",
+    "link": "https://doi.org/10.21203/rs.3.rs-10597892/v1"
+  },
+  {
+    "id": "doi-10-1021-acsanm-6c02084",
     "year": "2026",
     "actualPublishDate": "2026-07-07",
     "title": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
-    "authors": "Pushparaj Loganathan, Cheriyan John, Sunaja Devi K R et al.",
-    "journal": "ACS Appl. Nano Mater. (2026) 9 (28): 13490–13507",
+    "authors": "P Loganathan, KR Pai Sunajadevi, M Priyadarshini, C John, S Sathish, ...",
+    "journal": "ACS Applied Nano Materials, 2026",
+    "abstract": "ZIF-8/LDH nanohybrids were synthesized to study the effect of LDH composition on structural ordering and organic dye adsorption performance. The optimized hybrid displays exceptionally high specific surface area and rapid adsorption kinetics for industrial dye decontamination.",
     "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
-    "doi": "10.1021/acsanm.6c02084"
+    "doi": "10.1021/acsanm.6c02084",
+    "link": "https://doi.org/10.1021/acsanm.6c02084"
   },
   {
+    "id": "doi-10-1002-ente-70560",
     "year": "2026",
-    "actualPublishDate": "2026-04",
-    "title": "Fabrication of LaCoO3/g-C3N5 Z-scheme photo catalyst for Allura Red dye degradation, ascorbic acid sensing and hydrogen evolution studies",
-    "authors": "B.N. Roopashree., K. Gurushantha., P.C. Ashly., Nagaraju Kottam, S. Meena, G.K. Raghu, Kalathiparambil Rajendra Pai Sunajadevi",
-    "journal": "Next Materials (2026) 11: 101775",
-    "graphicalAbstract": "/images/abstracts/abstract_lacoo3_g_c3n5.jpg",
-    "doi": "10.1016/j.nxmate.2026.101775"
+    "actualPublishDate": "2026-07-06",
+    "title": "Unveiling the Hydrogen Evolution Catalytic Performance of V2AlC MAX Phase",
+    "authors": "C John, KRP Sunajadevi",
+    "journal": "Energy Technology 14 (7), e70560, 2026",
+    "abstract": "The development of efficient, durable, and earth‐abundant electrocatalysts is critical for advancing sustainable hydrogen production through electrochemical water splitting. Herein, we report the synthesis of phase‐pure V 2 AlC MAX phase via vacuum‐assisted solid‐state reaction using elemental vanadium, aluminum, and carbon precursors, and systematically evaluate its intrinsic bifunctional electrocatalytic activity toward hydrogen evolution reaction (HER) and oxygen evolution reaction (OER). Structural and morphological characterizations confirm the successful formation of a well‐defined layered MAX‐phase architecture, which promotes efficient charge transport and exposes accessible catalytic sites. X‐ray photoelectron spectroscopy (XPS) further verifies the characteristic VC and AlC bonding environments, confirming the formation of the V 2 AlC structure. Electrochemical measurements reveal that pristine V 2 AlC delivers an overpotential of 185 mV for HER and 390 mV for OER at 10 mA cm −2 , accompanied by Tafel slopes of 93 and 121.8 mV dec −1 , respectively. Furthermore, the catalyst achieves an overall water‐splitting voltage of 1.7 V with excellent operational stability during prolonged electrolysis. Notably, these results demonstrate that unmodified V 2 AlC MAX phase can function as an efficient bifunctional electrocatalyst, highlighting the intrinsic catalytic potential of MAX‐phase materials and offering a promising pathway toward cost‐effective and scalable catalysts for sustainable hydrogen production.",
+    "graphicalAbstract": "/images/abstracts/abstract_v2alc_max.png",
+    "doi": "10.1002/ente.70560",
+    "link": "https://doi.org/10.1002/ente.70560"
   },
   {
+    "id": "doi-10-1016-j-colsurfa-2026-139593",
     "year": "2026",
-    "actualPublishDate": "",
-    "title": "Hydrous nickel oxyhydroxide thin films on copper foil as robust electrocatalysts for alkaline oxygen evolution",
-    "authors": "Ankith Shetty, Poulami Mukherjee, Koichi Higashimine, Toshiaki Taniike, Vishwanath RS, Kalathiparambil Rajendra Pai Sunajadevi",
-    "journal": "Catalysis Science & Technology (2026) 16 (6): 2205–2216",
-    "graphicalAbstract": "/images/abstracts/abstract_hydrous_nickel.png",
-    "doi": "10.1039/d5cy01321f"
-  },
-  {
-    "year": "2026",
-    "actualPublishDate": "2026",
-    "title": "Catalytic performance and SERS substrate efficiency of PdNPs@GOQDs",
-    "authors": "T. P. Amrutha, T. P. Arathi, Ritu Gopal, P. B. Arya, V. Nidhisha, C. Anjali, T. D. Suja, K. R. Sunaja Devi, Suja Haridas, Renuka Neeroli Kizhakayil",
-    "journal": "RSC Advances (2026) 16 (16): 14535-14546",
-    "graphicalAbstract": "/images/abstracts/abstract_pdnps_goqds.png",
-    "doi": "10.1039/d5ra08190d"
-  },
-  {
-    "year": "2026",
-    "actualPublishDate": "2026-05",
+    "actualPublishDate": "2026-05-01",
     "title": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
-    "authors": "Sai Sri T. S., Samika Anand, Kalathiparambil Rajendra Pai Sunajadevi, Abhishek Kumar, Channabasaveshwar V. Yelamaggad, B. Saravanakumar, Dephan Pinheiro, Mothi Krishna Mohan",
-    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects (2026) 736: 139593",
-    "graphicalAbstract": "",
-    "doi": "10.1016/j.colsurfa.2026.139593"
+    "authors": "TSS Sri, S Anand, KRP Sunajadevi, A Kumar, CV Yelamaggad, ...",
+    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
+    "abstract": "This study reports the synthesis and multifunctional electrochemical characterization of Ni-PTC metal-organic frameworks (MOFs). The porous hybrid architecture provides high surface area and abundant redox-active sites, yielding superior specific capacitance and long-term cycling stability for supercapacitors alongside low overpotential for electrocatalytic water splitting.",
+    "graphicalAbstract": "/images/abstracts/abstract_ni_ptc_mof.png",
+    "doi": "10.1016/j.colsurfa.2026.139593",
+    "link": "https://doi.org/10.1016/j.colsurfa.2026.139593"
   },
   {
+    "id": "doi-10-1016-j-nxmate-2026-101775",
     "year": "2026",
-    "actualPublishDate": "2026",
-    "title": "Heteroatom doped MXene for supercapacitors",
-    "authors": "Sandra Mathew, Arun Varghese, Kalathiparambil Rajendra Pai Sunajadevi, Dephan Pinheiro",
-    "journal": "MXenes for Supercapacitors (2026): 505-531",
-    "graphicalAbstract": "",
-    "doi": "10.1016/b978-0-443-38313-7.01014-8"
+    "actualPublishDate": "2026-04-01",
+    "title": "Fabrication of LaCoO3/g-C3N5 Z-scheme photo catalyst for Allura Red dye degradation, ascorbic acid sensing and hydrogen evolution studies",
+    "authors": "BN Roopashree, K Gurushantha, PC Ashly, N Kottam, S Meena, ...",
+    "journal": "Next Materials 11, 101775, 2026",
+    "abstract": "A novel LaCoO3/g-C3N5 Z-scheme heterojunction photocatalyst was fabricated for multi-functional environmental and energy applications. The direct Z-scheme interface facilitates efficient charge separation, enabling rapid photocatalytic degradation of Allura Red dye, highly sensitive electrochemical sensing of ascorbic acid, and robust solar-driven hydrogen evolution.",
+    "graphicalAbstract": "/images/abstracts/abstract_lacoo3_g_c3n5.jpg",
+    "doi": "10.1016/j.nxmate.2026.101775",
+    "link": "https://doi.org/10.1016/j.nxmate.2026.101775"
+  },
+  {
+    "id": "doi-10-1039-d6dt00446f",
+    "year": "2026",
+    "actualPublishDate": "2026-01-01",
+    "title": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene for supercapacitors and electrocatalytic water splitting",
+    "authors": "R Madhushree, KRP Sunajadevi",
+    "journal": "Dalton Transactions 55 (23), 9005-9022, 2026",
+    "abstract": "Cr2MoAlC2 MAX phase and its derivative Cr2MoC2Tx MXene were synthesized and evaluated for dual energy storage (supercapacitors) and electrocatalytic water splitting applications. The MXene derivative demonstrates enhanced electrical conductivity and abundant electroactive sites.",
+    "graphicalAbstract": "/images/abstracts/abstract_cr2moalc2_max.png",
+    "doi": "",
+    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
   }
 ]

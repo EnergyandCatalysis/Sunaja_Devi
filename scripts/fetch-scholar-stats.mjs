@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { syncPublicationsPipeline } from '../src/lib/scholarFetcher.mjs';
+import { getPublications, getUnnotifiedPublications, markAsNotified } from '../src/lib/db.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,262 +14,34 @@ const REPORT_FILE_PATH = path.join(__dirname, '..', 'src', 'data', 'automationRe
 
 const SCHOLAR_USER_ID = 'HmOcEpIAAAAJ';
 const SCHOLAR_URL = `https://scholar.google.com/citations?user=${SCHOLAR_USER_ID}&hl=en&sortby=pubdate`;
-const MAX_POPUP_DAYS = 4; // User directive: Popups active for max 4 days from Google Scholar discovery
 
-async function fetchScholarProfile() {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12000);
-
-  const response = await fetch(SCHOLAR_URL, {
-    signal: controller.signal,
-    headers: {
-      'User-Agent':
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Accept-Language': 'en-US,en;q=0.9',
-    },
-  });
-
-  clearTimeout(timeout);
-  if (!response.ok) {
-    throw new Error(`HTTP error ${response.status} ${response.statusText}`);
-  }
-
-  return await response.text();
-}
-
-async function fetchMetadataByDOI(doi) {
+async function fetchScholarProfileMetrics() {
   try {
-    const cleanDoi = doi.trim().replace(/^https?:\/\/doi\.org\//i, '');
-    if (!cleanDoi) return null;
-
-    const url = `https://api.crossref.org/v1/works/${encodeURIComponent(cleanDoi)}`;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 6000);
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
-    const res = await fetch(url, {
+    const response = await fetch(SCHOLAR_URL, {
       signal: controller.signal,
       headers: {
-        'User-Agent': 'ProfWebsiteSync/1.0 (mailto:sunajadevi.kr@christuniversity.in)',
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
       },
     });
 
     clearTimeout(timeout);
-    if (!res.ok) return null;
+    if (!response.ok) return null;
 
-    const data = await res.json();
-    const item = data.message;
-    if (!item) return null;
-
-    const container = item['container-title']?.[0] || '';
-    const volume = item.volume ? ` ${item.volume}` : '';
-    const issue = item.issue ? ` (${item.issue})` : '';
-    const page = item.page ? `: ${item.page}` : '';
-
-    // Accurate Publication Date Hierarchy (Online -> Issued -> Print)
-    const dateParts =
-      item['published-online']?.['date-parts']?.[0] ||
-      item['published']?.['date-parts']?.[0] ||
-      item['issued']?.['date-parts']?.[0] ||
-      item['published-print']?.['date-parts']?.[0];
-
-    let publishedYear = '';
-    let actualPublishDate = '';
-    if (dateParts && dateParts.length > 0) {
-      publishedYear = String(dateParts[0]);
-      const monthStr = dateParts[1] ? String(dateParts[1]).padStart(2, '0') : '';
-      const dayStr = dateParts[2] ? String(dateParts[2]).padStart(2, '0') : '';
-
-      if (monthStr && dayStr) {
-        actualPublishDate = `${publishedYear}-${monthStr}-${dayStr}`;
-      } else if (monthStr) {
-        actualPublishDate = `${publishedYear}-${monthStr}`;
-      } else {
-        actualPublishDate = publishedYear;
-      }
-    }
-
-    let journalStr = container;
-    if (journalStr && (publishedYear || volume || page)) {
-      journalStr += ` (${publishedYear})${volume}${issue}${page}`;
-    }
-
-    const authorsList = (item.author || [])
-      .map((a) => `${a.given || ''} ${a.family || ''}`.trim())
-      .filter(Boolean)
-      .join(', ');
-
-    return {
-      doi: cleanDoi,
-      journal: journalStr,
-      authors: authorsList || 'Sunaja Devi K R et al.',
-      year: publishedYear || '2026',
-      actualPublishDate,
-      title: item.title?.[0] || '',
-    };
-  } catch (err) {
-    return null;
-  }
-}
-
-async function resolveCrossrefMetadataByTitle(title) {
-  try {
-    const url = `https://api.crossref.org/works?query.title=${encodeURIComponent(title)}&rows=1`;
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 6000);
-
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: {
-        'User-Agent': 'ProfWebsiteSync/1.0 (mailto:sunajadevi.kr@christuniversity.in)',
-      },
-    });
-
-    clearTimeout(timeout);
-    if (!res.ok) return null;
-
-    const data = await res.json();
-    const item = data.message?.items?.[0];
-    if (!item) return null;
-
-    return await fetchMetadataByDOI(item.DOI);
-  } catch (err) {
-    return null;
-  }
-}
-
-const SCHOLAR_DIRECTORY = [
-  {
-    name: 'Dr. Pushparaj Loganathan',
-    shortName: 'Dr. Pushparaj L.',
-    role: 'Post-Doctoral Researcher',
-    photo: '/images/pushparaj_l_pdf.jpg',
-    patterns: [/pushparaj/i, /loganathan/i],
-  },
-  {
-    name: 'Cheriyan John',
-    shortName: 'Cheriyan John',
-    role: 'PhD Scholar',
-    photo: '/images/cheriyan_john_present.jpg',
-    patterns: [/cheriyan/i],
-  },
-  {
-    name: 'Jessica Jones W',
-    shortName: 'Jessica Jones W',
-    role: 'PhD Scholar',
-    photo: '/images/jessica_jones.jpg',
-    patterns: [/jessica/i],
-  },
-  {
-    name: 'Arsha R',
-    shortName: 'Arsha R',
-    role: 'PhD Scholar',
-    photo: '/images/arsha_r.jpg',
-    patterns: [/arsha/i],
-  },
-  {
-    name: 'Dr. Sujith S',
-    shortName: 'S. Sujith',
-    role: 'Research Scholar',
-    photo: '/images/sujith_s.jpg',
-    patterns: [/sujith/i],
-  },
-  {
-    name: 'R. Madhushree',
-    shortName: 'R. Madhushree',
-    role: 'Research Scholar',
-    photo: '/images/madhushree.jpg',
-    patterns: [/madhushree/i],
-  },
-  {
-    name: 'Dr. Shalini Reghunath',
-    shortName: 'Dr. Shalini Reghunath',
-    role: 'Research Scholar',
-    photo: '/images/shalini_reghunath.png',
-    patterns: [/shalini/i, /reghunath/i],
-  },
-  {
-    name: 'Dr. Sruthi Rajasekaran',
-    shortName: 'Dr. Sruthi Rajasekaran',
-    role: 'Research Scholar',
-    photo: '/images/sruthi_rajasekaran.png',
-    patterns: [/sruthi/i, /rajasekaran/i],
-  },
-  {
-    name: 'Dr. Dephan Pinheiro',
-    shortName: 'Dr. Dephan Pinheiro',
-    role: 'Post-Doctoral Researcher',
-    photo: '/images/dephan_phinero.jpg',
-    patterns: [/dephan/i, /pinheiro/i],
-  },
-  {
-    name: 'Dr. Sandra Mathew',
-    shortName: 'Dr. Sandra Mathew',
-    role: 'Research Scholar',
-    photo: '/images/sandra_mathew.jpg',
-    patterns: [/sandra/i],
-  },
-  {
-    name: 'Dr. Samika Anand',
-    shortName: 'Dr. Samika Anand',
-    role: 'Research Scholar',
-    photo: '/images/samika_anand.jpg',
-    patterns: [/samika/i],
-  },
-  {
-    name: 'Dr. Muthukumar Devarasu',
-    shortName: 'Dr. Muthukumar Devarasu',
-    role: 'Research Scholar',
-    photo: '/images/muthukumar_d.jpg',
-    patterns: [/muthukumar/i],
-  },
-  {
-    name: 'Dr. Arun Varghese Ayyamala',
-    shortName: 'Dr. Arun Varghese',
-    role: 'Research Scholar',
-    photo: '/images/arun_varghese.jpg',
-    patterns: [/arun/i],
-  },
-  {
-    name: 'Dr. Selva Priya',
-    shortName: 'Dr. Selva Priya',
-    role: 'Research Scholar',
-    photo: '/images/selva_priya.jpg',
-    patterns: [/selva/i, /priya/i],
-  },
-];
-
-function generateSlug(text) {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 30);
-}
-
-async function updateScholarData() {
-  console.log('🔄 Daily Automation Execution Started...');
-  const reportLogs = [];
-  const runTimestamp = new Date().toISOString();
-  let updatedStats = {};
-  let newlyDiscoveredPubsCount = 0;
-  let newAnnouncementsCreatedCount = 0;
-  let expiredAnnouncementsPrunedCount = 0;
-
-  try {
-    const html = await fetchScholarProfile();
-
-    // 1. Update Metrics from Google Scholar profile sidebar (#gsc_rsb_st)
-    // Extract table block #gsc_rsb_st to ensure selector accuracy
+    const html = await response.text();
     const tableMatch = html.match(/<table[^>]*id=["']?gsc_rsb_st["']?[^>]*>([\s\S]*?)<\/table>/i);
     const tableHtml = tableMatch ? tableMatch[1] : html;
 
-    // Filter table rows containing metric data (skipping header <tr>)
     const rowMatches = [...tableHtml.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
     const dataRows = rowMatches
       .map((m) => m[1])
       .filter((rowHtml) => rowHtml.includes('gsc_rsb_std'));
 
-    // Extract td.gsc_rsb_std cells for each metric row:
-    // Row 1 (tr:nth-child(1)): Citations
-    // Row 2 (tr:nth-child(2)): h-index
-    // Row 3 (tr:nth-child(3)): i10-index
     const extractRowStdCells = (rowHtml) => {
       if (!rowHtml) return [];
       return [...rowHtml.matchAll(/<td[^>]*class=["']?[^"']*gsc_rsb_std[^"']*["']?[^>]*>([^<]*)<\/td>/gi)].map(
@@ -275,11 +49,10 @@ async function updateScholarData() {
       );
     };
 
-    const row1Cells = extractRowStdCells(dataRows[0]); // Citations: [All (nth-child(2)), Since Year (nth-child(3))]
-    const row2Cells = extractRowStdCells(dataRows[1]); // h-index:   [All (nth-child(2)), Since Year (nth-child(3))]
-    const row3Cells = extractRowStdCells(dataRows[2]); // i10-index: [All (nth-child(2)), Since Year (nth-child(3))]
+    const row1Cells = extractRowStdCells(dataRows[0]);
+    const row2Cells = extractRowStdCells(dataRows[1]);
+    const row3Cells = extractRowStdCells(dataRows[2]);
 
-    // Implementation Safeguard: strip commas and non-numeric characters before parsing
     const parseMetricNumber = (val) => {
       if (!val) return 0;
       const cleanVal = val.replace(/,/g, '').replace(/[^0-9]/g, '');
@@ -295,188 +68,133 @@ async function updateScholarData() {
 
     const pubMatches = [...html.matchAll(/<tr class="gsc_a_tr">/g)];
 
-    let currentData = {};
+    return {
+      citations,
+      citationsSince2021,
+      hIndex,
+      hIndexSince2021,
+      i10Index,
+      i10IndexSince2021,
+      publicationsCount: pubMatches.length > 0 ? pubMatches.length : 167,
+    };
+  } catch (err) {
+    console.warn('Google Scholar metrics scrape warning:', err.message);
+    return null;
+  }
+}
+
+async function runDailyAutomation() {
+  console.log('🔄 Executing Publications & Scholar Sync Automation...');
+  const reportLogs = [];
+  const runTimestamp = new Date().toISOString();
+
+  try {
+    // 1. Sync Publications Pipeline
+    let syncResult = { totalRecentProcessed: 0, newCount: 0, updatedCount: 0 };
+    try {
+      syncResult = await syncPublicationsPipeline();
+      reportLogs.push(
+        `✅ Publications Sync Complete: ${syncResult.totalRecentProcessed} recent papers processed (${syncResult.newCount} new added, ${syncResult.updatedCount} updated).`
+      );
+    } catch (pipelineErr) {
+      reportLogs.push(`⚠️ Sync Pipeline Warning: ${pipelineErr.message}. Retaining cached DB papers.`);
+    }
+
+    // 2. Fetch Scholar Metrics
+    let currentStats = {
+      citations: 3039,
+      citationsSince2021: 2793,
+      hIndex: 32,
+      hIndexSince2021: 31,
+      i10Index: 79,
+      i10IndexSince2021: 71,
+      publicationsCount: 167,
+    };
+
     if (fs.existsSync(STATS_FILE_PATH)) {
       try {
-        currentData = JSON.parse(fs.readFileSync(STATS_FILE_PATH, 'utf8'));
+        currentStats = JSON.parse(fs.readFileSync(STATS_FILE_PATH, 'utf8'));
       } catch (_) {}
     }
 
-    updatedStats = {
-      citations: citations || currentData.citations || 3039,
-      citationsSince2021: citationsSince2021 || currentData.citationsSince2021 || 2793,
-      hIndex: hIndex || currentData.hIndex || 32,
-      hIndexSince2021: hIndexSince2021 || currentData.hIndexSince2021 || 31,
-      i10Index: i10Index || currentData.i10Index || 79,
-      i10IndexSince2021: i10IndexSince2021 || currentData.i10IndexSince2021 || 71,
+    const fetchedStats = await fetchScholarProfileMetrics();
+    const updatedStats = {
+      citations: fetchedStats?.citations || currentStats.citations,
+      citationsSince2021: fetchedStats?.citationsSince2021 || currentStats.citationsSince2021,
+      hIndex: fetchedStats?.hIndex || currentStats.hIndex,
+      hIndexSince2021: fetchedStats?.hIndexSince2021 || currentStats.hIndexSince2021,
+      i10Index: fetchedStats?.i10Index || currentStats.i10Index,
+      i10IndexSince2021: fetchedStats?.i10IndexSince2021 || currentStats.i10IndexSince2021,
       publicationsCount:
-        currentData.publicationsCount && currentData.publicationsCount > 20
-          ? currentData.publicationsCount
-          : (pubMatches.length > 20 ? pubMatches.length : 166),
+        fetchedStats?.publicationsCount && fetchedStats.publicationsCount > 20
+          ? fetchedStats.publicationsCount
+          : (currentStats.publicationsCount || 166),
       lastUpdated: runTimestamp,
     };
 
     fs.mkdirSync(path.dirname(STATS_FILE_PATH), { recursive: true });
     fs.writeFileSync(STATS_FILE_PATH, JSON.stringify(updatedStats, null, 2), 'utf8');
+    reportLogs.push(`✅ Scholar Metrics Saved: ${updatedStats.citations} Citations | h-index: ${updatedStats.hIndex}`);
 
-    reportLogs.push(`✅ Scholar Metrics Updated: ${updatedStats.citations} Citations | h-index: ${updatedStats.hIndex} | Total Pubs: ${updatedStats.publicationsCount}`);
+    // 3. Export DB to latestPublications.json (Top 6 strictly recent, sorted by date)
+    const allDbPubs = getPublications();
+    const sortedDbPubs = [...allDbPubs].sort((a, b) => {
+      const dateA = a.publication_date && a.publication_date !== 'null-01-01' ? a.publication_date : `${a.year || '2000'}-01-01`;
+      const dateB = b.publication_date && b.publication_date !== 'null-01-01' ? b.publication_date : `${b.year || '2000'}-01-01`;
+      return dateB.localeCompare(dateA);
+    });
+    const topRecentPubs = sortedDbPubs.slice(0, 6).map((p) => ({
+      id: p.id,
+      year: p.year,
+      actualPublishDate: p.publication_date,
+      title: p.title,
+      authors: p.authors,
+      journal: p.journal,
+      abstract: p.abstract || '',
+      graphicalAbstract: p.graphical_abstract_url,
+      doi: p.doi,
+      link: p.link,
+    }));
 
-    // 2. Extract Recent Publications from Profile HTML (natural sortby=pubdate order)
-    const articleTitleMatches = [...html.matchAll(/<a[^>]+class="gsc_a_at"[^>]*>([^<]+)<\/a>/g)].map(
-      (m) => m[1].trim()
-    );
-
-    if (articleTitleMatches.length > 0) {
-      let existingPubs = [];
-      if (fs.existsSync(PUBS_FILE_PATH)) {
-        try {
-          existingPubs = JSON.parse(fs.readFileSync(PUBS_FILE_PATH, 'utf8'));
-        } catch (_) {}
-      }
-
-      const abstractMap = new Map();
-      existingPubs.forEach((p) => {
-        if (p.graphicalAbstract) {
-          abstractMap.set(p.title.toLowerCase().trim(), p.graphicalAbstract);
-          if (p.doi) abstractMap.set(p.doi.toLowerCase().trim(), p.graphicalAbstract);
-        }
-      });
-
-      const topTitles = articleTitleMatches.slice(0, 6);
-      const enrichedPubs = [];
-
-      for (const title of topTitles) {
-        const existing = existingPubs.find(
-          (p) => p.title.toLowerCase().trim() === title.toLowerCase().trim()
-        );
-
-        if (!existing) {
-          newlyDiscoveredPubsCount++;
-        }
-
-        const crossref = await resolveCrossrefMetadataByTitle(title);
-        const mergedDoi = crossref?.doi || existing?.doi || '';
-        const mergedAbstract =
-          existing?.graphicalAbstract ||
-          abstractMap.get(title.toLowerCase().trim()) ||
-          abstractMap.get(mergedDoi.toLowerCase().trim()) ||
-          '';
-
-        enrichedPubs.push({
-          isNewlyDiscovered: !existing,
-          year: crossref?.year || existing?.year || '2026',
-          actualPublishDate: crossref?.actualPublishDate || existing?.actualPublishDate || '',
-          title: existing?.title || crossref?.title || title,
-          authors: existing?.authors || crossref?.authors || 'Sunaja Devi K R et al.',
-          journal: existing?.journal || crossref?.journal || 'Peer-reviewed Journal (2026)',
-          graphicalAbstract: mergedAbstract,
-          doi: mergedDoi,
-        });
-      }
-
-      if (enrichedPubs.length > 0) {
-        fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(enrichedPubs.map(({ isNewlyDiscovered, ...p }) => p), null, 2), 'utf8');
-        reportLogs.push(`✅ ${enrichedPubs.length} Latest Publications Synced (${newlyDiscoveredPubsCount} new additions).`);
-
-        // 3. Process Popup Announcements for Newly Discovered Publications
-        const annResult = updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs);
-        newAnnouncementsCreatedCount = annResult.newAddedCount;
-        expiredAnnouncementsPrunedCount = annResult.prunedCount;
-      }
-    }
-  } catch (err) {
-    reportLogs.push(`⚠️ Fetch Warning: ${err.message}. Retaining cached metrics.`);
-  }
-
-  // 4. Generate Daily Automation Audit Report File & Markdown Summary
-  generateDailyReport({
-    runTimestamp,
-    updatedStats,
-    newlyDiscoveredPubsCount,
-    newAnnouncementsCreatedCount,
-    expiredAnnouncementsPrunedCount,
-    reportLogs,
-  });
-}
-
-function updateAnnouncementsFromLatestPubs(enrichedPubs, reportLogs) {
-  let existingAnnouncements = [];
-  if (fs.existsSync(ANNOUNCEMENTS_FILE_PATH)) {
-    try {
-      existingAnnouncements = JSON.parse(fs.readFileSync(ANNOUNCEMENTS_FILE_PATH, 'utf8'));
-    } catch (_) {}
-  }
-
-  const existingMap = new Map();
-  existingAnnouncements.forEach((item) => {
-    existingMap.set(item.id, item);
-    if (item.link) existingMap.set(item.link.toLowerCase().trim(), item);
-  });
-
-  const todayStr = new Date().toISOString().slice(0, 10);
-  const updatedAnnouncements = [...existingAnnouncements];
-  let newAddedCount = 0;
-
-  for (const pub of enrichedPubs) {
-    // TRIGGER CONDITION: Only trigger popup announcements for publications newly detected on Google Scholar!
-    if (!pub.isNewlyDiscovered) continue;
-
-    const authorsStr = pub.authors || '';
-    const matchedScholars = SCHOLAR_DIRECTORY.filter((scholar) =>
-      scholar.patterns.some((pattern) => pattern.test(authorsStr))
-    );
-
-    if (matchedScholars.length === 0) continue;
-
-    const doiLink = pub.doi
-      ? (pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`)
-      : '';
-
-    const pubKey = doiLink ? doiLink.toLowerCase().trim() : pub.title.toLowerCase().trim();
-    if (existingMap.has(pubKey)) continue;
-
-    const isPushparaj = matchedScholars.some((s) => s.patterns.some((p) => p.test('pushparaj')));
-    const isCheriyan = matchedScholars.some((s) => s.patterns.some((p) => p.test('cheriyan')));
-
-    let publisherName = '';
-    let publisherRole = '';
-    let publisherPhoto = '';
-
-    // Format all involved group members' names & roles cleanly (e.g. 2 or more scholars)
-    if (isPushparaj && isCheriyan) {
-      publisherName = 'Dr. Pushparaj L. & Cheriyan John';
-      publisherRole = 'Post-Doctoral Researcher & PhD Scholar';
-      publisherPhoto = '/images/pushparaj_cheriyan_announcement.png';
-    } else {
-      const names = matchedScholars.map((s) => s.shortName);
-      if (names.length === 1) {
-        publisherName = names[0];
-      } else if (names.length === 2) {
-        publisherName = names.join(' & ');
-      } else {
-        publisherName = `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`;
-      }
-
-      publisherRole = Array.from(new Set(matchedScholars.map((s) => s.role))).join(' & ');
-      publisherPhoto = matchedScholars.find((s) => s.photo)?.photo || '/images/sunaja_devi.png';
+    if (topRecentPubs.length > 0) {
+      fs.writeFileSync(PUBS_FILE_PATH, JSON.stringify(topRecentPubs, null, 2), 'utf8');
     }
 
-    const newId = `announcement-${generateSlug(pub.title)}`;
-    if (existingMap.has(newId)) continue;
-
-    const newAnnouncement = {
-      id: newId,
+    // 4. Update Popup Announcements
+    const unnotified = getUnnotifiedPublications();
+    const announcements = unnotified.map((p) => ({
+      id: p.id,
       enabled: true,
-      publishDate: todayStr, // Starts from the day updated on Google Scholar!
-      activeDays: MAX_POPUP_DAYS, // Active for max 4 days
-      publisherName,
-      publisherRole,
-      publisherPhoto,
-      paperTitle: pub.title,
-      journal: pub.journal,
-      link: doiLink,
+      publishDate: p.publication_date || runTimestamp.slice(0, 10),
+      activeDays: 4,
+      publisherName: 'Sunaja Devi Research Group',
+      publisherRole: 'Department of Chemistry, Christ University',
+      publisherPhoto: '/images/sunaja_devi.png',
+      paperTitle: p.title,
+      journal: p.journal,
+      graphicalAbstract: p.graphical_abstract_url,
+      link: p.link || (p.doi ? `https://doi.org/${p.doi}` : ''),
+    }));
+
+    fs.writeFileSync(ANNOUNCEMENTS_FILE_PATH, JSON.stringify(announcements, null, 2), 'utf8');
+    if (unnotified.length > 0) {
+      reportLogs.push(`🎉 Created ${unnotified.length} congratulatory popups for unnotified publications.`);
+    }
+
+    // 5. Generate Audit Report
+    const reportData = {
+      lastRunTimestamp: runTimestamp,
+      status: 'SUCCESS',
+      scholarMetrics: updatedStats,
+      changesSummary: {
+        newPublicationsDiscovered: syncResult.newCount,
+        totalRecentPapers: syncResult.totalRecentProcessed,
+        unnotifiedCount: unnotified.length,
+      },
+      logs: reportLogs,
     };
 
+<<<<<<< HEAD
     updatedAnnouncements.unshift(newAnnouncement);
     existingMap.set(newId, newAnnouncement);
     if (doiLink) existingMap.set(doiLink.toLowerCase().trim(), newAnnouncement);
@@ -544,7 +262,15 @@ ${reportLogs.map((log) => `- ${log}`).join('\n')}
 
   if (process.env.GITHUB_STEP_SUMMARY) {
     fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, markdownSummary, 'utf8');
+=======
+    fs.writeFileSync(REPORT_FILE_PATH, JSON.stringify(reportData, null, 2), 'utf8');
+    console.log('✅ Daily Automation Completed Successfully.');
+  } catch (globalErr) {
+    console.error('⚠️ Global Automation Execution Warning:', globalErr.message);
+>>>>>>> origin/main
   }
 }
 
-updateScholarData();
+runDailyAutomation().catch((err) => {
+  console.warn('Daily automation top-level warning:', err.message);
+});
