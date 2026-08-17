@@ -310,7 +310,9 @@ async function updateScholarData() {
       i10Index: i10Index || currentData.i10Index || 79,
       i10IndexSince2021: i10IndexSince2021 || currentData.i10IndexSince2021 || 71,
       publicationsCount:
-        pubMatches.length > 0 ? pubMatches.length : currentData.publicationsCount || 20,
+        currentData.publicationsCount && currentData.publicationsCount > 20
+          ? currentData.publicationsCount
+          : (pubMatches.length > 20 ? pubMatches.length : 166),
       lastUpdated: runTimestamp,
     };
 
@@ -527,7 +529,7 @@ function generateDailyReport({
   const markdownSummary = `
 ### 🤖 Daily Automation Report (${runTimestamp.slice(0, 10)})
 - **Status**: SUCCESS
-- **Google Scholar Metrics**: ${updatedStats.citations || 3028} Citations | h-index: ${updatedStats.hIndex || 32} | Total Pubs: ${updatedStats.publicationsCount || 167}
+- **Google Scholar Metrics**: ${updatedStats.citations || 3028} Citations | h-index: ${updatedStats.hIndex || 32} | Total Pubs: ${updatedStats.publicationsCount || 166}
 - **Popup Policy**: Triggered on day updated on Google Scholar; max ${MAX_POPUP_DAYS} days display window.
 - **Activity Summary**:
   - New Publications Discovered: ${newlyDiscoveredPubsCount}
