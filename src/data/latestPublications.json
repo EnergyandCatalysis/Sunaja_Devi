@@ -12,6 +12,18 @@
     "link": "https://doi.org/10.21203/rs.3.rs-10597892/v1"
   },
   {
+    "id": "doi-10-1021-acsanm-6c02084",
+    "year": "2026",
+    "actualPublishDate": "2026-07-07",
+    "title": "ZIF-8/LDH Nanohybrids for Dye Adsorption: LDH Composition-Dependent Structure and Adsorption Performance",
+    "authors": "P Loganathan, KR Pai Sunajadevi, M Priyadarshini, C John, S Sathish, ...",
+    "journal": "ACS Applied Nano Materials, 2026",
+    "abstract": "ZIF-8/LDH nanohybrids were synthesized to study the effect of LDH composition on structural ordering and organic dye adsorption performance. The optimized hybrid displays exceptionally high specific surface area and rapid adsorption kinetics for industrial dye decontamination.",
+    "graphicalAbstract": "/images/abstracts/abstract_zif8_ldh.png",
+    "doi": "10.1021/acsanm.6c02084",
+    "link": "https://doi.org/10.1021/acsanm.6c02084"
+  },
+  {
     "id": "doi-10-1002-ente-70560",
     "year": "2026",
     "actualPublishDate": "2026-07-06",
@@ -22,6 +34,18 @@
     "graphicalAbstract": "/images/abstracts/abstract_v2alc_max.png",
     "doi": "10.1002/ente.70560",
     "link": "https://doi.org/10.1002/ente.70560"
+  },
+  {
+    "id": "doi-10-1016-j-colsurfa-2026-139593",
+    "year": "2026",
+    "actualPublishDate": "2026-05-01",
+    "title": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
+    "authors": "TSS Sri, S Anand, KRP Sunajadevi, A Kumar, CV Yelamaggad, ...",
+    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
+    "abstract": "This study reports the synthesis and multifunctional electrochemical characterization of Ni-PTC metal-organic frameworks (MOFs). The porous hybrid architecture provides high surface area and abundant redox-active sites, yielding superior specific capacitance and long-term cycling stability for supercapacitors alongside low overpotential for electrocatalytic water splitting.",
+    "graphicalAbstract": "/images/abstracts/abstract_ni_ptc_mof.png",
+    "doi": "10.1016/j.colsurfa.2026.139593",
+    "link": "https://doi.org/10.1016/j.colsurfa.2026.139593"
   },
   {
     "id": "doi-10-1016-j-nxmate-2026-101775",
@@ -46,29 +70,5 @@
     "graphicalAbstract": "/images/abstracts/abstract_cr2moalc2_max.png",
     "doi": "",
     "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:ipzZ9siozwsC"
-  },
-  {
-    "id": "doi-10-1016-j-colsurfa-2026-139593",
-    "year": "2026",
-    "actualPublishDate": "2026-01-01",
-    "title": "Dual purpose behavior of Ni-PTC MOF for high performance supercapacitor and water splitting applications",
-    "authors": "TSS Sri, S Anand, KRP Sunajadevi, A Kumar, CV Yelamaggad, ...",
-    "journal": "Colloids and Surfaces A: Physicochemical and Engineering Aspects, 139593, 2026",
-    "abstract": "This study reports the synthesis and multifunctional electrochemical characterization of Ni-PTC metal-organic frameworks (MOFs). The porous hybrid architecture provides high surface area and abundant redox-active sites, yielding superior specific capacitance and long-term cycling stability for supercapacitors alongside low overpotential for electrocatalytic water splitting.",
-    "graphicalAbstract": "/images/abstracts/abstract_ni_ptc_mof.png",
-    "doi": "",
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HmOcEpIAAAAJ&sortby=pubdate&citation_for_view=HmOcEpIAAAAJ:9Nmd_mFXekcC"
-  },
-  {
-    "id": "doi-10-1016-j-microc-2025-116580",
-    "year": "2025",
-    "actualPublishDate": "2026-01-01",
-    "title": "Amine-functionalized MIL-101 (Fe)-NH2@ ZIF-8 composite for efficient adsorption of Pb2+ ions",
-    "authors": "P Loganathan, M Ramachandra, M Priyadarshini, S Manickam, ...",
-    "journal": "Microchemical Journal, 116580, 2025",
-    "abstract": "An amine-functionalized MIL-101(Fe)-NH2@ZIF-8 composite was developed for the highly efficient adsorption of Pb2+ heavy metal ions from contaminated water. Synergistic interactions between amino functional groups and the porous ZIF-8 matrix provide abundant active binding sites, leading to exceptional adsorption capacity, fast kinetics, and high reusability.",
-    "graphicalAbstract": "/images/graphical_abstracts/abstract_10_1016_j_microc_2025_116580.svg",
-    "doi": "10.1016/j.microc.2025.116580",
-    "link": "https://doi.org/10.1016/j.microc.2025.116580"
   }
 ]

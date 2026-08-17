@@ -50,7 +50,7 @@
 
   <!-- Header Journal & Authors -->
   <text x="80" y="112" font-family="'Segoe UI', Roboto, sans-serif" font-size="15" fill="#94a3b8">
-    CHEMISTRYSELECT 10 (44), 2025 (2025)  •  <tspan fill="#38bdf8">R Madhushree, SR Kali, KRP Sunajadevi, D Pinheiro</tspan>
+    ChemistrySelect 10 (44), e03995, 2025 (2025)  •  <tspan fill="#38bdf8">R Madhushree, SR Kali, KRP Sunajadevi, D Pinheiro</tspan>
   </text>
   
   <rect x="1000" y="65" width="120" height="32" rx="8" fill="url(#goldGrad)" />
