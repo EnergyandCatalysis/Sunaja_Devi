@@ -366,7 +366,8 @@ export default function HomePage() {
                         )}
                       </p>
                       {pub.abstract && (
-                        <p className="pub-abstract-preview" style={{ fontSize: "0.85rem", color: "#64748b", marginTop: "6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", lineHeight: "1.4" }}>
+                        <p className="pub-abstract-preview" style={{ fontSize: "0.85rem", color: "#475569", marginTop: "8px", background: "#f8fafc", padding: "8px 12px", borderRadius: "6px", borderLeft: "3px solid #3b82f6", lineHeight: "1.45" }}>
+                          <strong style={{ color: "#1e293b" }}>Abstract: </strong>
                           {pub.abstract}
                         </p>
                       )}
